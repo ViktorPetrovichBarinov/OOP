@@ -18,3 +18,13 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks {
+    "jacocoTestReport"(JacocoReport::class) {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            html.outputLocation.set(layout.buildDirectory.dir("$buildDir/jacoco/jacocoHtml"))
+        }
+    }
+}
