@@ -3,20 +3,26 @@ package ru.nsu.chudinov;
 
 import java.util.Arrays;
 
+/**
+ * Класс реализует представление полиномов
+ */
 public class Polynomial {
-    private Double[] coefficients;
+    /**
+     * Коэффициенты полинома от младшего к старшему
+     */
+    private final Double[] coefficients;
 
     /**
-     * для тестов нужен
-     * @return  массиф коэффициентов
+     * Для тестов нужен
+     * @return  массив коэффициентов
      */
     public Double[] getCoefficients() {
         return coefficients;
     }
 
-    //сильно больше скорее всего не надо и это оптимальная епсилон для x^5
+    //сильно больше скорее всего не надо и это оптимальный эпсилон для x^5
     //за жизнь наверно раз 10 не больше сталкивался с полиномами такого типа
-    //если пытаться оптимизировать для x больших степеней, то надо увеличивать епсилон -> точность начинает ощутимо хромать
+    //если пытаться оптимизировать для x больших степеней, то надо увеличивать эпсилон -> точность начинает ощутимо хромать
     private static final double E = 0.001;
 
     /**
@@ -27,12 +33,12 @@ public class Polynomial {
     public <T extends Number> Polynomial(T[] arr) {
         //вызывает исключение, чтобы нельзя было передать пустой массив
 
-        if (arr.length == 0){
+        if (arr.length == 0) {
             throw new IllegalArgumentException("Array must be non empty!");
         }
         //стираем старшие незначащие нули
         int maxNonZeroIndex = arr.length - 1;
-        while(maxNonZeroIndex >= 1){
+        while(maxNonZeroIndex >= 1) {
             if (!DoubleEqual(arr[maxNonZeroIndex].doubleValue(), 0.0)){
                 break;
             }
@@ -49,8 +55,8 @@ public class Polynomial {
     }
 
     /**
-     * переобраделяю метод toString, унаследованный от супер-класса Object.
-     * Override  - директива, которая позволяет переобределять метод унаследованный от супер-класса
+     * Переопределяю метод toString, унаследованный от супер-класса Object.
+     * Override - директива, которая позволяет переопределять метод унаследованный от супер-класса
      *
      * @return строка вида полинома от старшего к младшему.
      */
@@ -58,7 +64,7 @@ public class Polynomial {
     public String toString() {
         //класс в java предназначенный для построения строк
         StringBuilder result = new StringBuilder();
-        //спросить про то, можно ли не исопльзовать this(вроде можно) и
+        //спросить про то, можно ли не использовать this(вроде можно) и
         //почему компилятор понимает, что именно эти коэффициенты хочу поменять
         for (int i = this.coefficients.length - 1; i >= 0; i--) {
             if (!DoubleEqual(this.coefficients[i], 0.0)) {
@@ -76,21 +82,21 @@ public class Polynomial {
                 }
             }
         }
-        // Удалить первый " + ", если он есть.
+        // Удалить первый" + ", если он есть.
         if (result.length() >= 3 && result.substring(0, 3).equals(" + ")) {
             result.delete(0, 3);
         }
         if (result.length() >= 3 && result.substring(0, 3).equals(" - ")) {
             result.delete(0, 1);
         }
-        if (this.coefficients.length == 1 && this.coefficients[0].equals(0.0)){
+        if (this.coefficients.length == 1 && this.coefficients[0].equals(0.0)) {
             result.append("empty polynomial");
         }
         return result.toString();
     }
 
     /**
-     *
+     * Сравнение чисел с плавающей точкой через эпсилон-окрестность
      * @param a - первое число
      * @param b - второе число
      * @return text
@@ -98,11 +104,17 @@ public class Polynomial {
     public static boolean DoubleEqual(double a, double b) {
         return Math.abs(a - b) <= E;
     }
+
+    /**
+     * Метод складывает два полинома
+     *
+     * @param other     другой полином, который будет прибавлен к основному
+     * @return          Ссылка на результат
+     */
     public Polynomial plus(Polynomial other) {
         Integer maxLength = Math.max(this.coefficients.length, other.coefficients.length);
         Integer minLength = Math.min(this.coefficients.length, other.coefficients.length);
         Double[] resultCoefficients = new Double[maxLength];
-
         //получаем сумму до индекса массива минимальной длинны
         for (int i = 0; i < minLength; i++) {
             resultCoefficients[i] = this.coefficients[i] + other.coefficients[i];
@@ -115,18 +127,18 @@ public class Polynomial {
             System.arraycopy(other.coefficients, minLength, resultCoefficients, minLength, maxLength - minLength);
         }
 
-        //если у нас полиномы идентичной длинны, то в старшых коэффициентах может быть ноль
+        //если у нас полиномы идентичной длинны, то в старших коэффициентах может быть ноль
         if (minLength.equals(maxLength)) {
             int lastNonZeroIndex = minLength - 1;
             while(lastNonZeroIndex >= 1) {
                 if (resultCoefficients[lastNonZeroIndex].equals(0.0)){
                     lastNonZeroIndex--;
                 }
-                else{
+                else {
                     break;
                 }
             }
-            if (lastNonZeroIndex == 0){
+            if (lastNonZeroIndex == 0) {
                 return new Polynomial(new Double[]{0.0});
             }
             Double[] resultCoefficientsEqualLength = new Double[lastNonZeroIndex + 1];
@@ -135,16 +147,29 @@ public class Polynomial {
         }
         return new Polynomial(resultCoefficients);
     }
+
+    /**
+     * Аналогично plus
+     *
+     * @param other   @see plus
+     * @return        @see plus
+     */
     public Polynomial minus(Polynomial other) {
-        for (int i = 0; i < other.coefficients.length; i++){
+        for (int i = 0; i < other.coefficients.length; i++) {
             other.coefficients[i] = -other.coefficients[i];
         }
         return this.plus(other);
     }
 
+    /**
+     * Метод находит произведение двух полиномов
+     *
+     * @param other @see plus
+     * @return      @see plus
+     */
     public Polynomial multiplication(Polynomial other) {
-        Integer maxLength = Math.max(this.coefficients.length, other.coefficients.length);
-        Integer minLength = Math.min(this.coefficients.length, other.coefficients.length);
+        int maxLength = Math.max(this.coefficients.length, other.coefficients.length);
+        int minLength = Math.min(this.coefficients.length, other.coefficients.length);
         Double[] result = new Double[maxLength + minLength - 1];
         Arrays.fill(result, 0.0);
         for (int i = 0; i < maxLength; i++){
@@ -152,33 +177,47 @@ public class Polynomial {
                 if (this.coefficients.length == maxLength) {
                     result[i + j] += this.coefficients[i] * other.coefficients[j];
                 }
-                else{
+                else {
                     result[i + j] += this.coefficients[j] * other.coefficients[i];
                 }
-
             }
         }
         return new Polynomial(result);
     }
 
-    public <T extends Number>  Double value(T x){
-        Double returnValue = 0.0;
-        for (int i = 0; i < this.coefficients.length; i++){
+    /**
+     * Метод находит значение полинома в точке
+     *
+     * @param x     - точка
+     * @return      - значение в точку
+     * @param <T>   - x задаётся любым типом
+     */
+    public <T extends Number>  Double value(T x) {
+        double returnValue = 0.0;
+        for (int i = 0; i < this.coefficients.length; i++) {
             returnValue += Math.pow(x.doubleValue(), i) * this.coefficients[i];
         }
         return returnValue;
     }
-    public Polynomial iDifferential(int i){
+
+    /**
+     * Метод находит вид полинома после i-ого дифференцирования.
+     * Если параметр i < 0 -> ошибка
+     *
+     * @param i     i-ая производная
+     * @return      возвращает полином
+     */
+    public Polynomial iDifferential(int i) {
         if (i < 0){
             throw new IllegalArgumentException("x must be positive!");
         }
-        if (i >= this.coefficients.length){
+        if (i >= this.coefficients.length) {
             return new Polynomial(new Double[]{0.0});
         }
-        else{
+        else {
             Double[] returnArr = new Double[this.coefficients.length - i];
             Arrays.fill(returnArr, 0.0);
-            for (int j = 0; j < returnArr.length; j++){
+            for (int j = 0; j < returnArr.length; j++) {
                 returnArr[j] = this.coefficients[i + j];
                 int tmp = i;
                 while(tmp > 0){
@@ -190,20 +229,23 @@ public class Polynomial {
         }
     }
 
-
-    public boolean compare(Polynomial other){
-        if (this.coefficients.length != other.coefficients.length){
+    /**
+     * Сравнивает два полинома
+     *
+     * @param other     второй полином
+     * @return          true - если одинаковые полиномы, false - если разные
+     */
+    public boolean compare(Polynomial other) {
+        if (this.coefficients.length != other.coefficients.length) {
             return false;
         }
         else{
-            for (int i = 0; i < this.coefficients.length; i++){
+            for (int i = 0; i < this.coefficients.length; i++) {
                 if (!DoubleEqual(this.coefficients[i], other.coefficients[i])){
                     return false;
                 }
-
             }
         }
         return true;
     }
-
 }

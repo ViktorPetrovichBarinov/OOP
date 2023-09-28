@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.chudinov","l":"Main"},{"p":"ru.nsu.chudinov","l":"Polynomial"}];updateSearchResults();
