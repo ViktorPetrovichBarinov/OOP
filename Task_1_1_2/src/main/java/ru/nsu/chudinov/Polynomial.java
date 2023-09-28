@@ -4,16 +4,18 @@ package ru.nsu.chudinov;
 import java.util.Arrays;
 
 /**
- * Класс реализует представление полиномов
+ * Класс реализует представление полиномов.
  */
 public class Polynomial {
+
     /**
-     * Коэффициенты полинома от младшего к старшему
+     * Коэффициенты полинома от младшего к старшему.
      */
     private final Double[] coefficients;
 
     /**
-     * Для тестов нужен
+     * Для тестов нужен.
+     *
      * @return  массив коэффициентов
      */
     public Double[] getCoefficients() {
@@ -22,11 +24,13 @@ public class Polynomial {
 
     //сильно больше скорее всего не надо и это оптимальный эпсилон для x^5
     //за жизнь наверно раз 10 не больше сталкивался с полиномами такого типа
-    //если пытаться оптимизировать для x больших степеней, то надо увеличивать эпсилон -> точность начинает ощутимо хромать
+    //если пытаться оптимизировать для x больших степеней,
+    // то надо увеличивать эпсилон -> точность начинает ощутимо хромать
     private static final double E = 0.001;
 
     /**
-     * Конструктор заполняет одно поле(coefficients) в экземпляре
+     * Конструктор заполняет одно поле(coefficients) в экземпляре.
+     *
      * @param arr       массив с коэффициентами от младшего к старшему
      * @param <T>       любой числовой тип
      */
@@ -39,7 +43,7 @@ public class Polynomial {
         //стираем старшие незначащие нули
         int maxNonZeroIndex = arr.length - 1;
         while(maxNonZeroIndex >= 1) {
-            if (!DoubleEqual(arr[maxNonZeroIndex].doubleValue(), 0.0)){
+            if (!doubleEqual(arr[maxNonZeroIndex].doubleValue(), 0.0)) {
                 break;
             }
             maxNonZeroIndex--;
@@ -67,7 +71,7 @@ public class Polynomial {
         //спросить про то, можно ли не использовать this(вроде можно) и
         //почему компилятор понимает, что именно эти коэффициенты хочу поменять
         for (int i = this.coefficients.length - 1; i >= 0; i--) {
-            if (!DoubleEqual(this.coefficients[i], 0.0)) {
+            if (!doubleEqual(this.coefficients[i], 0.0)) {
                 if (this.coefficients[i] > 0) {
                     result.append(" + ");
                 } else {
@@ -96,17 +100,18 @@ public class Polynomial {
     }
 
     /**
-     * Сравнение чисел с плавающей точкой через эпсилон-окрестность
+     * Сравнение чисел с плавающей точкой через эпсилон-окрестность.
+     *
      * @param a - первое число
      * @param b - второе число
      * @return text
      */
-    public static boolean DoubleEqual(double a, double b) {
+    public static boolean doubleEqual(double a, double b) {
         return Math.abs(a - b) <= E;
     }
 
     /**
-     * Метод складывает два полинома
+     * Метод складывает два полинома.
      *
      * @param other     другой полином, который будет прибавлен к основному
      * @return          Ссылка на результат
@@ -121,20 +126,20 @@ public class Polynomial {
         }
 
         if (maxLength.equals(this.coefficients.length)) {
-            System.arraycopy(this.coefficients, minLength, resultCoefficients, minLength, maxLength - minLength);
-        }
-        else {
-            System.arraycopy(other.coefficients, minLength, resultCoefficients, minLength, maxLength - minLength);
+            System.arraycopy(this.coefficients, minLength,
+                    resultCoefficients, minLength, maxLength - minLength);
+        } else {
+            System.arraycopy(other.coefficients, minLength,
+                    resultCoefficients, minLength, maxLength - minLength);
         }
 
         //если у нас полиномы идентичной длинны, то в старших коэффициентах может быть ноль
         if (minLength.equals(maxLength)) {
             int lastNonZeroIndex = minLength - 1;
             while(lastNonZeroIndex >= 1) {
-                if (resultCoefficients[lastNonZeroIndex].equals(0.0)){
+                if (resultCoefficients[lastNonZeroIndex].equals(0.0)) {
                     lastNonZeroIndex--;
-                }
-                else {
+                } else {
                     break;
                 }
             }
@@ -142,14 +147,15 @@ public class Polynomial {
                 return new Polynomial(new Double[]{0.0});
             }
             Double[] resultCoefficientsEqualLength = new Double[lastNonZeroIndex + 1];
-            System.arraycopy(resultCoefficients, 0, resultCoefficientsEqualLength, 0, lastNonZeroIndex + 1);
+            System.arraycopy(resultCoefficients, 0,
+                    resultCoefficientsEqualLength, 0, lastNonZeroIndex + 1);
             return new Polynomial(resultCoefficientsEqualLength);
         }
         return new Polynomial(resultCoefficients);
     }
 
     /**
-     * Аналогично plus
+     * Аналогично plus.
      *
      * @param other   @see plus
      * @return        @see plus
@@ -162,7 +168,7 @@ public class Polynomial {
     }
 
     /**
-     * Метод находит произведение двух полиномов
+     * Метод находит произведение двух полиномов.
      *
      * @param other @see plus
      * @return      @see plus
@@ -172,12 +178,11 @@ public class Polynomial {
         int minLength = Math.min(this.coefficients.length, other.coefficients.length);
         Double[] result = new Double[maxLength + minLength - 1];
         Arrays.fill(result, 0.0);
-        for (int i = 0; i < maxLength; i++){
-            for (int j = 0; j < minLength; j++){
+        for (int i = 0; i < maxLength; i++) {
+            for (int j = 0; j < minLength; j++) {
                 if (this.coefficients.length == maxLength) {
                     result[i + j] += this.coefficients[i] * other.coefficients[j];
-                }
-                else {
+                } else {
                     result[i + j] += this.coefficients[j] * other.coefficients[i];
                 }
             }
@@ -186,11 +191,11 @@ public class Polynomial {
     }
 
     /**
-     * Метод находит значение полинома в точке
+     * Метод находит значение полинома в точке.
      *
      * @param x     - точка
-     * @return      - значение в точку
      * @param <T>   - x задаётся любым типом
+     * @return      - значение в точку
      */
     public <T extends Number>  Double value(T x) {
         double returnValue = 0.0;
@@ -207,20 +212,19 @@ public class Polynomial {
      * @param i     i-ая производная
      * @return      возвращает полином
      */
-    public Polynomial iDifferential(int i) {
-        if (i < 0){
+    public Polynomial DifferentialI(int i) {
+        if (i < 0) {
             throw new IllegalArgumentException("x must be positive!");
         }
         if (i >= this.coefficients.length) {
             return new Polynomial(new Double[]{0.0});
-        }
-        else {
+        } else {
             Double[] returnArr = new Double[this.coefficients.length - i];
             Arrays.fill(returnArr, 0.0);
             for (int j = 0; j < returnArr.length; j++) {
                 returnArr[j] = this.coefficients[i + j];
                 int tmp = i;
-                while(tmp > 0){
+                while(tmp > 0) {
                     returnArr[j] *= (tmp + j);
                     tmp--;
                 }
@@ -230,7 +234,7 @@ public class Polynomial {
     }
 
     /**
-     * Сравнивает два полинома
+     * Сравнивает два полинома.
      *
      * @param other     второй полином
      * @return          true - если одинаковые полиномы, false - если разные
@@ -238,10 +242,9 @@ public class Polynomial {
     public boolean compare(Polynomial other) {
         if (this.coefficients.length != other.coefficients.length) {
             return false;
-        }
-        else{
+        } else {
             for (int i = 0; i < this.coefficients.length; i++) {
-                if (!DoubleEqual(this.coefficients[i], other.coefficients[i])){
+                if (!doubleEqual(this.coefficients[i], other.coefficients[i])) {
                     return false;
                 }
             }

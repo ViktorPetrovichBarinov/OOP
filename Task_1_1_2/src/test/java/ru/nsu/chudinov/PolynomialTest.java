@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ru.nsu.chudinov.Polynomial.DoubleEqual;
+import static ru.nsu.chudinov.Polynomial.doubleEqual;
 
 public class PolynomialTest {
 
@@ -16,7 +16,7 @@ public class PolynomialTest {
     void checkExampleTest1() {
         Polynomial p1 = new Polynomial(new Integer[] {4, 3, 6, 7});
         Polynomial p2 = new Polynomial(new Integer[] {3, 2, 8});
-        assertEquals(p1.plus(p2.iDifferential(1)).toString(), "7.0x^3 + 6.0x^2 + 19.0x + 6.0");
+        assertEquals(p1.plus(p2.DifferentialI(1)).toString(), "7.0x^3 + 6.0x^2 + 19.0x + 6.0");
     }
     @Test
     void checkExampleTest2() {
@@ -26,7 +26,8 @@ public class PolynomialTest {
     }
 
     /**
-     * Тестирует задание полинома
+     * Тестирует задание полинома.
+     *
      * @param input     входный данные
      * @param expected  выходные данные
      * @param <T>       рандомный пареметр
@@ -35,6 +36,100 @@ public class PolynomialTest {
     @MethodSource("constructorPolynomialTest")
     <T extends Number> void compareArrays(T[] input, Double[] expected) {
         assertArrayEquals(new Polynomial(input).getCoefficients(),expected);
+    }
+
+    /**
+     * Тестирует вывод полинома.
+     *
+     * @param poly      входные
+     * @param expected  выходные
+     */
+    @ParameterizedTest
+    @MethodSource("createToStringPolynomialTest")
+    void compareStrings(Polynomial poly, String expected) {
+        assertEquals(poly.toString(), expected);
+    }
+
+    /**
+     *
+     * @param a - первое число
+     * @param b - второе число
+     */
+    @ParameterizedTest
+    @MethodSource("doubleEqualTests")
+    void compareDoubles(Double a, Double b) {
+        assertTrue(doubleEqual(a, b));
+    }
+
+    /**
+     *
+     * @param poly1     - первый аргумент
+     * @param poly2     - второй аргумент
+     * @param expected  - ожидаемый массив
+     */
+    @ParameterizedTest
+    @MethodSource("plusPolynomialTest")
+    void comparePolynomialsPlus(Polynomial poly1, Polynomial poly2, Double[] expected) {
+        assertArrayEquals(poly1.plus(poly2).getCoefficients(), expected);
+    }
+
+    /**
+     *
+     * @param poly1     - some text
+     * @param poly2     - some text
+     * @param expected  - some text
+     */
+    @ParameterizedTest
+    @MethodSource("minusPolynomialTest")
+    void comparePolynomialsMinus(Polynomial poly1, Polynomial poly2, Double[] expected) {
+        assertArrayEquals(poly1.minus(poly2).getCoefficients(), expected);
+    }
+
+    /**
+     *
+     * @param poly1     - some text
+     * @param poly2     - some text
+     * @param expected  - some text
+     */
+    @ParameterizedTest
+    @MethodSource("multiplicationPolynomialTest")
+    void comparePolynomialsMultiplication(Polynomial poly1, Polynomial poly2, Double[] expected) {
+        assertArrayEquals(poly1.multiplication(poly2).getCoefficients(), expected);
+    }
+
+    /**
+     *
+     * @param poly1     - some text
+     * @param x         - some text
+     * @param a         - some text
+     */
+    @ParameterizedTest
+    @MethodSource("valuePolynomialTest")
+    void valueOfPolynomial(Polynomial poly1, Double x, Double a) {
+        assertTrue(doubleEqual(poly1.value(x), a));
+    }
+
+    /**
+     *
+     * @param poly1     - some text
+     * @param i         - some text
+     * @param expected  - some text
+     */
+    @ParameterizedTest
+    @MethodSource("differentialPolynomialsTest")
+    void valueOfPolynomial(Polynomial poly1, Integer i, Double[] expected) {
+        assertArrayEquals(poly1.DifferentialI(i).getCoefficients(), expected);
+    }
+
+    /**
+     *
+     * @param poly1     - some text
+     * @param poly2     - some text
+     */
+    @ParameterizedTest
+    @MethodSource("comparePolynomialsTest")
+    void valueOfPolynomial(Polynomial poly1, Polynomial poly2) {
+        assertTrue(poly1.compare(poly2));
     }
     private static Stream<Arguments> constructorPolynomialTest() {
         return Stream.of(
@@ -69,16 +164,6 @@ public class PolynomialTest {
         );
     }
 
-    /**
-     * Тестирует вывод полинома
-     * @param poly      входные
-     * @param expected  выходные
-     */
-    @ParameterizedTest
-    @MethodSource("createToStringPolynomialTest")
-    void compareStrings(Polynomial poly, String expected) {
-        assertEquals(poly.toString(), expected);
-    }
     private static Stream<Arguments> createToStringPolynomialTest() {
         return Stream.of(
                 Arguments.of(
@@ -100,11 +185,7 @@ public class PolynomialTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("doubleEqualTests")
-    void compareDoubles(Double a, Double b) {
-        assertTrue(DoubleEqual(a, b));
-    }
+
     private static Stream<Arguments> doubleEqualTests() {
         return Stream.of(
                 Arguments.of(
@@ -126,11 +207,7 @@ public class PolynomialTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("plusPolynomialTest")
-    void comparePolynomialsPlus(Polynomial poly1, Polynomial poly2, Double[] expected) {
-        assertArrayEquals(poly1.plus(poly2).getCoefficients(), expected);
-    }
+
     private static Stream<Arguments> plusPolynomialTest() {
         return Stream.of(
                 Arguments.of(
@@ -156,11 +233,7 @@ public class PolynomialTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("minusPolynomialTest")
-    void comparePolynomialsMinus(Polynomial poly1, Polynomial poly2, Double[] expected) {
-        assertArrayEquals(poly1.minus(poly2).getCoefficients(), expected);
-    }
+
     private static Stream<Arguments> minusPolynomialTest() {
         return Stream.of(
                 Arguments.of(
@@ -186,11 +259,7 @@ public class PolynomialTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("multiplicationPolynomialTest")
-    void comparePolynomialsMultiplication(Polynomial poly1, Polynomial poly2, Double[] expected) {
-        assertArrayEquals(poly1.multiplication(poly2).getCoefficients(), expected);
-    }
+
     private static Stream<Arguments> multiplicationPolynomialTest() {
         return Stream.of(
                 Arguments.of(
@@ -211,11 +280,7 @@ public class PolynomialTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("valuePolynomialTest")
-    void valueOfPolynomial(Polynomial poly1, Double x, Double a) {
-        assertTrue(DoubleEqual(poly1.value(x), a));
-    }
+
     private static Stream<Arguments> valuePolynomialTest() {
         return Stream.of(
                 Arguments.of(
@@ -236,11 +301,7 @@ public class PolynomialTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("differentialPolynomialsTest")
-    void valueOfPolynomial(Polynomial poly1, Integer i, Double[] expected) {
-        assertArrayEquals(poly1.iDifferential(i).getCoefficients(), expected);
-    }
+
     private static Stream<Arguments> differentialPolynomialsTest() {
         return Stream.of(
                 Arguments.of(
@@ -271,11 +332,8 @@ public class PolynomialTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("comparePolynomialsTest")
-    void valueOfPolynomial(Polynomial poly1,Polynomial poly2) {
-        assertTrue(poly1.compare(poly2));
-    }
+
+
     private static Stream<Arguments> comparePolynomialsTest() {
         return Stream.of(
                 Arguments.of(
@@ -291,7 +349,8 @@ public class PolynomialTest {
                         new Polynomial(new Integer[]{0})
                 ),
                 Arguments.of(
-                        new Polynomial(new Integer[]{1, 2, 3}).plus(new Polynomial(new Double[]{1.5, 1.5, 1.5})),
+                        new Polynomial(new Integer[]{1, 2, 3}).
+                                plus(new Polynomial(new Double[]{1.5, 1.5, 1.5})),
                         new Polynomial(new Double[]{2.5, 3.5, 4.5})
                 )
         );
