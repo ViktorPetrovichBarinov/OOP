@@ -157,8 +157,8 @@ public class Polynomial {
     /**
      * Аналогично plus.
      *
-     * @param other   @see plus
-     * @return        @see plus
+     * @param other   - description
+     * @return        - description
      */
     public Polynomial minus(Polynomial other) {
         for (int i = 0; i < other.coefficients.length; i++) {
@@ -170,8 +170,8 @@ public class Polynomial {
     /**
      * Метод находит произведение двух полиномов.
      *
-     * @param other @see plus
-     * @return      @see plus
+     * @param other - description
+     * @return      - description
      */
     public Polynomial multiplication(Polynomial other) {
         int maxLength = Math.max(this.coefficients.length, other.coefficients.length);
@@ -207,7 +207,7 @@ public class Polynomial {
 
     /**
      * Метод находит вид полинома после i-ого дифференцирования.
-     * Если параметр i < 0 -> ошибка
+     * Если параметр i меньше 0, тогда ошибка
      *
      * @param i     i-ая производная
      * @return      возвращает полином
