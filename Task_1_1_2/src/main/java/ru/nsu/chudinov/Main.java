@@ -1,7 +1,8 @@
 package ru.nsu.chudinov;
 
-import java.util.Arrays;
-
+/**
+ * some text.
+ */
 public class Main {
     public static void main(String[] args) {
         System.out.println("I have compiled");

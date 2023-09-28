@@ -1,23 +1,35 @@
 package ru.nsu.chudinov;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static ru.nsu.chudinov.Polynomial.doubleEqual;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.MethodSource;
+
+
+
+
+/**
+ * Класс для тестирования всех методов класса "Polinomial".
+ */
 public class PolynomialTest {
 
+    /**
+     * Some text.
+     */
     @Test
     void checkExampleTest1() {
         Polynomial p1 = new Polynomial(new Integer[] {4, 3, 6, 7});
         Polynomial p2 = new Polynomial(new Integer[] {3, 2, 8});
-        assertEquals(p1.plus(p2.DifferentialI(1)).toString(), "7.0x^3 + 6.0x^2 + 19.0x + 6.0");
+        assertEquals(p1.plus(p2.differentialI(1)).toString(), "7.0x^3 + 6.0x^2 + 19.0x + 6.0");
     }
+
+    /**
+     * Some text.
+     */
     @Test
     void checkExampleTest2() {
         Polynomial p1 = new Polynomial(new Integer[] {4, 3, 6, 7});
@@ -35,7 +47,7 @@ public class PolynomialTest {
     @ParameterizedTest
     @MethodSource("constructorPolynomialTest")
     <T extends Number> void compareArrays(T[] input, Double[] expected) {
-        assertArrayEquals(new Polynomial(input).getCoefficients(),expected);
+        assertArrayEquals(new Polynomial(input).getCoefficients(), expected);
     }
 
     /**
@@ -51,6 +63,7 @@ public class PolynomialTest {
     }
 
     /**
+     * Some text.
      *
      * @param a - первое число
      * @param b - второе число
@@ -62,6 +75,7 @@ public class PolynomialTest {
     }
 
     /**
+     * Some text.
      *
      * @param poly1     - первый аргумент
      * @param poly2     - второй аргумент
@@ -74,6 +88,7 @@ public class PolynomialTest {
     }
 
     /**
+     * Some text.
      *
      * @param poly1     - some text
      * @param poly2     - some text
@@ -86,6 +101,7 @@ public class PolynomialTest {
     }
 
     /**
+     * Some text.
      *
      * @param poly1     - some text
      * @param poly2     - some text
@@ -98,6 +114,7 @@ public class PolynomialTest {
     }
 
     /**
+     * Some text.
      *
      * @param poly1     - some text
      * @param x         - some text
@@ -110,6 +127,7 @@ public class PolynomialTest {
     }
 
     /**
+     * Some text.
      *
      * @param poly1     - some text
      * @param i         - some text
@@ -118,10 +136,11 @@ public class PolynomialTest {
     @ParameterizedTest
     @MethodSource("differentialPolynomialsTest")
     void valueOfPolynomial(Polynomial poly1, Integer i, Double[] expected) {
-        assertArrayEquals(poly1.DifferentialI(i).getCoefficients(), expected);
+        assertArrayEquals(poly1.differentialI(i).getCoefficients(), expected);
     }
 
     /**
+     * Some text.
      *
      * @param poly1     - some text
      * @param poly2     - some text
@@ -131,6 +150,9 @@ public class PolynomialTest {
     void valueOfPolynomial(Polynomial poly1, Polynomial poly2) {
         assertTrue(poly1.compare(poly2));
     }
+
+
+
     private static Stream<Arguments> constructorPolynomialTest() {
         return Stream.of(
                 Arguments.of(
@@ -150,8 +172,9 @@ public class PolynomialTest {
                         new Double[]{0.0, -1.0, -2.0, -3.0}
                 ),
                 Arguments.of(
-                        new Integer[]{123, 123, 123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                        new Double[]{123.0,123.0,123.0}
+                        new Integer[]{123, 123, 123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                        new Double[]{123.0, 123.0, 123.0}
                 ),
                 Arguments.of(
                         new Long[]{1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L},
@@ -349,8 +372,8 @@ public class PolynomialTest {
                         new Polynomial(new Integer[]{0})
                 ),
                 Arguments.of(
-                        new Polynomial(new Integer[]{1, 2, 3}).
-                                plus(new Polynomial(new Double[]{1.5, 1.5, 1.5})),
+                        new Polynomial(new Integer[]{1, 2, 3})
+                                .plus(new Polynomial(new Double[]{1.5, 1.5, 1.5})),
                         new Polynomial(new Double[]{2.5, 3.5, 4.5})
                 )
         );

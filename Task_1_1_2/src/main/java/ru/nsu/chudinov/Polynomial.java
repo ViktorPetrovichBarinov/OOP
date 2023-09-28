@@ -4,7 +4,7 @@ package ru.nsu.chudinov;
 import java.util.Arrays;
 
 /**
- * Класс реализует представление полиномов.
+ * some text.
  */
 public class Polynomial {
 
@@ -42,7 +42,7 @@ public class Polynomial {
         }
         //стираем старшие незначащие нули
         int maxNonZeroIndex = arr.length - 1;
-        while(maxNonZeroIndex >= 1) {
+        while (maxNonZeroIndex >= 1) {
             if (!doubleEqual(arr[maxNonZeroIndex].doubleValue(), 0.0)) {
                 break;
             }
@@ -136,7 +136,7 @@ public class Polynomial {
         //если у нас полиномы идентичной длинны, то в старших коэффициентах может быть ноль
         if (minLength.equals(maxLength)) {
             int lastNonZeroIndex = minLength - 1;
-            while(lastNonZeroIndex >= 1) {
+            while (lastNonZeroIndex >= 1) {
                 if (resultCoefficients[lastNonZeroIndex].equals(0.0)) {
                     lastNonZeroIndex--;
                 } else {
@@ -212,7 +212,7 @@ public class Polynomial {
      * @param i     i-ая производная
      * @return      возвращает полином
      */
-    public Polynomial DifferentialI(int i) {
+    public Polynomial differentialI(int i) {
         if (i < 0) {
             throw new IllegalArgumentException("x must be positive!");
         }
@@ -224,7 +224,7 @@ public class Polynomial {
             for (int j = 0; j < returnArr.length; j++) {
                 returnArr[j] = this.coefficients[i + j];
                 int tmp = i;
-                while(tmp > 0) {
+                while (tmp > 0) {
                     returnArr[j] *= (tmp + j);
                     tmp--;
                 }
