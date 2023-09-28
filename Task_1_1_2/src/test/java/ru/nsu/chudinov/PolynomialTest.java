@@ -1,16 +1,16 @@
 package ru.nsu.chudinov;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.nsu.chudinov.Polynomial.doubleEqual;
+
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import java.util.stream.Stream;
 import org.junit.jupiter.params.provider.MethodSource;
-
-
-
 
 /**
  * Класс для тестирования всех методов класса "Polinomial".
@@ -172,8 +172,7 @@ public class PolynomialTest {
                         new Double[]{0.0, -1.0, -2.0, -3.0}
                 ),
                 Arguments.of(
-                        new Integer[]{123, 123, 123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                        new Integer[]{123, 123, 123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                         new Double[]{123.0, 123.0, 123.0}
                 ),
                 Arguments.of(
