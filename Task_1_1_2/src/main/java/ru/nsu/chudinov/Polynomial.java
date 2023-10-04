@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  * some text.
  */
-public class Polynomial {
+public class Polynomial implements Comparable<Polynomial>{
 
     /**
      * Коэффициенты полинома от младшего к старшему.
@@ -94,9 +94,59 @@ public class Polynomial {
             result.delete(0, 1);
         }
         if (this.coefficients.length == 1 && this.coefficients[0].equals(0.0)) {
-            result.append("empty polynomial");
+            result.append("0");
         }
         return result.toString();
+    }
+
+    /**
+     * <0, если объект меньше переданного
+     * >0, если объект больше переданного
+     * =0, если объект равен переданному
+     *
+     * @param other the object to be compared.
+     * @return выше
+     */
+    @Override
+    public int compareTo(Polynomial other) {
+        if (this.coefficients.length > other.coefficients.length) {
+            return 1;
+        } else if (this.coefficients.length < other.coefficients.length) {
+            return -1;
+        } else {
+            for (int i = this.coefficients.length - 1; i >= 0; i--) {
+                if (!doubleEqual(this.coefficients[i], other.coefficients[i])) {
+                    if (this.coefficients[i] > other.coefficients[i]) {
+                        return 1;
+                    }
+                    else {
+                        return -1;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    /**
+     *  Реализация сравнения через Equals из класса Object.
+     *  Вернёт true, если полиномы идентичны.
+     *  Вернёт false в ином случае.
+     *
+     * @param obj - объект с которым надо провести сравнение
+     * @return  - true/false
+     */
+    @Override
+    public boolean equals(Object obj) {
+        // Проверяем на null и то что классы идентичны
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+
+        // Приводим obj к типу Polynomial
+        Polynomial other = (Polynomial) obj;
+        return this.compareTo(other) == 0;
     }
 
     /**
@@ -233,22 +283,4 @@ public class Polynomial {
         }
     }
 
-    /**
-     * Сравнивает два полинома.
-     *
-     * @param other     второй полином
-     * @return          true - если одинаковые полиномы, false - если разные
-     */
-    public boolean compare(Polynomial other) {
-        if (this.coefficients.length != other.coefficients.length) {
-            return false;
-        } else {
-            for (int i = 0; i < this.coefficients.length; i++) {
-                if (!doubleEqual(this.coefficients[i], other.coefficients[i])) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }
