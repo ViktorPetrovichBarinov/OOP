@@ -138,11 +138,13 @@ public class Polynomial implements Comparable<Polynomial>{
      */
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         // Проверяем на null и то что классы идентичны
         if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-
 
         // Приводим obj к типу Polynomial
         Polynomial other = (Polynomial) obj;
