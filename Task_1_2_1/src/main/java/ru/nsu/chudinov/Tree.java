@@ -1,13 +1,15 @@
 package ru.nsu.chudinov;
 
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Класс реализует дерево с переменным типом. Дерево связаного ациклического ориентированного графа.
  *
  * @param <T>
  */
-public class Tree<T>{
+public class Tree<T> implements Iterable<T>{
     // корневой элемент
     private T root = null;
 
@@ -25,8 +27,10 @@ public class Tree<T>{
         this.root = root;
     }
 
+
+
     /**
-     * Добавляет поддерево.
+     * Добавляет поддерево в список детей.
      *
      * @param subTree - поддерево, которое надо добавить
      * @return - вернёт тоже самое поддерево, что и принимал
@@ -44,15 +48,13 @@ public class Tree<T>{
      * @return - ссылка на плоддерево, которое состоит из одно переданного как аргумент элемента.
      */
     public Tree<T> addChild(T root){
-        Tree<T> newTree = new Tree(root);
+        Tree<T> newTree = new Tree<>(root);
         addChild(newTree);
         return newTree;
     }
 
     /**
      * удаляет всё поддерево, для котороого применён данный метод
-     *
-     * @return
      */
     public void deleteSubTree() {
         //запоминаем родителя
@@ -66,7 +68,7 @@ public class Tree<T>{
         }
     }
     public void deleteThisElem() {
-        if (this.children.size() == 0 && this.parent != null) {
+        if (this.children.isEmpty() && this.parent != null) {
             this.parent.children.remove(this);
         }
         if (this.children.size() == 1) {
@@ -78,7 +80,18 @@ public class Tree<T>{
             this.children.addAll(this.children.get(0).children);
             this.children.remove(0);
         }
-    };
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void printTree(){
@@ -89,6 +102,42 @@ public class Tree<T>{
         System.out.print("]\n");
         for (Tree<T> child: this.children) {
             child.printTree();
+        }
+    }
+
+    /*
+        Чтобы мы могли использовать например цикл for each для нашего дерева,
+        Класс дерева должен реализовывать интерфейс Iterable.
+        В методе Iterable у нас нужно реализовать один метод iterator()
+        Метод iterator() возвращает объект класса, который реализует интерфейс Iterator
+        Iterator требует реализацию двух методов hasNext(), next()
+        hasNext() - проверяет, есть ли следующий элемент для итерации
+        next() - возвращает следующий элемент
+     */
+    @Override
+    public Iterator<T> iterator() {
+        return new BFSIterator();
+    }
+
+    private class BFSIterator implements Iterator<T> {
+        private Queue<Tree<T>> queue = new LinkedList<Tree<T>>();
+        public  BFSIterator() {
+            //Tree.this обращается к внешнему экземпляру класса
+            queue.add(Tree.this);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !queue.isEmpty();
+        }
+
+        @Override
+        public T next() {
+            //берём первый элемент из очереди и удаляем его от туда
+            Tree<T> current = queue.poll();
+            assert current != null;
+            queue.addAll(current.children);
+            return current.root;
         }
     }
 }
