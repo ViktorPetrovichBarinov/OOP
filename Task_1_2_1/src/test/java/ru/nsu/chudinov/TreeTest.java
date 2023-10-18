@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 /**
  * Класс для тестов класса Tree.
@@ -250,11 +250,11 @@ public class TreeTest {
 
         // Возвращаем стандартный поток вывода в исходное состояние
         System.setOut(originalOut);
-        String expectedOutput = "R1: [ A R2 ]\n" +
-                "A: [ ]\n" +
-                "R2: [ C D ]\n" +
-                "C: [ ]\n" +
-                "D: [ ]"; // Замените на ожидаемый вывод
+        String expectedOutput = "R1: [ A R2 ]\n"
+                + "A: [ ]\n"
+                + "R2: [ C D ]\n"
+                + "C: [ ]\n"
+                + "D: [ ]"; // Замените на ожидаемый вывод
         assertEquals(expectedOutput, outputStream.toString().trim());
     }
 }
