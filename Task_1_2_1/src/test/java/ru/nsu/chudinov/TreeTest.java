@@ -2,12 +2,16 @@ package ru.nsu.chudinov;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Класс для тестов класса Tree
+ */
 public class TreeTest {
     @Test
     @DisplayName("Create one element tree(String)")
@@ -59,18 +63,19 @@ public class TreeTest {
     /**
      * СОЗДАЁТ ДЕРЕВО:
      * LVL0(ROOT)             root
-     * /  |   \
-     * /     |      \
-     * /        |         \
-     * /           |            \
+     *                      /  |   \
+     *                   /     |      \
+     *                /        |         \
+     *             /           |            \
      * LVL1      1             2             3
-     * /|\           /|\           /|\
-     * / | \         / | \         / | \
-     * /  |  \       /  |  \       /  |  \
+     *          /|\           /|\           /|\
+     *         / | \         / | \         / | \
+     *        /  |  \       /  |  \       /  |  \
      * LVL2 1_1 1_2 1_3   2_1 2_2 2_3   3_1 3_2 3_3
      *
      * @return - ссылку на root
      */
+
     private Tree<String> createTree() {
         Tree<String> root = new Tree<>("Root");
 
