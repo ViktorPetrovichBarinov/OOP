@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 /**
  * Класс для тестов класса Tree.
  */
@@ -219,5 +222,39 @@ public class TreeTest {
         assertEquals(5, root.getChild().get(0).getRoot());
         assertEquals(1, root.getChild().size());
         assertEquals(0, child.getChild().size());
+    }
+
+    @Test
+    @DisplayName("print test")
+    void test15() {
+
+
+        // Сохраняем текущий стандартный поток вывода
+        PrintStream originalOut = System.out;
+        // Создаем новый поток вывода
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream newOut = new PrintStream(outputStream);
+        // Перенаправляем стандартный поток вывода
+        System.setOut(newOut);
+
+
+        Tree<String> tree = new Tree<>("R1");
+        Tree<String> subtree = new Tree<>("R2");
+        subtree.addChild("C");
+        subtree.addChild("D");
+        Tree<String> a = tree.addChild("A");
+        Tree<String> b = a.addChild("B");
+        tree.addChild(subtree);
+        b.deleteSubTree();
+        tree.printTree();
+
+        // Возвращаем стандартный поток вывода в исходное состояние
+        System.setOut(originalOut);
+        String expectedOutput = "R1: [ A R2 ]\n" +
+                "A: [ ]\n" +
+                "R2: [ C D ]\n" +
+                "C: [ ]\n" +
+                "D: [ ]"; // Замените на ожидаемый вывод
+        assertEquals(expectedOutput, outputStream.toString().trim());
     }
 }
