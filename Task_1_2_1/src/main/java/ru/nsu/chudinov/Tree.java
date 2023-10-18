@@ -1,21 +1,27 @@
 package ru.nsu.chudinov;
 
-import java.util.*;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+
 
 
 /**
  * Класс реализует дерево с переменным типом. Дерево связанного ациклического ориентированного
  * графа.
  *
- * @param <T>
+ * @param <T> - Любой тип данных
  */
 public class Tree<T> implements Iterable<T> {
 
     public static void main(String[] args) {
         Tree<String> tree = new Tree<>("R1");
+        Tree<String> subtree = new Tree<>("R2");
         Tree<String> a = tree.addChild("A");
         Tree<String> b = a.addChild("B");
-        Tree<String> subtree = new Tree<>("R2");
         subtree.addChild("C");
         subtree.addChild("D");
         tree.addChild(subtree);
@@ -41,12 +47,12 @@ public class Tree<T> implements Iterable<T> {
     private TraversalType traversalType = TraversalType.BFS;
 
     //метод устанавливает метод обхода в ширину
-    public void setBFS() {
+    public void setbfs() {
         this.traversalType = TraversalType.BFS;
     }
 
     //метод устанавливает метод обхода в глубину
-    public void setDFS() {
+    public void setdfs() {
         this.traversalType = TraversalType.DFS;
     }
 
@@ -79,7 +85,8 @@ public class Tree<T> implements Iterable<T> {
     }
 
     /**
-     * Добавляет элемент в дерево, предварительно создав из этого элемента дерево из одного элемента.
+     * Добавляет элемент в дерево,
+     * предварительно создав из этого элемента дерево из одного элемента.
      *
      * @param root - элемент, который мы хотим добавить в дерево
      * @return - ссылка на поддерево, которое состоит из одно переданного как аргумент элемента.
@@ -91,7 +98,7 @@ public class Tree<T> implements Iterable<T> {
     }
 
     /**
-     * Удаляет всё поддерево, для которого применён данный метод
+     * Удаляет всё поддерево, для которого применён данный метод.
      */
     public void deleteSubTree() {
         plusChanges(this);
@@ -145,7 +152,9 @@ public class Tree<T> implements Iterable<T> {
         current.modCount++;
     }
 
-    //вспомогательная функция, печатает дерево в виде списка смежности
+    /**
+     * Вспомогательная функция, печатает дерево в виде списка смежности.
+     */
     public void printTree() {
         System.out.print(this.root + ": [ ");
         for (Tree<T> child : this.children) {
@@ -225,10 +234,10 @@ public class Tree<T> implements Iterable<T> {
         LinkedList<T> snd = new LinkedList<>();
         if (other instanceof Tree) {
             Tree<T> tree = (Tree<T>) other;
-            TraversalType fstType = this.traversalType;
-            TraversalType sndType = tree.traversalType;
-            tree.setBFS();
-            this.setBFS();
+            final TraversalType fstType = this.traversalType;
+            final TraversalType sndType = tree.traversalType;
+            tree.setbfs();
+            this.setbfs();
             for (T child : this) {
                 fst.add(child);
             }
@@ -236,10 +245,10 @@ public class Tree<T> implements Iterable<T> {
                 snd.add(child);
             }
             if (fstType.equals(TraversalType.DFS)) {
-                this.setDFS();
+                this.setdfs();
             }
             if (sndType.equals(TraversalType.DFS)) {
-                tree.setDFS();
+                tree.setdfs();
             }
             if (fst.size() != snd.size()) {
                 return false;

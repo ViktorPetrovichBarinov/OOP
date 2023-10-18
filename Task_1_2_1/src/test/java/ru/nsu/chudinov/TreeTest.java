@@ -82,31 +82,27 @@ public class TreeTest {
         Tree<String> lvl1_1 = new Tree<>("lvl1_1");
         Tree<String> lvl1_2 = new Tree<>("lvl1_2");
         Tree<String> lvl1_3 = new Tree<>("lvl1_3");
-
-        Tree<String> lvl2_1_1 = new Tree<>("lvl2_1_1");
-        Tree<String> lvl2_1_2 = new Tree<>("lvl2_1_2");
-        Tree<String> lvl2_1_3 = new Tree<>("lvl2_1_3");
-
-        Tree<String> lvl2_2_1 = new Tree<>("lvl2_2_1");
-        Tree<String> lvl2_2_2 = new Tree<>("lvl2_2_2");
-        Tree<String> lvl2_2_3 = new Tree<>("lvl2_2_3");
-
-        Tree<String> lvl2_3_1 = new Tree<>("lvl2_3_1");
-        Tree<String> lvl2_3_2 = new Tree<>("lvl2_3_2");
-        Tree<String> lvl2_3_3 = new Tree<>("lvl2_3_3");
-
         root.addChild(lvl1_1);
         root.addChild(lvl1_2);
         root.addChild(lvl1_3);
 
+        Tree<String> lvl2_1_1 = new Tree<>("lvl2_1_1");
+        Tree<String> lvl2_1_2 = new Tree<>("lvl2_1_2");
+        Tree<String> lvl2_1_3 = new Tree<>("lvl2_1_3");
         lvl1_1.addChild(lvl2_1_1);
         lvl1_1.addChild(lvl2_1_2);
         lvl1_1.addChild(lvl2_1_3);
 
+        Tree<String> lvl2_2_1 = new Tree<>("lvl2_2_1");
+        Tree<String> lvl2_2_2 = new Tree<>("lvl2_2_2");
+        Tree<String> lvl2_2_3 = new Tree<>("lvl2_2_3");
         lvl1_2.addChild(lvl2_2_1);
         lvl1_2.addChild(lvl2_2_2);
         lvl1_2.addChild(lvl2_2_3);
 
+        Tree<String> lvl2_3_1 = new Tree<>("lvl2_3_1");
+        Tree<String> lvl2_3_2 = new Tree<>("lvl2_3_2");
+        Tree<String> lvl2_3_3 = new Tree<>("lvl2_3_3");
         lvl1_3.addChild(lvl2_3_1);
         lvl1_3.addChild(lvl2_3_2);
         lvl1_3.addChild(lvl2_3_3);
@@ -167,30 +163,27 @@ public class TreeTest {
         root1.getChild().get(2).deleteThisElem();
         Tree<String> root = new Tree<>("Root");
 
-
         Tree<String> lvl2_1_1 = new Tree<>("lvl2_1_1");
         Tree<String> lvl2_1_2 = new Tree<>("lvl2_1_2");
         Tree<String> lvl2_1_3 = new Tree<>("lvl2_1_3");
-
-        Tree<String> lvl2_2_1 = new Tree<>("lvl2_2_1");
-        Tree<String> lvl2_2_2 = new Tree<>("lvl2_2_2");
-        Tree<String> lvl2_2_3 = new Tree<>("lvl2_2_3");
-
-        Tree<String> lvl2_3_1 = new Tree<>("lvl2_3_1");
-        Tree<String> lvl2_3_2 = new Tree<>("lvl2_3_2");
-        Tree<String> lvl2_3_3 = new Tree<>("lvl2_3_3");
-
         root.addChild(lvl2_1_1);
         lvl2_1_1.addChild(lvl2_1_2);
         lvl2_1_1.addChild(lvl2_1_3);
 
+        Tree<String> lvl2_2_1 = new Tree<>("lvl2_2_1");
+        Tree<String> lvl2_2_2 = new Tree<>("lvl2_2_2");
+        Tree<String> lvl2_2_3 = new Tree<>("lvl2_2_3");
         root.addChild(lvl2_2_1);
         lvl2_2_1.addChild(lvl2_2_2);
         lvl2_2_1.addChild(lvl2_2_3);
 
+        Tree<String> lvl2_3_1 = new Tree<>("lvl2_3_1");
+        Tree<String> lvl2_3_2 = new Tree<>("lvl2_3_2");
+        Tree<String> lvl2_3_3 = new Tree<>("lvl2_3_3");
         root.addChild(lvl2_3_1);
         lvl2_3_1.addChild(lvl2_3_2);
         lvl2_3_1.addChild(lvl2_3_3);
+
         assertTrue(root.equals(root1));
     }
 }
