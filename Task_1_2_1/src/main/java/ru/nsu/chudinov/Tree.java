@@ -1,8 +1,6 @@
 package ru.nsu.chudinov;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Класс реализует дерево с переменным типом. Дерево связаного ациклического ориентированного графа.
@@ -12,22 +10,39 @@ import java.util.Queue;
 public class Tree<T> implements Iterable<T>{
     // корневой элемент
     private T root = null;
-
-    public T getRoot() {
-        return root;
-    }
-
     //родитель данного дерева/поддерева
     private Tree<T> parent = null;
     //дети даного дерева/поддерева
     private LinkedList<Tree<T>> children = new LinkedList<Tree<T>>();
+    //переменная отвечающая, за количество изменений дерева.
+    private int modCount = 0;
 
-    //Конструктор дерева, создаёт дерево из дного корневого элемента
+    //enum ограниченный набор констант
+    //тип данных для представления обхода
+    private enum TraversalType {
+        BFS,
+        DFS
+    }
+    private TraversalType traversalType = TraversalType.BFS;
+
+    //метод устанавливает метод обхода в ширину
+    public void setBFS() {
+        this.traversalType = TraversalType.BFS;
+    }
+    //метод устанавливает метод обхода в глубину
+    public void setDFS() {
+        this.traversalType = TraversalType.DFS;
+    }
+
+    //getter для значения корня
+    public T getRoot() {
+        return root;
+    }
+
+    //Конструктор дерева, создаёт дерево из даного корневого элемента
     public Tree(T root) {
         this.root = root;
     }
-
-
 
     /**
      * Добавляет поддерево в список детей.
@@ -36,6 +51,8 @@ public class Tree<T> implements Iterable<T>{
      * @return - вернёт тоже самое поддерево, что и принимал
      */
     public Tree<T> addChild(Tree<T> subTree) {
+        this.modCount++;
+
         subTree.parent = this;
         this.children.add(subTree);
         return subTree;
@@ -57,6 +74,8 @@ public class Tree<T> implements Iterable<T>{
      * удаляет всё поддерево, для котороого применён данный метод
      */
     public void deleteSubTree() {
+        plusChanges(this);
+
         //запоминаем родителя
         Tree<T> parent = this.parent;
         //удаляем всех детей
@@ -67,33 +86,46 @@ public class Tree<T> implements Iterable<T>{
             parent.children.remove(this);
         }
     }
+
+    /**
+     * Удаляет только данный элемент,
+     * еслу у элемента были дети, то один из детей заменяет элемент, который хотим удалить.
+     */
     public void deleteThisElem() {
+        plusChanges(this);
+
+        //Если у элемента есть родители, но у элемента нет детей
         if (this.children.isEmpty() && this.parent != null) {
             this.parent.children.remove(this);
         }
+        //Если у элемента, только один ребёнок,
+        //то ребёнок встаёт на место этого элемента.
         if (this.children.size() == 1) {
             this.root = this.children.get(0).root;
             this.children = this.children.get(0).children;
         }
+        //Еслу у элемента, несколько детей,
+        //то самый первый ребёнок встаёт на место родителя
+        //и дети нового элемента объединяются детьми удалённого элемента
         if (this.children.size() >= 2) {
+            //заменяем значение корневого элемента
             this.root = this.children.get(0).root;
+            //добавляем к детям корня всех детей первого ребенка
             this.children.addAll(this.children.get(0).children);
+            //удаляем из дете сам корневой элемент
             this.children.remove(0);
         }
     }
 
+    private void plusChanges(Tree<T> current) {
+        while(current.parent != null) {
+            current.modCount++;
+            current = current.parent;
+        }
+        current.modCount++;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    //вспомогательная функция, печатает дерево в виде списка смежности
     public void printTree(){
         System.out.print(this.root + ": [ ");
         for (Tree<T> child: this.children) {
@@ -109,35 +141,57 @@ public class Tree<T> implements Iterable<T>{
         Чтобы мы могли использовать например цикл for each для нашего дерева,
         Класс дерева должен реализовывать интерфейс Iterable.
         В методе Iterable у нас нужно реализовать один метод iterator()
-        Метод iterator() возвращает объект класса, который реализует интерфейс Iterator
+        Метод iterator() возвращает объект класса, который реализует интерфейс Iterator.
         Iterator требует реализацию двух методов hasNext(), next()
         hasNext() - проверяет, есть ли следующий элемент для итерации
         next() - возвращает следующий элемент
      */
-    @Override
     public Iterator<T> iterator() {
-        return new BFSIterator();
+        return new TreeIterator();
     }
 
-    private class BFSIterator implements Iterator<T> {
+    private class TreeIterator implements Iterator<T> {
+        //для исключений
+        private int expectedModCount = modCount;
+        //Очередь для BFS
         private Queue<Tree<T>> queue = new LinkedList<Tree<T>>();
-        public  BFSIterator() {
-            //Tree.this обращается к внешнему экземпляру класса
-            queue.add(Tree.this);
+        //Cтек для DFS
+        private Stack<Tree<T>> stack = new Stack<>();
+        TraversalType traversalType = this.traversalType;
+        public  TreeIterator() {
+            if (traversalType == TraversalType.BFS) {
+                //Tree.this обращается к внешнему экземпляру класса
+                queue.add(Tree.this);
+            } else {
+                stack.push(Tree.this);
+            }
         }
 
-        @Override
         public boolean hasNext() {
-            return !queue.isEmpty();
+            if (expectedModCount != modCount) {
+                throw new ConcurrentModificationException();
+            }
+
+            return !queue.isEmpty() || !stack.isEmpty();
         }
 
-        @Override
         public T next() {
-            //берём первый элемент из очереди и удаляем его от туда
-            Tree<T> current = queue.poll();
-            assert current != null;
-            queue.addAll(current.children);
-            return current.root;
+            if (expectedModCount != modCount) {
+                throw new ConcurrentModificationException();
+            }
+
+            Tree<T> current;
+            if (traversalType == TraversalType.BFS) {
+                //берём первый элемент из очереди и удаляем его от туда
+                current = queue.poll();
+                queue.addAll(current.children);
+                return current.root;
+            } else {
+                //берём первый элемент из очереди и удаляем его от туда
+                current = stack.pop();
+                stack.addAll(current.children);
+                return current.root;
+            }
         }
     }
 }
