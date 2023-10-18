@@ -131,7 +131,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - </dd>
+<dd><code>T</code> - - Любой тип данных</dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -195,14 +195,15 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <td class="colFirst"><code><a href="Tree.html" title="class in ru.nsu.chudinov">Tree</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addChild(T)">addChild</a></span>&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;root)</code></th>
 <td class="colLast">
-<div class="block">Добавляет элемент в дерево, предварительно создав из этого элемента дерево из одного элемента.</div>
+<div class="block">Добавляет элемент в дерево,
+ предварительно создав из этого элемента дерево из одного элемента.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteSubTree()">deleteSubTree</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Удаляет всё поддерево, для которого применён данный метод</div>
+<div class="block">Удаляет всё поддерево, для которого применён данный метод.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -241,16 +242,18 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#printTree()">printTree</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Вспомогательная функция, печатает дерево в виде списка смежности.</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBFS()">setBFS</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setbfs()">setbfs</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDFS()">setDFS</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setdfs()">setdfs</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -314,22 +317,22 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <pre class="methodSignature">public static&nbsp;void&nbsp;main&#8203;(java.lang.String[]&nbsp;args)</pre>
 </li>
 </ul>
-<a id="setBFS()">
+<a id="setbfs()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setBFS</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setBFS()</pre>
+<h4>setbfs</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setbfs()</pre>
 </li>
 </ul>
-<a id="setDFS()">
+<a id="setdfs()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setDFS</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setDFS()</pre>
+<h4>setdfs</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setdfs()</pre>
 </li>
 </ul>
 <a id="getRoot()">
@@ -375,7 +378,8 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <li class="blockList">
 <h4>addChild</h4>
 <pre class="methodSignature">public&nbsp;<a href="Tree.html" title="class in ru.nsu.chudinov">Tree</a>&lt;<a href="Tree.html" title="type parameter in Tree">T</a>&gt;&nbsp;addChild&#8203;(<a href="Tree.html" title="type parameter in Tree">T</a>&nbsp;root)</pre>
-<div class="block">Добавляет элемент в дерево, предварительно создав из этого элемента дерево из одного элемента.</div>
+<div class="block">Добавляет элемент в дерево,
+ предварительно создав из этого элемента дерево из одного элемента.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>root</code> - - элемент, который мы хотим добавить в дерево</dd>
@@ -391,7 +395,7 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <li class="blockList">
 <h4>deleteSubTree</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;deleteSubTree()</pre>
-<div class="block">Удаляет всё поддерево, для которого применён данный метод</div>
+<div class="block">Удаляет всё поддерево, для которого применён данный метод.</div>
 </li>
 </ul>
 <a id="deleteThisElem()">
@@ -412,6 +416,7 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <li class="blockList">
 <h4>printTree</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;printTree()</pre>
+<div class="block">Вспомогательная функция, печатает дерево в виде списка смежности.</div>
 </li>
 </ul>
 <a id="iterator()">
