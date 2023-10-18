@@ -77,7 +77,7 @@ public class TreeTest {
      *
      * @return - ссылку на root.
      */
-
+    @SuppressWarnings("java:S100")
     private Tree<String> createTree() {
         Tree<String> root = new Tree<>("Root");
 
@@ -169,6 +169,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Delete only one elem LVL1 1-st elem 2-nd elem and 3-rd elem")
+    @SuppressWarnings("java:S100")
     void test12() {
         Tree<String> root1 = createTree();
         root1.getChild().get(0).deleteThisElem();
