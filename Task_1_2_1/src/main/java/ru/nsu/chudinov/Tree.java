@@ -52,12 +52,12 @@ public class Tree<T> implements Iterable<T> {
     private TraversalType traversalType = TraversalType.BFS;
 
     //метод устанавливает метод обхода в ширину
-    private void setbfs() {
+    public void setbfs() {
         this.traversalType = TraversalType.BFS;
     }
 
     //метод устанавливает метод обхода в глубину
-    private void setdfs() {
+    public void setdfs() {
         this.traversalType = TraversalType.DFS;
     }
 

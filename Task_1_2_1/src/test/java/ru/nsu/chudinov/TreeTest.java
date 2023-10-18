@@ -143,8 +143,19 @@ public class TreeTest {
     }
 
     @Test
-    @DisplayName("Delete SubTree LVL1 1-st elem 2-nd elem and 3-rd elem")
+    @DisplayName("Equal different objects")
     void test10() {
+        Tree<String> root1 = createTree();
+        Tree<String> root2 = createTree();
+        root1.setdfs();
+        root2.setdfs();
+        assertTrue(root1.equals(root2));
+
+    }
+
+    @Test
+    @DisplayName("Delete SubTree LVL1 1-st elem 2-nd elem and 3-rd elem")
+    void test11() {
         Tree<String> root1 = createTree();
         root1.getChild().get(0).deleteSubTree();
         root1.getChild().get(0).deleteSubTree();
@@ -155,7 +166,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Delete only one elem LVL1 1-st elem 2-nd elem and 3-rd elem")
-    void test11() {
+    void test12() {
         Tree<String> root1 = createTree();
         root1.getChild().get(0).deleteThisElem();
         root1.getChild().get(1).deleteThisElem();
@@ -184,5 +195,29 @@ public class TreeTest {
         lvl2_3_1.addChild(lvl2_3_3);
 
         assertTrue(root.equals(root1));
+    }
+
+    @Test
+    @DisplayName("Delete one elem without child")
+    void test13() {
+        var root = new Tree<>(15);
+        var child = new Tree<>(10);
+        root.addChild(child);
+        child.deleteSubTree();
+        assertEquals(0, root.getChild().size());
+    }
+
+    @Test
+    @DisplayName("Delete one elem with one child")
+    void test14() {
+        var root = new Tree<>(15);
+        var child = new Tree<>(10);
+        var childOfChild = new Tree<>(5);
+        root.addChild(child);
+        child.addChild(childOfChild);
+        child.deleteThisElem();
+        assertEquals(5, root.getChild().get(0).getRoot());
+        assertEquals(1, root.getChild().size());
+        assertEquals(0, child.getChild().size());
     }
 }
