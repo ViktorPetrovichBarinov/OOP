@@ -9,183 +9,183 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class TreeTest {
-  @Test
-  @DisplayName("Create one element tree(String)")
-  void test1() {
-    Tree<String> t1 = new Tree<>("String");
+    @Test
+    @DisplayName("Create one element tree(String)")
+    void test1() {
+        Tree<String> t1 = new Tree<>("String");
 
-    assertEquals(t1.getRoot(), "String");
-  }
+        assertEquals(t1.getRoot(), "String");
+    }
 
-  @Test
-  @DisplayName("Create one element tree(Integer)")
-  void test2() {
-    Tree<Integer> t1 = new Tree<>(15);
+    @Test
+    @DisplayName("Create one element tree(Integer)")
+    void test2() {
+        Tree<Integer> t1 = new Tree<>(15);
 
-    assertEquals(t1.getRoot(), 15);
-  }
-
-
-  @Test
-  @DisplayName("Add Integer child with T root")
-  void test3() {
-    Tree<Integer> t1 = new Tree<>(15);
-    t1.addChild(14);
-    assertEquals(t1.getRoot(), 15);
-    assertEquals(t1.getChild().get(0).getRoot(), 14);
-  }
-
-  @Test
-  @DisplayName("Add Integer child with Tree<T> root")
-  void test4() {
-    Tree<Integer> t1 = new Tree<>(15);
-    Tree<Integer> t2 = new Tree<>(14);
-    t1.addChild(t2);
-    assertEquals(t1.getRoot(), 15);
-    assertEquals(t1.getChild().get(0).getRoot(), 14);
-  }
-
-  @Test
-  @DisplayName("Add Integer child null")
-  void test5() {
-    Tree<Integer> t1 = new Tree<>(15);
-    Tree<Integer> t2 = new Tree<>(null);
-    t1.addChild(t2);
-    assertEquals(t1.getRoot(), 15);
-    assertNull(t1.getChild().get(0).getRoot());
-  }
+        assertEquals(t1.getRoot(), 15);
+    }
 
 
-  /**
-   * СОЗДАЁТ ДЕРЕВО:
-   * LVL0(ROOT)             root
-   *                      /  |   \
-   *                   /     |      \
-   *                /        |         \
-   *             /           |            \
-   * LVL1      1             2             3
-   *          /|\           /|\           /|\
-   *         / | \         / | \         / | \
-   *        /  |  \       /  |  \       /  |  \
-   * LVL2 1_1 1_2 1_3   2_1 2_2 2_3   3_1 3_2 3_3
-   *
-   * @return - ссылку на root
-   */
-  private Tree<String> createTree() {
-    Tree<String> root = new Tree<>("Root");
+    @Test
+    @DisplayName("Add Integer child with T root")
+    void test3() {
+        Tree<Integer> t1 = new Tree<>(15);
+        t1.addChild(14);
+        assertEquals(t1.getRoot(), 15);
+        assertEquals(t1.getChild().get(0).getRoot(), 14);
+    }
 
-    Tree<String> lvl1_1 = new Tree<>("lvl1_1");
-    Tree<String> lvl1_2 = new Tree<>("lvl1_2");
-    Tree<String> lvl1_3 = new Tree<>("lvl1_3");
+    @Test
+    @DisplayName("Add Integer child with Tree<T> root")
+    void test4() {
+        Tree<Integer> t1 = new Tree<>(15);
+        Tree<Integer> t2 = new Tree<>(14);
+        t1.addChild(t2);
+        assertEquals(t1.getRoot(), 15);
+        assertEquals(t1.getChild().get(0).getRoot(), 14);
+    }
 
-    Tree<String> lvl2_1_1 = new Tree<>("lvl2_1_1");
-    Tree<String> lvl2_1_2 = new Tree<>("lvl2_1_2");
-    Tree<String> lvl2_1_3 = new Tree<>("lvl2_1_3");
-
-    Tree<String> lvl2_2_1 = new Tree<>("lvl2_2_1");
-    Tree<String> lvl2_2_2 = new Tree<>("lvl2_2_2");
-    Tree<String> lvl2_2_3 = new Tree<>("lvl2_2_3");
-
-    Tree<String> lvl2_3_1 = new Tree<>("lvl2_3_1");
-    Tree<String> lvl2_3_2 = new Tree<>("lvl2_3_2");
-    Tree<String> lvl2_3_3 = new Tree<>("lvl2_3_3");
-
-    root.addChild(lvl1_1);
-    root.addChild(lvl1_2);
-    root.addChild(lvl1_3);
-
-    lvl1_1.addChild(lvl2_1_1);
-    lvl1_1.addChild(lvl2_1_2);
-    lvl1_1.addChild(lvl2_1_3);
-
-    lvl1_2.addChild(lvl2_2_1);
-    lvl1_2.addChild(lvl2_2_2);
-    lvl1_2.addChild(lvl2_2_3);
-
-    lvl1_3.addChild(lvl2_3_1);
-    lvl1_3.addChild(lvl2_3_2);
-    lvl1_3.addChild(lvl2_3_3);
-
-    return root;
-  }
+    @Test
+    @DisplayName("Add Integer child null")
+    void test5() {
+        Tree<Integer> t1 = new Tree<>(15);
+        Tree<Integer> t2 = new Tree<>(null);
+        t1.addChild(t2);
+        assertEquals(t1.getRoot(), 15);
+        assertNull(t1.getChild().get(0).getRoot());
+    }
 
 
-  @Test
-  @DisplayName("Equal of identical tree")
-  void test6() {
-    Tree<String> root1 = createTree();
-    Tree<String> root2 = createTree();
-    assertTrue(root1.equals(root2));
-  }
+    /**
+     * СОЗДАЁТ ДЕРЕВО:
+     * LVL0(ROOT)             root
+     * /  |   \
+     * /     |      \
+     * /        |         \
+     * /           |            \
+     * LVL1      1             2             3
+     * /|\           /|\           /|\
+     * / | \         / | \         / | \
+     * /  |  \       /  |  \       /  |  \
+     * LVL2 1_1 1_2 1_3   2_1 2_2 2_3   3_1 3_2 3_3
+     *
+     * @return - ссылку на root
+     */
+    private Tree<String> createTree() {
+        Tree<String> root = new Tree<>("Root");
 
-  @Test
-  @DisplayName("Equal of identical tree but one is OBJECT")
-  void test7() {
-    Tree<String> root1 = createTree();
-    Object root2 = createTree();
-    assertTrue(root1.equals(root2));
-  }
+        Tree<String> lvl1_1 = new Tree<>("lvl1_1");
+        Tree<String> lvl1_2 = new Tree<>("lvl1_2");
+        Tree<String> lvl1_3 = new Tree<>("lvl1_3");
 
-  @Test
-  @DisplayName("Equal of not identical tree")
-  void test8() {
-    Tree<String> root1 = createTree();
-    Tree<String> root2 = new Tree<>("Str1");
-    assertFalse(root1.equals(root2));
-  }
+        Tree<String> lvl2_1_1 = new Tree<>("lvl2_1_1");
+        Tree<String> lvl2_1_2 = new Tree<>("lvl2_1_2");
+        Tree<String> lvl2_1_3 = new Tree<>("lvl2_1_3");
 
-  @Test
-  @DisplayName("Equal different objects")
-  void test9() {
-    Tree<String> root1 = createTree();
-    String root2 = new String("Str1");
-    assertFalse(root1.equals(root2));
-  }
+        Tree<String> lvl2_2_1 = new Tree<>("lvl2_2_1");
+        Tree<String> lvl2_2_2 = new Tree<>("lvl2_2_2");
+        Tree<String> lvl2_2_3 = new Tree<>("lvl2_2_3");
 
-  @Test
-  @DisplayName("Delete SubTree LVL1 1-st elem 2-nd elem and 3-rd elem")
-  void test10(){
-    Tree<String> root1 = createTree();
-    root1.getChild().get(0).deleteSubTree();
-    root1.getChild().get(0).deleteSubTree();
-    root1.getChild().get(0).deleteSubTree();
-    Tree<String> root2 = new Tree<>("Root");
-    assertTrue(root1.equals(root2));
-  }
+        Tree<String> lvl2_3_1 = new Tree<>("lvl2_3_1");
+        Tree<String> lvl2_3_2 = new Tree<>("lvl2_3_2");
+        Tree<String> lvl2_3_3 = new Tree<>("lvl2_3_3");
 
-  @Test
-  @DisplayName("Delete only one elem LVL1 1-st elem 2-nd elem and 3-rd elem")
-  void test11(){
-    Tree<String> root1 = createTree();
-    root1.getChild().get(0).deleteThisElem();
-    root1.getChild().get(1).deleteThisElem();
-    root1.getChild().get(2).deleteThisElem();
-    Tree<String> root = new Tree<>("Root");
+        root.addChild(lvl1_1);
+        root.addChild(lvl1_2);
+        root.addChild(lvl1_3);
+
+        lvl1_1.addChild(lvl2_1_1);
+        lvl1_1.addChild(lvl2_1_2);
+        lvl1_1.addChild(lvl2_1_3);
+
+        lvl1_2.addChild(lvl2_2_1);
+        lvl1_2.addChild(lvl2_2_2);
+        lvl1_2.addChild(lvl2_2_3);
+
+        lvl1_3.addChild(lvl2_3_1);
+        lvl1_3.addChild(lvl2_3_2);
+        lvl1_3.addChild(lvl2_3_3);
+
+        return root;
+    }
 
 
-    Tree<String> lvl2_1_1 = new Tree<>("lvl2_1_1");
-    Tree<String> lvl2_1_2 = new Tree<>("lvl2_1_2");
-    Tree<String> lvl2_1_3 = new Tree<>("lvl2_1_3");
+    @Test
+    @DisplayName("Equal of identical tree")
+    void test6() {
+        Tree<String> root1 = createTree();
+        Tree<String> root2 = createTree();
+        assertTrue(root1.equals(root2));
+    }
 
-    Tree<String> lvl2_2_1 = new Tree<>("lvl2_2_1");
-    Tree<String> lvl2_2_2 = new Tree<>("lvl2_2_2");
-    Tree<String> lvl2_2_3 = new Tree<>("lvl2_2_3");
+    @Test
+    @DisplayName("Equal of identical tree but one is OBJECT")
+    void test7() {
+        Tree<String> root1 = createTree();
+        Object root2 = createTree();
+        assertTrue(root1.equals(root2));
+    }
 
-    Tree<String> lvl2_3_1 = new Tree<>("lvl2_3_1");
-    Tree<String> lvl2_3_2 = new Tree<>("lvl2_3_2");
-    Tree<String> lvl2_3_3 = new Tree<>("lvl2_3_3");
+    @Test
+    @DisplayName("Equal of not identical tree")
+    void test8() {
+        Tree<String> root1 = createTree();
+        Tree<String> root2 = new Tree<>("Str1");
+        assertFalse(root1.equals(root2));
+    }
 
-    root.addChild(lvl2_1_1);
-    lvl2_1_1.addChild(lvl2_1_2);
-    lvl2_1_1.addChild(lvl2_1_3);
+    @Test
+    @DisplayName("Equal different objects")
+    void test9() {
+        Tree<String> root1 = createTree();
+        String root2 = new String("Str1");
+        assertFalse(root1.equals(root2));
+    }
 
-    root.addChild(lvl2_2_1);
-    lvl2_2_1.addChild(lvl2_2_2);
-    lvl2_2_1.addChild(lvl2_2_3);
+    @Test
+    @DisplayName("Delete SubTree LVL1 1-st elem 2-nd elem and 3-rd elem")
+    void test10() {
+        Tree<String> root1 = createTree();
+        root1.getChild().get(0).deleteSubTree();
+        root1.getChild().get(0).deleteSubTree();
+        root1.getChild().get(0).deleteSubTree();
+        Tree<String> root2 = new Tree<>("Root");
+        assertTrue(root1.equals(root2));
+    }
 
-    root.addChild(lvl2_3_1);
-    lvl2_3_1.addChild(lvl2_3_2);
-    lvl2_3_1.addChild(lvl2_3_3);
-    assertTrue(root.equals(root1));
-  }
+    @Test
+    @DisplayName("Delete only one elem LVL1 1-st elem 2-nd elem and 3-rd elem")
+    void test11() {
+        Tree<String> root1 = createTree();
+        root1.getChild().get(0).deleteThisElem();
+        root1.getChild().get(1).deleteThisElem();
+        root1.getChild().get(2).deleteThisElem();
+        Tree<String> root = new Tree<>("Root");
+
+
+        Tree<String> lvl2_1_1 = new Tree<>("lvl2_1_1");
+        Tree<String> lvl2_1_2 = new Tree<>("lvl2_1_2");
+        Tree<String> lvl2_1_3 = new Tree<>("lvl2_1_3");
+
+        Tree<String> lvl2_2_1 = new Tree<>("lvl2_2_1");
+        Tree<String> lvl2_2_2 = new Tree<>("lvl2_2_2");
+        Tree<String> lvl2_2_3 = new Tree<>("lvl2_2_3");
+
+        Tree<String> lvl2_3_1 = new Tree<>("lvl2_3_1");
+        Tree<String> lvl2_3_2 = new Tree<>("lvl2_3_2");
+        Tree<String> lvl2_3_3 = new Tree<>("lvl2_3_3");
+
+        root.addChild(lvl2_1_1);
+        lvl2_1_1.addChild(lvl2_1_2);
+        lvl2_1_1.addChild(lvl2_1_3);
+
+        root.addChild(lvl2_2_1);
+        lvl2_2_1.addChild(lvl2_2_2);
+        lvl2_2_1.addChild(lvl2_2_3);
+
+        root.addChild(lvl2_3_1);
+        lvl2_3_1.addChild(lvl2_3_2);
+        lvl2_3_1.addChild(lvl2_3_3);
+        assertTrue(root.equals(root1));
+    }
 }
