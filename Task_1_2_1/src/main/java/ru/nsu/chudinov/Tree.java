@@ -17,6 +17,10 @@ import java.util.Stack;
  */
 public class Tree<T> implements Iterable<T> {
 
+    /**
+     * Some text.
+     * @param args - some text.
+     */
     public static void main(String[] args) {
         Tree<String> tree = new Tree<>("R1");
         Tree<String> subtree = new Tree<>("R2");
