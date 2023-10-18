@@ -230,7 +230,7 @@ public class TreeTest {
 
 
         // Сохраняем текущий стандартный поток вывода
-        PrintStream originalOut = System.out;
+        final PrintStream originalOut = System.out;
         // Создаем новый поток вывода
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream newOut = new PrintStream(outputStream);
