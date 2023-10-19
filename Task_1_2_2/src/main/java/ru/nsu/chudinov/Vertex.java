@@ -1,17 +1,18 @@
-package ru.nsu.chudinov
+package ru.nsu.chudinov;
 
 public class Vertex<V> {
     private V data;
 
-    public Vertex<V> {
+    public Vertex() {
         this.data = null;
     }
 
-    public V getData {
+    public V getData() {
         return this.data;
     }
 
-    public void changeData(V newData) {
+    public Vertex<V> changeData(V newData) {
         this.data = newData;
+        return this;
     }
 }
