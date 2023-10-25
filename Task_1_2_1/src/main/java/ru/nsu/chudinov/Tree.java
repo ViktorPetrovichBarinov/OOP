@@ -22,7 +22,7 @@ public class Tree<T> implements Iterable<T>, Cloneable {
 
     /**
      * Enum ограниченный набор констант
-     * тип данных для представления обхода
+     * тип данных для представления обхода.
      */
     public enum TraversalType {
         BFS, DFS
@@ -71,7 +71,7 @@ public class Tree<T> implements Iterable<T>, Cloneable {
     }
 
     /**
-     * Конструктор дерева, создаёт дерево из данного корневого элемента
+     * Конструктор дерева, создаёт дерево из данного корневого элемента.
      *
      * @param root                  - Some text.
      * @throws NullReferenceError   - Some text.

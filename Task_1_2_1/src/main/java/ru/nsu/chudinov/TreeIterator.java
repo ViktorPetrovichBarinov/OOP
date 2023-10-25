@@ -3,9 +3,9 @@ package ru.nsu.chudinov;
 import java.util.*;
 
 /**
- * Класс итератора
+ * Класс итератора.
  *
- * @param <T>
+ * @param <T> - Some text.
  */
 public class TreeIterator<T> implements Iterator<T> {
 
@@ -16,6 +16,12 @@ public class TreeIterator<T> implements Iterator<T> {
     //Cтек для DFS
     private final Stack<Tree<T>> stack = new Stack<>();
     private final Tree<T> tree;
+
+    /**
+     * Ну вот короче итератор.
+     *
+     * @param tree  - Some text.
+     */
     public TreeIterator(Tree<T> tree) {
         this.tree = tree;
         expectedModCount = tree.getModCount();
@@ -28,9 +34,9 @@ public class TreeIterator<T> implements Iterator<T> {
     }
 
     /**
-     * Метод проверяет, есть ли следующий элемент
+     * Метод проверяет, есть ли следующий элемент.
      *
-     * @return
+     * @return - Some text.
      */
     public boolean hasNext() {
         if (expectedModCount != tree.getModCount()) {
@@ -41,9 +47,9 @@ public class TreeIterator<T> implements Iterator<T> {
     }
 
     /**
-     * Метод возвращает следующий элемент в коллекции
+     * Метод возвращает следующий элемент в коллекции.
      *
-     * @return
+     * @return  - Some text.
      */
     public T next() {
         if (!hasNext()) {
