@@ -68,12 +68,17 @@ public class Tree<T> implements Iterable<T>, Cloneable {
      * @param subTree - поддерево, которое надо добавить
      * @return - вернёт то же самое поддерево, что и принимал
      */
-    public Tree<T> addChild(Tree<T> subTree) {
+    public Tree<T> addChild(Tree<T> subTree) throws NullReferenceError{
+        if (subTree == null) {
+            throw new NullReferenceError();
+        }
+        var clonedTree = subTree.clone();
+
         this.modCount++;
 
-        subTree.parent = this;
-        this.children.add(subTree);
-        return subTree;
+        clonedTree.parent = this;
+        this.children.add(clonedTree);
+        return clonedTree;
     }
 
     /**
@@ -83,7 +88,7 @@ public class Tree<T> implements Iterable<T>, Cloneable {
      * @param root - элемент, который мы хотим добавить в дерево
      * @return - ссылка на поддерево, которое состоит из одно переданного как аргумент элемента.
      */
-    public Tree<T> addChild(T root) {
+    public Tree<T> addChild(T root) throws NullReferenceError{
         Tree<T> newTree = new Tree<>(root);
         addChild(newTree);
         return newTree;
@@ -260,7 +265,7 @@ public class Tree<T> implements Iterable<T>, Cloneable {
     }
 
     @Override
-    public Tree<T> clone() throws CloneNotSupportedException{
+    public Tree<T> clone(){
         Tree<T> resultTree = new Tree<>(this.root);
         for(Tree<T> baseTreeChildren : this.children) {
             Tree<T> newChildren = baseTreeChildren.clone();
@@ -270,3 +275,4 @@ public class Tree<T> implements Iterable<T>, Cloneable {
     };
 
 }
+

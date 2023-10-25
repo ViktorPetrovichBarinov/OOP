@@ -34,7 +34,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Add Integer child with T root")
-    void test3() {
+    void test3() throws NullReferenceError {
         Tree<Integer> t1 = new Tree<>(15);
         t1.addChild(14);
         assertEquals(t1.getRoot(), 15);
@@ -43,7 +43,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Add Integer child with Tree<T> root")
-    void test4() {
+    void test4() throws NullReferenceError{
         Tree<Integer> t1 = new Tree<>(15);
         Tree<Integer> t2 = new Tree<>(14);
         t1.addChild(t2);
@@ -53,7 +53,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Add Integer child null")
-    void test5() {
+    void test5() throws NullReferenceError{
         Tree<Integer> t1 = new Tree<>(15);
         Tree<Integer> t2 = new Tree<>(null);
         t1.addChild(t2);
@@ -78,7 +78,7 @@ public class TreeTest {
      * @return - ссылку на root.
      */
     @SuppressWarnings("java:S100")
-    private Tree<String> createTree() {
+    private Tree<String> createTree() throws NullReferenceError{
         Tree<String> root = new Tree<>("Root");
 
         Tree<String> lvl1_1 = new Tree<>("lvl1_1");
@@ -115,7 +115,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Equal of identical tree")
-    void test6() {
+    void test6() throws NullReferenceError{
         Tree<String> root1 = createTree();
         Tree<String> root2 = createTree();
         assertTrue(root1.equals(root2));
@@ -123,7 +123,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Equal of identical tree but one is OBJECT")
-    void test7() {
+    void test7() throws NullReferenceError{
         Tree<String> root1 = createTree();
         Object root2 = createTree();
         assertTrue(root1.equals(root2));
@@ -131,7 +131,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Equal of not identical tree")
-    void test8() {
+    void test8() throws NullReferenceError{
         Tree<String> root1 = createTree();
         Tree<String> root2 = new Tree<>("Str1");
         assertFalse(root1.equals(root2));
@@ -139,7 +139,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Equal different objects")
-    void test9() {
+    void test9() throws NullReferenceError{
         Tree<String> root1 = createTree();
         String root2 = new String("Str1");
         assertFalse(root1.equals(root2));
@@ -147,7 +147,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Equal different objects")
-    void test10() {
+    void test10()throws NullReferenceError {
         Tree<String> root1 = createTree();
         Tree<String> root2 = createTree();
         root1.setdfs();
@@ -158,7 +158,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Delete SubTree LVL1 1-st elem 2-nd elem and 3-rd elem")
-    void test11() {
+    void test11() throws NullReferenceError{
         Tree<String> root1 = createTree();
         root1.getChild().get(0).deleteSubTree();
         root1.getChild().get(0).deleteSubTree();
@@ -170,7 +170,7 @@ public class TreeTest {
     @Test
     @DisplayName("Delete only one elem LVL1 1-st elem 2-nd elem and 3-rd elem")
     @SuppressWarnings("java:S100")
-    void test12() {
+    void test12() throws NullReferenceError{
         Tree<String> root1 = createTree();
         root1.getChild().get(0).deleteThisElem();
         root1.getChild().get(1).deleteThisElem();
@@ -203,7 +203,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Delete one elem without child")
-    void test13() {
+    void test13() throws NullReferenceError{
         var root = new Tree<>(15);
         var child = new Tree<>(10);
         root.addChild(child);
@@ -213,7 +213,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("Delete one elem with one child")
-    void test14() {
+    void test14() throws NullReferenceError {
         var root = new Tree<>(15);
         var child = new Tree<>(10);
         var childOfChild = new Tree<>(5);
@@ -227,7 +227,7 @@ public class TreeTest {
 
     @Test
     @DisplayName("print test")
-    void test15() {
+    void test15() throws NullReferenceError{
 
 
         // Сохраняем текущий стандартный поток вывода
@@ -247,7 +247,7 @@ public class TreeTest {
         Tree<String> b = a.addChild("B");
         tree.addChild(subtree);
         b.deleteSubTree();
-        tree.printTree();
+        System.out.println(tree);
 
         // Возвращаем стандартный поток вывода в исходное состояние
         System.setOut(originalOut);

@@ -10,7 +10,7 @@ public class Main {
      *
      * @param args  - Some text.
      */
-    public static void main(String[] args) throws CloneNotSupportedException {
+    public static void main(String[] args) throws CloneNotSupportedException, NullReferenceError {
         Tree<String> tree = new Tree<>("R1");
         Tree<String> subtree = new Tree<>("R2");
         subtree.addChild("C");
