@@ -31,6 +31,10 @@ public class TreeIterator<T> implements Iterator<T> {
     }
 
     public T next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+
         if (expectedModCount != tree.getModCount()) {
             throw new ConcurrentModificationException();
         }
