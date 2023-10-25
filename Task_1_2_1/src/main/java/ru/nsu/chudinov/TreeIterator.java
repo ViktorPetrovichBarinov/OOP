@@ -22,6 +22,10 @@ public class TreeIterator<T> implements Iterator<T> {
         }
     }
 
+    public int getExpectedModCount() {
+        return expectedModCount;
+    }
+
     public boolean hasNext() {
         if (expectedModCount != tree.getModCount()) {
             throw new ConcurrentModificationException();

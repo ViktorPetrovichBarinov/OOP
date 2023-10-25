@@ -1,13 +1,7 @@
 package ru.nsu.chudinov;
 
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-
-
-
 
 /**
  * Класс реализует дерево с переменным типом. Дерево связанного ациклического ориентированного
@@ -28,7 +22,7 @@ public class Tree<T> implements Iterable<T>, Cloneable {
 
     //enum ограниченный набор констант
     //тип данных для представления обхода
-    enum TraversalType {
+    public enum TraversalType {
         BFS, DFS
     }
 
@@ -43,6 +37,15 @@ public class Tree<T> implements Iterable<T>, Cloneable {
     public void setdfs() {
         this.traversalType = TraversalType.DFS;
     }
+
+    //возвращает текущее значение обхода
+    public TraversalType getSearchType() {
+        if (this.traversalType.equals(TraversalType.BFS)) {
+            return TraversalType.BFS;
+        }
+         return TraversalType.DFS;
+    }
+
 
     //getter для значения корня
     public T getRoot() {
@@ -73,7 +76,7 @@ public class Tree<T> implements Iterable<T>, Cloneable {
      * Добавляет поддерево в список детей.
      *
      * @param subTree - поддерево, которое надо добавить
-     * @return - вернёт то же самое поддерево, что и принимал
+     * @return - вернёт новое поддерево
      */
     public Tree<T> addChild(Tree<T> subTree) throws NullReferenceError{
         if (subTree == null) {
@@ -81,11 +84,9 @@ public class Tree<T> implements Iterable<T>, Cloneable {
         }
         var clonedTree = subTree.clone();
 
-        this.modCount++;
-
         clonedTree.parent = this;
         this.children.add(clonedTree);
-        return clonedTree;
+        return this;
     }
 
     /**
@@ -97,7 +98,7 @@ public class Tree<T> implements Iterable<T>, Cloneable {
      */
     public Tree<T> addChild(T root) throws NullReferenceError{
         Tree<T> newTree = new Tree<>(root);
-        addChild(newTree);
+        addChild(newTree.clone());
         return newTree;
     }
 
@@ -105,8 +106,6 @@ public class Tree<T> implements Iterable<T>, Cloneable {
      * Удаляет всё поддерево, для которого применён данный метод.
      */
     public void deleteSubTree() {
-        plusChanges(this);
-
         //запоминаем родителя
         Tree<T> parent = this.parent;
         //удаляем всех детей
@@ -123,7 +122,6 @@ public class Tree<T> implements Iterable<T>, Cloneable {
      * который хотим удалить.
      */
     public void deleteThisElem() {
-        plusChanges(this);
 
         //Если у элемента есть родители, но у элемента нет детей
         if (this.children.isEmpty() && this.parent != null) {
@@ -146,14 +144,6 @@ public class Tree<T> implements Iterable<T>, Cloneable {
             //удаляем из детей сам корневой элемент
             this.children.remove(0);
         }
-    }
-
-    private void plusChanges(Tree<T> current) {
-        while (current.parent != null) {
-            current.modCount++;
-            current = current.parent;
-        }
-        current.modCount++;
     }
 
     /**

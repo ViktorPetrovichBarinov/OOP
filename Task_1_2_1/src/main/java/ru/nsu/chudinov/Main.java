@@ -20,17 +20,11 @@ public class Main {
         tree.addChild(subtree);
         b.deleteSubTree();
         System.out.println(tree);
-
-        Tree<String> cloneTree = tree.clone();
-        System.out.println(tree == cloneTree);
-
-        System.out.println(tree.getChild().get(0) == cloneTree.getChild().get(0));
-        System.out.println(tree.getChild().get(0));
-        System.out.println(cloneTree.getChild().get(0));
-
-        System.out.println(tree.getChild().get(1) == cloneTree.getChild().get(1));
-        System.out.println(tree.getChild().get(1).getChild().get(0) == cloneTree.getChild().get(1).getChild().get(0));
-        System.out.println(tree.getChild().get(1).getChild().get(1) == cloneTree.getChild().get(1).getChild().get(1));
+        System.out.println("""
+                 R2
+                /  \\
+                A  R2
+                  /  \\
+                  C   D""");
     }
-
 }
