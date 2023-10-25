@@ -1,11 +1,12 @@
 package ru.nsu.chudinov;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 
 /**
@@ -59,6 +60,7 @@ public class TreeTest {
         t2.deleteThisElem();
         assertEquals(1, t1.getModCount());
     }
+
     @Test
     @DisplayName("argument is null")
     public void test6() {
@@ -135,11 +137,11 @@ public class TreeTest {
         Tree<Integer> tree = new Tree<>(0);
         tree.addChild(lvl2Left);
         tree.addChild(lvl2Right);
-        ArrayList<Integer> resultOfBFS = new ArrayList<>();
+        ArrayList<Integer> resultOfBfs = new ArrayList<>();
         for (Integer child : tree) {
-            resultOfBFS.add(child);
+            resultOfBfs.add(child);
         }
-        assertEquals(resultOfBFS.toString(), "[0, 5, 8, 4, 3, 7, 6]");
+        assertEquals(resultOfBfs.toString(), "[0, 5, 8, 4, 3, 7, 6]");
     }
 
     @Test
@@ -155,11 +157,11 @@ public class TreeTest {
         tree.addChild(lvl2Left);
         tree.addChild(lvl2Right);
         tree.setdfs();
-        ArrayList<Integer> resultOfBFS = new ArrayList<>();
+        ArrayList<Integer> resultOfBfs = new ArrayList<>();
         for (Integer child : tree) {
-            resultOfBFS.add(child);
+            resultOfBfs.add(child);
         }
-        assertEquals(resultOfBFS.toString(), "[0, 8, 6, 7, 5, 3, 4]");
+        assertEquals(resultOfBfs.toString(), "[0, 8, 6, 7, 5, 3, 4]");
     }
 
     @Test

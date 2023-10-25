@@ -2,6 +2,11 @@ package ru.nsu.chudinov;
 
 import java.util.*;
 
+/**
+ * Класс итератора
+ *
+ * @param <T>
+ */
 public class TreeIterator<T> implements Iterator<T> {
 
     //для исключений
@@ -22,10 +27,11 @@ public class TreeIterator<T> implements Iterator<T> {
         }
     }
 
-    public int getExpectedModCount() {
-        return expectedModCount;
-    }
-
+    /**
+     * Метод проверяет, есть ли следующий элемент
+     *
+     * @return
+     */
     public boolean hasNext() {
         if (expectedModCount != tree.getModCount()) {
             throw new ConcurrentModificationException();
@@ -34,6 +40,11 @@ public class TreeIterator<T> implements Iterator<T> {
         return !queue.isEmpty() || !stack.isEmpty();
     }
 
+    /**
+     * Метод возвращает следующий элемент в коллекции
+     *
+     * @return
+     */
     public T next() {
         if (!hasNext()) {
             throw new NoSuchElementException();

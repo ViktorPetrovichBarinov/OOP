@@ -20,8 +20,10 @@ public class Tree<T> implements Iterable<T>, Cloneable {
     //переменная отвечающая, за количество изменений дерева.
     private int modCount = 0;
 
-    //enum ограниченный набор констант
-    //тип данных для представления обхода
+    /**
+     * Enum ограниченный набор констант
+     * тип данных для представления обхода
+     */
     public enum TraversalType {
         BFS, DFS
     }
@@ -38,12 +40,16 @@ public class Tree<T> implements Iterable<T>, Cloneable {
         this.traversalType = TraversalType.DFS;
     }
 
-    //возвращает текущее значение обхода
+    /**
+     * Some text.
+     *
+     * @return - возвращает текущее значение обхода
+     */
     public TraversalType getSearchType() {
         if (this.traversalType.equals(TraversalType.BFS)) {
             return TraversalType.BFS;
         }
-         return TraversalType.DFS;
+        return TraversalType.DFS;
     }
 
 
@@ -64,7 +70,12 @@ public class Tree<T> implements Iterable<T>, Cloneable {
         return this.traversalType;
     }
 
-    //Конструктор дерева, создаёт дерево из данного корневого элемента
+    /**
+     * Конструктор дерева, создаёт дерево из данного корневого элемента
+     *
+     * @param root                  - Some text.
+     * @throws NullReferenceError   - Some text.
+     */
     public Tree(T root) throws NullReferenceError {
         if (root == null) {
             throw new NullReferenceError();
@@ -78,12 +89,12 @@ public class Tree<T> implements Iterable<T>, Cloneable {
      * @param subTree - поддерево, которое надо добавить
      * @return - вернёт новое поддерево
      */
-    public Tree<T> addChild(Tree<T> subTree) throws NullReferenceError{
+    public Tree<T> addChild(Tree<T> subTree) throws NullReferenceError {
         if (subTree == null) {
             throw new NullReferenceError();
         }
         var clonedTree = subTree.clone();
-
+        this.modCount++;
         clonedTree.parent = this;
         this.children.add(clonedTree);
         return this;
@@ -96,7 +107,7 @@ public class Tree<T> implements Iterable<T>, Cloneable {
      * @param root - элемент, который мы хотим добавить в дерево
      * @return - ссылка на поддерево, которое состоит из одно переданного как аргумент элемента.
      */
-    public Tree<T> addChild(T root) throws NullReferenceError{
+    public Tree<T> addChild(T root) throws NullReferenceError {
         Tree<T> newTree = new Tree<>(root);
         addChild(newTree.clone());
         return newTree;
@@ -219,19 +230,19 @@ public class Tree<T> implements Iterable<T>, Cloneable {
     }
 
     @Override
-    public Tree<T> clone(){
+    public Tree<T> clone() {
         Tree<T> resultTree = null;
         try {
             resultTree = new Tree<>(this.root);
         } catch (NullReferenceError e) {
             throw new RuntimeException(e);
         }
-        for(Tree<T> baseTreeChildren : this.children) {
+        for (Tree<T> baseTreeChildren : this.children) {
             Tree<T> newChildren = baseTreeChildren.clone();
             resultTree.children.add(newChildren);
         }
         return resultTree;
-    };
+    }
 
 }
 
