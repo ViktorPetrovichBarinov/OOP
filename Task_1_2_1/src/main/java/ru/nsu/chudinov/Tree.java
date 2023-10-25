@@ -15,9 +15,7 @@ import java.util.Stack;
  *
  * @param <T> - Любой тип данных
  */
-public class Tree<T> implements Iterable<T> {
-
-
+public class Tree<T> implements Iterable<T>, Cloneable {
 
     // корневой элемент
     private T root;
@@ -53,6 +51,10 @@ public class Tree<T> implements Iterable<T> {
 
     public LinkedList<Tree<T>> getChild() {
         return this.children;
+    }
+
+    public TraversalType getTraversalType() {
+        return this.traversalType;
     }
 
     //Конструктор дерева, создаёт дерево из данного корневого элемента
@@ -158,7 +160,7 @@ public class Tree<T> implements Iterable<T> {
         }
         return str.toString();
     }
-        
+
     /*
         Чтобы мы могли использовать например цикл for each для нашего дерева,
         Класс дерева должен реализовывать интерфейс Iterable.
@@ -255,7 +257,16 @@ public class Tree<T> implements Iterable<T> {
         } else {
             return false;
         }
-
     }
+
+    @Override
+    public Tree<T> clone() throws CloneNotSupportedException{
+        Tree<T> resultTree = new Tree<>(this.root);
+        for(Tree<T> baseTreeChildren : this.children) {
+            Tree<T> newChildren = baseTreeChildren.clone();
+            resultTree.children.add(newChildren);
+        }
+        return resultTree;
+    };
 
 }
