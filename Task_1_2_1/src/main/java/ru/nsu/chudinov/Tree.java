@@ -17,22 +17,7 @@ import java.util.Stack;
  */
 public class Tree<T> implements Iterable<T> {
 
-    /**
-     * Some text.
-     *
-     * @param args  - Some text.
-     */
-    public static void main(String[] args) {
-        Tree<String> tree = new Tree<>("R1");
-        Tree<String> subtree = new Tree<>("R2");
-        subtree.addChild("C");
-        subtree.addChild("D");
-        Tree<String> a = tree.addChild("A");
-        Tree<String> b = a.addChild("B");
-        tree.addChild(subtree);
-        b.deleteSubTree();
-        tree.printTree();
-    }
+
 
     // корневой элемент
     private T root;
@@ -160,17 +145,20 @@ public class Tree<T> implements Iterable<T> {
     /**
      * Вспомогательная функция, печатает дерево в виде списка смежности.
      */
-    public void printTree() {
-        System.out.print(this.root + ": [ ");
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append(this.root).append(": [ ");
         for (Tree<T> child : this.children) {
-            System.out.print(child.root + " ");
+            str.append(child.root + " ");
         }
-        System.out.print("]\n");
+        str.append("]\n");
         for (Tree<T> child : this.children) {
-            child.printTree();
+            str.append(child.toString());
         }
+        return str.toString();
     }
-
+        
     /*
         Чтобы мы могли использовать например цикл for each для нашего дерева,
         Класс дерева должен реализовывать интерфейс Iterable.
