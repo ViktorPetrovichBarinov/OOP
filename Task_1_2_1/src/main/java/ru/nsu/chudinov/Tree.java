@@ -28,7 +28,7 @@ public class Tree<T> implements Iterable<T>, Cloneable {
 
     //enum ограниченный набор констант
     //тип данных для представления обхода
-    private enum TraversalType {
+    enum TraversalType {
         BFS, DFS
     }
 
@@ -49,6 +49,10 @@ public class Tree<T> implements Iterable<T>, Cloneable {
         return root;
     }
 
+    public int getModCount() {
+        return modCount;
+    }
+
     public LinkedList<Tree<T>> getChild() {
         return this.children;
     }
@@ -58,7 +62,10 @@ public class Tree<T> implements Iterable<T>, Cloneable {
     }
 
     //Конструктор дерева, создаёт дерево из данного корневого элемента
-    public Tree(T root) {
+    public Tree(T root) throws NullReferenceError {
+        if (root == null) {
+            throw new NullReferenceError();
+        }
         this.root = root;
     }
 
@@ -176,53 +183,10 @@ public class Tree<T> implements Iterable<T>, Cloneable {
         next() - возвращает следующий элемент
      */
     public Iterator<T> iterator() {
-        return new TreeIterator();
+        return new TreeIterator(this);
     }
 
-    private class TreeIterator implements Iterator<T> {
 
-        //для исключений
-        private final int expectedModCount = modCount;
-        //Очередь для BFS
-        private final Queue<Tree<T>> queue = new LinkedList<>();
-        //Cтек для DFS
-        private final Stack<Tree<T>> stack = new Stack<>();
-
-        public TreeIterator() {
-            if (Tree.this.traversalType == TraversalType.BFS) {
-                //Tree.this обращается к внешнему экземпляру класса
-                queue.add(Tree.this);
-            } else {
-                stack.push(Tree.this);
-            }
-        }
-
-        public boolean hasNext() {
-            if (expectedModCount != modCount) {
-                throw new ConcurrentModificationException();
-            }
-
-            return !queue.isEmpty() || !stack.isEmpty();
-        }
-
-        public T next() {
-            if (expectedModCount != modCount) {
-                throw new ConcurrentModificationException();
-            }
-
-            Tree<T> current;
-            if (traversalType == TraversalType.BFS) {
-                //берём первый элемент из очереди и удаляем его от туда
-                current = queue.poll();
-                queue.addAll(current.children);
-            } else {
-                //берём первый элемент из очереди и удаляем его от туда
-                current = stack.pop();
-                stack.addAll(current.children);
-            }
-            return current.root;
-        }
-    }
 
 
     @Override
@@ -266,7 +230,12 @@ public class Tree<T> implements Iterable<T>, Cloneable {
 
     @Override
     public Tree<T> clone(){
-        Tree<T> resultTree = new Tree<>(this.root);
+        Tree<T> resultTree = null;
+        try {
+            resultTree = new Tree<>(this.root);
+        } catch (NullReferenceError e) {
+            throw new RuntimeException(e);
+        }
         for(Tree<T> baseTreeChildren : this.children) {
             Tree<T> newChildren = baseTreeChildren.clone();
             resultTree.children.add(newChildren);
