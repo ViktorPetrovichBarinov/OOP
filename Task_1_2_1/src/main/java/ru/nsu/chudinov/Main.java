@@ -1,7 +1,5 @@
 package ru.nsu.chudinov;
 
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class Main {
 
@@ -20,11 +18,5 @@ public class Main {
         tree.addChild(subtree);
         b.deleteSubTree();
         System.out.println(tree);
-        System.out.println("""
-                 R2
-                /  \\
-                A  R2
-                  /  \\
-                  C   D""");
     }
 }
