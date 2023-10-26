@@ -108,6 +108,9 @@ public class Tree<T> implements Iterable<T>, Cloneable {
      * @return - ссылка на поддерево, которое состоит из одно переданного как аргумент элемента.
      */
     public Tree<T> addChild(T root) throws NullReferenceError {
+        if (root == null) {
+            throw new NullReferenceError();
+        }
         Tree<T> newTree = new Tree<>(root);
         addChild(newTree.clone());
         return newTree;
