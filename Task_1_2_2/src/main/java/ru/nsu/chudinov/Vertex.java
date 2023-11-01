@@ -3,8 +3,8 @@ package ru.nsu.chudinov;
 public class Vertex<V> {
     private V data;
 
-    public Vertex() {
-        this.data = null;
+    public Vertex(V data) {
+        this.data = data;
     }
 
     public V getData() {
