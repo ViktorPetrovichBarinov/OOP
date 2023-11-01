@@ -42,4 +42,26 @@ public class EdgeTest {
         assertEquals(edge.getEndingVertex(), end);
         assertEquals(edge.getWeight(), 10);
     }
+
+    @Test
+    @DisplayName("Проверка equals")
+    void test3() {
+        Vertex<String> start = new Vertex<>("Start");
+        Vertex<String> end = new Vertex<>("End");
+
+        Edge<String> e1 = new Edge<>(5, start, end);
+        Edge<String> e2 = new Edge<>(6, end, end);
+
+        assertTrue(e1.equals((Object) e1));
+        assertFalse(e1.equals(null));
+        assertFalse(e1.equals(e2));
+
+        e2.setWeight(5);
+        assertFalse(e1.equals(e2));
+        e2.setStartingVertex(start);
+        assertTrue(e1.equals(e2));
+
+
+
+    }
 }

@@ -13,14 +13,6 @@ public class Edge<V> {
         this.endingVertex = end;
     }
 
-    public void changeVertexes(Vertex<V> startingVertex, Vertex<V> endingVertex) {
-        this.startingVertex = startingVertex;
-        this.endingVertex = endingVertex;
-    }
-
-
-
-
     public void setWeight(Integer newWeight) {
         this.weight = newWeight;
     }

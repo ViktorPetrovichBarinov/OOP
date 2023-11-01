@@ -1,10 +1,9 @@
 package ru.nsu.chudinov;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class VertexTest {
 
@@ -32,5 +31,18 @@ public class VertexTest {
         vertex.setData("Hello");
 
         assertEquals(vertex.getData(), "Hello");
+    }
+
+    @Test
+    @DisplayName("Equals тест")
+    void test4() {
+        Vertex<String> vertex1 = new Vertex<>("Hello");
+        Vertex<String> vertex2 = new Vertex<>("Hello");
+        assertTrue(vertex1.equals((Object) vertex1));
+        assertFalse(vertex1.equals(null));
+
+        assertTrue(vertex1.equals(vertex2));
+
+
     }
 }
