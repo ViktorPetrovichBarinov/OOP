@@ -9,27 +9,27 @@ import org.junit.jupiter.api.Test;
 public class VertexTest {
 
     @Test
-    @DisplayName("Empty vertex")
+    @DisplayName("Проверка конструктора")
     void test1() {
-        Vertex<Integer> vertex = new Vertex<>();
+        Vertex<Integer> vertex = new Vertex<>(5);
 
-        assertNull(vertex.getData());
+        assertEquals(5, vertex.getData());
     }
 
     @Test
-    @DisplayName("Integer vertex")
+    @DisplayName("Проверка сеттера на дату")
     void test2() {
-        Vertex<Integer> vertex = new Vertex<>();
-        vertex.changeData(15);
+        Vertex<Integer> vertex = new Vertex<>(5);
+        vertex.setData(15);
 
         assertEquals(15, vertex.getData());
     }
 
     @Test
-    @DisplayName("String vertex")
+    @DisplayName("Проверка на другой тип")
     void test3() {
-        Vertex<String> vertex = new Vertex<>();
-        vertex.changeData("Hello");
+        Vertex<String> vertex = new Vertex<>("");
+        vertex.setData("Hello");
 
         assertEquals(vertex.getData(), "Hello");
     }

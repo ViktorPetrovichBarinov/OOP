@@ -11,41 +11,35 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class EdgeTest {
+
     @Test
-    @DisplayName("Empty edge")
+    @DisplayName("Проверка конструктора/геттера")
     void test1() {
-        Edge<Integer, String> edge = new Edge<>();
-        assertNull(edge.getObject());
-        assertNull(edge.getStartingVertex());
-        assertNull(edge.getEndingVertex());
+        Vertex<String> start = new Vertex<>("Start");
+        Vertex<String> end = new Vertex<>("End");
+        Edge<String> edge = new Edge<>(5, start, end);
+
+        assertEquals(edge.getStartingVertex(), start);
+        assertEquals(edge.getEndingVertex(), end);
+        assertEquals(edge.getWeight(), 5);
     }
 
     @Test
-    @DisplayName("Vertex getter")
+    @DisplayName("Проверка сеттеров")
     void test2() {
-        Edge<Integer, String> edge = new Edge<>();
-        edge.changeVertexes(new Vertex<Integer>().changeData(10),
-                new Vertex<Integer>().changeData(100));
+        Vertex<String> start = new Vertex<>("Start");
+        Vertex<String> end = new Vertex<>("End");
+        Edge<String> edge = new Edge<>(5, start, end);
+        edge.setWeight(10);
 
-        assertEquals(edge.getStartingVertex().getData(), 10);
-        assertEquals(edge.getEndingVertex().getData(), 100);
-    }
+        start.setData("Start123");
+        edge.setEndingVertex(start);
 
-    @Test
-    @DisplayName("Weight getter")
-    void test3() {
-        Edge<Integer, String> edge = new Edge<>();
-        edge.changeWeight(100);
+        end.setData("End123");
+        edge.setEndingVertex(end);
 
-        assertEquals(100, edge.getWeight());
-    }
-
-    @Test
-    @DisplayName("Object getter")
-    void test4() {
-        Edge<Integer, String> edge = new Edge<>();
-        edge.changeObject("100");
-
-        assertEquals("100", edge.getObject());
+        assertEquals(edge.getStartingVertex(), start);
+        assertEquals(edge.getEndingVertex(), end);
+        assertEquals(edge.getWeight(), 10);
     }
 }

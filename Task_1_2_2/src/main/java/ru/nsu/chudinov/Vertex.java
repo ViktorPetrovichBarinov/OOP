@@ -1,5 +1,7 @@
 package ru.nsu.chudinov;
 
+import java.util.Objects;
+
 public class Vertex<V> {
     private V data;
 
@@ -11,8 +13,18 @@ public class Vertex<V> {
         return this.data;
     }
 
-    public Vertex<V> changeData(V newData) {
+    public void setData (V newData) {
         this.data = newData;
-        return this;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;  // Проверка на ссылку
+        if (obj == null || getClass() != obj.getClass()) return false;  // Проверка на null и класс
+
+        Vertex<?> vertex = (Vertex<?>) obj;  // Приведение объекта к типу Vertex
+
+        return Objects.equals(data, vertex.data);  // Сравнение полей data
+    }
+
 }
