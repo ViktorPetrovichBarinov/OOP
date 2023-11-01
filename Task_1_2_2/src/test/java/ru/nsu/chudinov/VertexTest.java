@@ -42,7 +42,5 @@ public class VertexTest {
         assertFalse(vertex1.equals(null));
 
         assertTrue(vertex1.equals(vertex2));
-
-
     }
 }

@@ -1,6 +1,7 @@
 package ru.nsu.chudinov;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public abstract class Graph<T> {
     protected ArrayList<Vertex<T>> vertexList;
@@ -18,5 +19,23 @@ public abstract class Graph<T> {
     public abstract Boolean removeEdge (Edge<T> edge);
 
     public abstract Boolean changeEdge(Edge<T> was, Edge<T> became);
+
+
+
+
+    protected static class ConnectedVertex<T> implements Comparable<ConnectedVertex> {
+        protected Vertex<T> vertex;
+        protected Integer weight;
+
+        ConnectedVertex(Vertex<T> vertex, Integer weight) {
+            this.vertex = vertex;
+            this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(ConnectedVertex vertex) {
+            return weight - vertex.weight;
+        }
+    }
 }
 
