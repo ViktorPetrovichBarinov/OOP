@@ -27,6 +27,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "../../../";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -81,8 +87,8 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
@@ -90,7 +96,7 @@ loadScripts(document, 'script');</script>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.top">
@@ -116,7 +122,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
+<li><a href="Graph.html" title="class in ru.nsu.chudinov">ru.nsu.chudinov.Graph</a>&lt;T&gt;</li>
+<li>
+<ul class="inheritance">
 <li>ru.nsu.chudinov.AdjencyList&lt;T&gt;</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -125,13 +136,47 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <hr>
 <pre>public class <span class="typeNameLabel">AdjencyList&lt;T&gt;</span>
-extends java.lang.Object</pre>
+extends <a href="Graph.html" title="class in ru.nsu.chudinov">Graph</a>&lt;T&gt;</pre>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="nested.classes.inherited.from.class.ru.nsu.chudinov.Graph">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;ru.nsu.chudinov.<a href="Graph.html" title="class in ru.nsu.chudinov">Graph</a></h3>
+<code><a href="Graph.ConnectedVertex.html" title="class in ru.nsu.chudinov">Graph.ConnectedVertex</a>&lt;<a href="Graph.ConnectedVertex.html" title="type parameter in Graph.ConnectedVertex">T</a>&gt;</code></li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- =========== FIELD SUMMARY =========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a id="fields.inherited.from.class.ru.nsu.chudinov.Graph">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;ru.nsu.chudinov.<a href="Graph.html" title="class in ru.nsu.chudinov">Graph</a></h3>
+<code><a href="Graph.html#edgeList">edgeList</a>, <a href="Graph.html#vertexList">vertexList</a></code></li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section>
 <ul class="blockList">
@@ -146,7 +191,8 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">AdjencyList</a></span>()</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.util.ArrayList,java.util.ArrayList)">AdjencyList</a></span>&#8203;(java.util.ArrayList&lt;<a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&gt;&nbsp;vertexList,
+           java.util.ArrayList&lt;<a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&gt;&nbsp;edgeList)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -160,6 +206,46 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Summary</h3>
+<table class="memberSummary">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Method</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>java.lang.Boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(ru.nsu.chudinov.Edge)">addEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;edge)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.lang.Boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex(ru.nsu.chudinov.Vertex)">addVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;vertex)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>java.lang.Boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#changeEdge(ru.nsu.chudinov.Edge,ru.nsu.chudinov.Edge)">changeEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;was,
+          <a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;became)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>java.lang.Boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#changeVertex(ru.nsu.chudinov.Vertex,ru.nsu.chudinov.Vertex)">changeVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;was,
+            <a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;became)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>java.lang.Boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(ru.nsu.chudinov.Edge)">removeEdge</a></span>&#8203;(<a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;edge)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>java.lang.Boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(ru.nsu.chudinov.Vertex)">removeVertex</a></span>&#8203;(<a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;vertex)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -183,13 +269,104 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;()">
+<a id="&lt;init&gt;(java.util.ArrayList,java.util.ArrayList)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>AdjencyList</h4>
-<pre>public&nbsp;AdjencyList()</pre>
+<pre>public&nbsp;AdjencyList&#8203;(java.util.ArrayList&lt;<a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&gt;&nbsp;vertexList,
+                   java.util.ArrayList&lt;<a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&gt;&nbsp;edgeList)</pre>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<!-- ============ METHOD DETAIL ========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="method.detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a id="addVertex(ru.nsu.chudinov.Vertex)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addVertex</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Boolean&nbsp;addVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;vertex)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#addVertex(ru.nsu.chudinov.Vertex)">addVertex</a></code>&nbsp;in class&nbsp;<code><a href="Graph.html" title="class in ru.nsu.chudinov">Graph</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="removeVertex(ru.nsu.chudinov.Vertex)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeVertex</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Boolean&nbsp;removeVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;vertex)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#removeVertex(ru.nsu.chudinov.Vertex)">removeVertex</a></code>&nbsp;in class&nbsp;<code><a href="Graph.html" title="class in ru.nsu.chudinov">Graph</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="changeVertex(ru.nsu.chudinov.Vertex,ru.nsu.chudinov.Vertex)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>changeVertex</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Boolean&nbsp;changeVertex&#8203;(<a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;was,
+                                      <a href="Vertex.html" title="class in ru.nsu.chudinov">Vertex</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;became)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#changeVertex(ru.nsu.chudinov.Vertex,ru.nsu.chudinov.Vertex)">changeVertex</a></code>&nbsp;in class&nbsp;<code><a href="Graph.html" title="class in ru.nsu.chudinov">Graph</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="addEdge(ru.nsu.chudinov.Edge)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addEdge</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Boolean&nbsp;addEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;edge)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#addEdge(ru.nsu.chudinov.Edge)">addEdge</a></code>&nbsp;in class&nbsp;<code><a href="Graph.html" title="class in ru.nsu.chudinov">Graph</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="removeEdge(ru.nsu.chudinov.Edge)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>removeEdge</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Boolean&nbsp;removeEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;edge)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#removeEdge(ru.nsu.chudinov.Edge)">removeEdge</a></code>&nbsp;in class&nbsp;<code><a href="Graph.html" title="class in ru.nsu.chudinov">Graph</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a id="changeEdge(ru.nsu.chudinov.Edge,ru.nsu.chudinov.Edge)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>changeEdge</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Boolean&nbsp;changeEdge&#8203;(<a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;was,
+                                    <a href="Edge.html" title="class in ru.nsu.chudinov">Edge</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;&nbsp;became)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Graph.html#changeEdge(ru.nsu.chudinov.Edge,ru.nsu.chudinov.Edge)">changeEdge</a></code>&nbsp;in class&nbsp;<code><a href="Graph.html" title="class in ru.nsu.chudinov">Graph</a>&lt;<a href="AdjencyList.html" title="type parameter in AdjencyList">T</a>&gt;</code></dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -242,8 +419,8 @@ extends java.lang.Object</pre>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
@@ -251,7 +428,7 @@ extends java.lang.Object</pre>
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a id="skip.navbar.bottom">
