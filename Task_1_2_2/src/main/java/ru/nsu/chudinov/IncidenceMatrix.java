@@ -79,7 +79,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
 
     @Override
     public void changeVertex(Vertex<T> was, Vertex<T> became) {
-        if(!vertexList.contains(was) || !vertexList.contains(became)) {
+        if(!vertexList.contains(was) || vertexList.contains(became)) {
             throw new IllegalArgumentException();
         }
         int index = vertexList.indexOf(was);
