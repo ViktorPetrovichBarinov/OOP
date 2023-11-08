@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Some text.
+ *
  * @param <T> - Some text.
  */
 public class AdjencyMatrix<T> extends Graph<T> {

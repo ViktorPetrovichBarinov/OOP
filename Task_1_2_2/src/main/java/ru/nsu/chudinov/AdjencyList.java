@@ -92,9 +92,9 @@ public class AdjencyList<T> extends Graph<T> {
             }
         }
 
-        for(int i = 0; i < vertexList.size(); i++) {
+        for (int i = 0; i < vertexList.size(); i++) {
             for (int j = 0; j < graph.get(i).size(); j++) {
-                if(graph.get(i).get(j).vertex.equals(was)) {
+                if (graph.get(i).get(j).vertex.equals(was)) {
                     graph.get(i).set(j, new ConnectedVertex<>(became, graph.get(i).get(j).weight));
                 }
             }
@@ -105,7 +105,7 @@ public class AdjencyList<T> extends Graph<T> {
 
     @Override
     public void addEdge(Edge<T> edge) {
-        if(!vertexList.contains(edge.getStartingVertex())
+        if (!vertexList.contains(edge.getStartingVertex())
                 || !vertexList.contains(edge.getEndingVertex())) {
             throw new IllegalArgumentException();
         }
@@ -118,12 +118,12 @@ public class AdjencyList<T> extends Graph<T> {
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        if(!edgeList.contains(edge)) {
+        if (!edgeList.contains(edge)) {
             throw new RuntimeException();
         }
         edgeList.remove(edge);
         int row = vertexList.indexOf(edge.getStartingVertex());
-        for(int i = 0; i < graph.get(row).size(); i++) {
+        for (int i = 0; i < graph.get(row).size(); i++) {
             if (graph.get(row).get(i).vertex.equals(edge.getEndingVertex())) {
                 graph.get(row).remove(i);
                 break;

@@ -27,7 +27,7 @@ public class Vertex<V> {
         if (this == obj) {
             return true;  // Проверка на ссылку
         }
-        if (obj == null || getClass() != obj.getClass()) {// Проверка на null и класс
+        if (obj == null || getClass() != obj.getClass()) { // Проверка на null и класс
             return false;
         }
 

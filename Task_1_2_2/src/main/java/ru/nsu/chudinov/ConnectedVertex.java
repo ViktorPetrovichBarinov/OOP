@@ -2,6 +2,7 @@ package ru.nsu.chudinov;
 
 /**
  * Some text.
+ *
  * @param <T> - Some text.
  */
 public class ConnectedVertex<T> implements Comparable<ConnectedVertex> {

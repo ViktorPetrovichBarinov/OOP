@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Some text.
+ *
  * @param <T> - Some text.
  */
 public class IncidenceMatrix<T> extends Graph<T> {
@@ -20,18 +21,18 @@ public class IncidenceMatrix<T> extends Graph<T> {
                 Vertex<T> end = edgeList.get(j).getEndingVertex();
                 Vertex<T> currentVertex = vertexList.get(i);
                 if (currentVertex.equals(start) && currentVertex.equals(end)) {
-                    currentEdgeList
-                            .add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.LOOP));
+                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j),
+                            ConnectedEdge.Direction.LOOP));
                     continue;
                 }
                 if (currentVertex.equals(start)) {
-                    currentEdgeList
-                            .add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.FROM_VERTEX));
+                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j),
+                            ConnectedEdge.Direction.FROM_VERTEX));
                     continue;
                 }
                 if (currentVertex.equals(end)) {
-                    currentEdgeList
-                            .add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.IN_VERTEX));
+                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j),
+                            ConnectedEdge.Direction.IN_VERTEX));
                     continue;
                 }
                 currentEdgeList.add(new ConnectedEdge<>(null, ConnectedEdge.Direction.NULL));

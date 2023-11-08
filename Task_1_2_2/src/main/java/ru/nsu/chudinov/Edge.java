@@ -2,6 +2,7 @@ package ru.nsu.chudinov;
 
 /**
  * Some text.
+ *
  * @param <V> - Some text.
  */
 public class Edge<V> {
@@ -9,9 +10,14 @@ public class Edge<V> {
     private Vertex<V> startingVertex;
     private Vertex<V> endingVertex;
 
-    //При создании ребро не инициализировано
-    //и нужно задать ему вес в дальнейшем
-    public Edge(Integer weight, Vertex<V> start, Vertex<V> end){
+    /**
+     * Some text.
+     *
+     * @param weight    - Some text.
+     * @param start     - Some text.
+     * @param end       - Some text.
+     */
+    public Edge(Integer weight, Vertex<V> start, Vertex<V> end) {
         this.weight = weight;
         this.startingVertex = start;
         this.endingVertex = end;
