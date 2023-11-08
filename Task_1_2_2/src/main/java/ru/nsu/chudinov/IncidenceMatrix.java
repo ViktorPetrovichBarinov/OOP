@@ -16,18 +16,18 @@ public class IncidenceMatrix<T> extends Graph<T> {
                 Vertex<T> end = edgeList.get(j).getEndingVertex();
                 Vertex<T> currentVertex = vertexList.get(i);
                 if(currentVertex.equals(start) && currentVertex.equals(end)) {
-                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j), 2));
+                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.LOOP));
                     continue;
                 }
                 if(currentVertex.equals(start)) {
-                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j), 1));
+                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.FROM_VERTEX));
                     continue;
                 }
                 if(currentVertex.equals(end)) {
-                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j), -1));
+                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.IN_VERTEX));
                     continue;
                 }
-                currentEdgeList.add(new ConnectedEdge<>(null, 0));
+                currentEdgeList.add(new ConnectedEdge<>(null, ConnectedEdge.Direction.NULL));
             }
             graph.add(currentEdgeList);
         }
@@ -42,7 +42,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
         vertexList.add(vertex);
         ArrayList<ConnectedEdge<T>> currentArrayVertex = new ArrayList<>();
         for (int i = 0; i < edgeList.size(); i++) {
-            currentArrayVertex.add(new ConnectedEdge<>(null, 0));
+            currentArrayVertex.add(new ConnectedEdge<>(null, ConnectedEdge.Direction.NULL));
         }
         graph.add(currentArrayVertex);
     }
@@ -54,17 +54,17 @@ public class IncidenceMatrix<T> extends Graph<T> {
         }
         int indexOfVertex = vertexList.indexOf(vertex);
         for (int i = 0; i < edgeList.size(); i++) {
-            graph.get(indexOfVertex).set(i, new ConnectedEdge<>(null, 0));
+            graph.get(indexOfVertex).set(i, new ConnectedEdge<>(null, ConnectedEdge.Direction.NULL));
         }
 
         for (int i = 0; i < edgeList.size(); i++) {
             int counter = 0;
             for (int j = 0; j < vertexList.size(); j++) {
-                int flag = graph.get(j).get(i).flag;
-                if (flag == 1 ||  flag == -1) {
+                ConnectedEdge.Direction direction = graph.get(j).get(i).direction;
+                if (direction == ConnectedEdge.Direction.FROM_VERTEX ||  direction == ConnectedEdge.Direction.IN_VERTEX) {
                     counter++;
                 }
-                if (flag == 2) {
+                if (direction == ConnectedEdge.Direction.LOOP) {
                     counter += 2;
                 }
             }
@@ -118,18 +118,18 @@ public class IncidenceMatrix<T> extends Graph<T> {
         Vertex<T> endVertex = edge.getEndingVertex();
         for (int i = 0; i < vertexList.size(); i++) {
             if (vertexList.get(i).equals(startVertex) && startVertex.equals(endVertex)) {
-                graph.get(i).add(new ConnectedEdge<>(edge, 2));
+                graph.get(i).add(new ConnectedEdge<>(edge, ConnectedEdge.Direction.LOOP));
                 continue;
             }
             if (vertexList.get(i).equals(startVertex)) {
-                graph.get(i).add(new ConnectedEdge<>(edge, 1));
+                graph.get(i).add(new ConnectedEdge<>(edge, ConnectedEdge.Direction.FROM_VERTEX));
                 continue;
             }
             if (vertexList.get(i).equals(endVertex)) {
-                graph.get(i).add(new ConnectedEdge<>(edge, -1));
+                graph.get(i).add(new ConnectedEdge<>(edge, ConnectedEdge.Direction.IN_VERTEX));
                 continue;
             }
-            graph.get(i).add(new ConnectedEdge<>(null, 0));
+            graph.get(i).add(new ConnectedEdge<>(null, ConnectedEdge.Direction.NULL));
         }
         edgeList.add(edge);
     }
@@ -156,7 +156,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
         int index = edgeList.indexOf(was);
         edgeList.set(index, became);
         for (int i = 0; i < vertexList.size(); i++) {
-            if (graph.get(i).get(index).flag != 0) {
+            if (graph.get(i).get(index).direction != ConnectedEdge.Direction.NULL) {
                 graph.get(i).get(index).edge = became;
             }
         }
@@ -164,10 +164,10 @@ public class IncidenceMatrix<T> extends Graph<T> {
 
     private static class ConnectedEdge<T> {
         public enum Direction {
-            START_TO_END,
-            END_TO_START,
-            LOOP,
-            NULL
+            FROM_VERTEX,//из вершины 1
+            IN_VERTEX,//в вершину -1
+            LOOP,//2
+            NULL//0
         }
         private Edge<T> edge;
         private final Direction direction;
