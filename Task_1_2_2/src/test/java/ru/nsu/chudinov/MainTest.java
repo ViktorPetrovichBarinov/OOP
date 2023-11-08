@@ -2,14 +2,11 @@ package ru.nsu.chudinov;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.jupiter.api.Test;
-import java.io.BufferedReader;
+import java.util.ArrayList;import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-
-
+import org.junit.jupiter.api.Test;
 
 /**
  * Some text.

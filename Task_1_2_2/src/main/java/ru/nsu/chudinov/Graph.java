@@ -4,23 +4,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * Some text.
+ *
+ * @param <T>   - Some text.
+ */
 public abstract class Graph<T> {
     protected ArrayList<Vertex<T>> vertexList;
     protected ArrayList<Edge<T>> edgeList;
 
 
-    public abstract void addVertex (Vertex<T> vertex);
+    public abstract void addVertex(Vertex<T> vertex);
 
-    public abstract void removeVertex (Vertex<T> vertex);
+    public abstract void removeVertex(Vertex<T> vertex);
 
     public abstract void changeVertex(Vertex<T> was, Vertex<T> became);
 
-    public abstract void addEdge (Edge<T> edge);
+    public abstract void addEdge(Edge<T> edge);
 
-    public abstract void removeEdge (Edge<T> edge);
+    public abstract void removeEdge(Edge<T> edge);
 
     public abstract void changeEdge(Edge<T> was, Edge<T> became);
 
+    /**
+     * Some text.
+     *
+     * @param vertex    - Some text.
+     * @return          - Some text.
+     */
     public ArrayList<Vertex<T>> shortestPath(Vertex<T> vertex) {
         int vertexLength = vertexList.size();
         int[] distance = new int[vertexLength];
@@ -67,6 +78,12 @@ public abstract class Graph<T> {
         return result;
     }
 
+    /**
+     * Some text.
+     *
+     * @param vertex    - Some text.
+     * @return          - Some text.
+     */
     public ArrayList<Edge<T>> getEdge(Vertex<T> vertex) {
         ArrayList<Edge<T>> result = new ArrayList<>();
         int len = this.edgeList.size();

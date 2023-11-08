@@ -2,10 +2,20 @@ package ru.nsu.chudinov;
 
 import java.util.ArrayList;
 
+/**
+ * Some text.
+ * @param <T> - Some text.
+ */
 public class AdjencyMatrix<T> extends Graph<T> {
     private final ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
     private Integer size;
 
+    /**
+     * Some text.
+     *
+     * @param vertexArrayList - Some text.
+     * @param edgeArrayList - Some text.
+     */
     public AdjencyMatrix(ArrayList<Vertex<T>> vertexArrayList, ArrayList<Edge<T>> edgeArrayList) {
         this.vertexList = vertexArrayList;
         this.edgeList = edgeArrayList;
@@ -45,7 +55,7 @@ public class AdjencyMatrix<T> extends Graph<T> {
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        if(!vertexList.contains(vertex)) {
+        if (!vertexList.contains(vertex)) {
             throw new IllegalArgumentException();
         }
         int index = vertexList.indexOf(vertex);
@@ -74,10 +84,10 @@ public class AdjencyMatrix<T> extends Graph<T> {
         vertexList.set(index, became);
         for (int i = 0; i < edgeList.size(); i++) {
             Edge<T> currentEdge = edgeList.get(i);
-            if(currentEdge.getStartingVertex().equals(was)) {
+            if (currentEdge.getStartingVertex().equals(was)) {
                 currentEdge.setStartingVertex(became);
             }
-            if(currentEdge.getEndingVertex().equals(was)) {
+            if (currentEdge.getEndingVertex().equals(was)) {
                 currentEdge.setEndingVertex(became);
             }
         }
@@ -86,7 +96,7 @@ public class AdjencyMatrix<T> extends Graph<T> {
     @Override
     public void addEdge(Edge<T> edge) {
         if (!vertexList.contains(edge.getStartingVertex())
-        || !vertexList.contains(edge.getEndingVertex())) {
+                || !vertexList.contains(edge.getEndingVertex())) {
             throw new IllegalArgumentException();
         }
         graph.get(vertexList.indexOf(edge.getStartingVertex()))
@@ -96,7 +106,7 @@ public class AdjencyMatrix<T> extends Graph<T> {
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        if(!edgeList.contains(edge)) {
+        if (!edgeList.contains(edge)) {
             throw new IllegalArgumentException();
         }
         graph.get(vertexList.indexOf(edge.getStartingVertex()))
@@ -106,7 +116,7 @@ public class AdjencyMatrix<T> extends Graph<T> {
 
     @Override
     public void changeEdge(Edge<T> was, Edge<T> became) {
-        if(!was.getStartingVertex().equals(became.getStartingVertex())
+        if (!was.getStartingVertex().equals(became.getStartingVertex())
                 || !was.getEndingVertex().equals(became.getEndingVertex())
                 || !edgeList.contains(was)) {
             throw new IllegalArgumentException();

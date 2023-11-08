@@ -2,6 +2,10 @@ package ru.nsu.chudinov;
 
 import java.util.ArrayList;
 
+/**
+ * Some text.
+ * @param <T> - Some text.
+ */
 public class IncidenceMatrix<T> extends Graph<T> {
     private final ArrayList<ArrayList<ConnectedEdge<T>>> graph = new ArrayList<>();
 
@@ -15,16 +19,19 @@ public class IncidenceMatrix<T> extends Graph<T> {
                 Vertex<T> start = edgeList.get(j).getStartingVertex();
                 Vertex<T> end = edgeList.get(j).getEndingVertex();
                 Vertex<T> currentVertex = vertexList.get(i);
-                if(currentVertex.equals(start) && currentVertex.equals(end)) {
-                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.LOOP));
+                if (currentVertex.equals(start) && currentVertex.equals(end)) {
+                    currentEdgeList
+                            .add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.LOOP));
                     continue;
                 }
-                if(currentVertex.equals(start)) {
-                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.FROM_VERTEX));
+                if (currentVertex.equals(start)) {
+                    currentEdgeList
+                            .add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.FROM_VERTEX));
                     continue;
                 }
-                if(currentVertex.equals(end)) {
-                    currentEdgeList.add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.IN_VERTEX));
+                if (currentVertex.equals(end)) {
+                    currentEdgeList
+                            .add(new ConnectedEdge<>(edgeList.get(j), ConnectedEdge.Direction.IN_VERTEX));
                     continue;
                 }
                 currentEdgeList.add(new ConnectedEdge<>(null, ConnectedEdge.Direction.NULL));
@@ -36,7 +43,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
 
     @Override
     public void addVertex(Vertex<T> vertex) {
-        if(vertexList.contains(vertex)) {
+        if (vertexList.contains(vertex)) {
             throw new IllegalArgumentException();
         }
         vertexList.add(vertex);
@@ -49,26 +56,28 @@ public class IncidenceMatrix<T> extends Graph<T> {
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        if(!vertexList.contains(vertex)) {
+        if (!vertexList.contains(vertex)) {
             throw new IllegalArgumentException();
         }
         int indexOfVertex = vertexList.indexOf(vertex);
         for (int i = 0; i < edgeList.size(); i++) {
-            graph.get(indexOfVertex).set(i, new ConnectedEdge<>(null, ConnectedEdge.Direction.NULL));
+            graph.get(indexOfVertex)
+                    .set(i, new ConnectedEdge<>(null, ConnectedEdge.Direction.NULL));
         }
 
         for (int i = 0; i < edgeList.size(); i++) {
             int counter = 0;
             for (int j = 0; j < vertexList.size(); j++) {
                 ConnectedEdge.Direction direction = graph.get(j).get(i).direction;
-                if (direction == ConnectedEdge.Direction.FROM_VERTEX ||  direction == ConnectedEdge.Direction.IN_VERTEX) {
+                if (direction == ConnectedEdge.Direction.FROM_VERTEX
+                        || direction == ConnectedEdge.Direction.IN_VERTEX) {
                     counter++;
                 }
                 if (direction == ConnectedEdge.Direction.LOOP) {
                     counter += 2;
                 }
             }
-            if(counter < 2) {
+            if (counter < 2) {
                 removeEdge(edgeList.get(i));
                 i--;
             }
@@ -79,7 +88,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
 
     @Override
     public void changeVertex(Vertex<T> was, Vertex<T> became) {
-        if(!vertexList.contains(was) || vertexList.contains(became)) {
+        if (!vertexList.contains(was) || vertexList.contains(became)) {
             throw new IllegalArgumentException();
         }
         int index = vertexList.indexOf(was);
@@ -110,7 +119,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
     @Override
     public void addEdge(Edge<T> edge) {
         if (!vertexList.contains(edge.getStartingVertex())
-        ||  !vertexList.contains(edge.getEndingVertex())) {
+            ||  !vertexList.contains(edge.getEndingVertex())) {
             throw new IllegalArgumentException();
         }
 
@@ -148,7 +157,7 @@ public class IncidenceMatrix<T> extends Graph<T> {
 
     @Override
     public void changeEdge(Edge<T> was, Edge<T> became) {
-        if(!was.getStartingVertex().equals(became.getStartingVertex())
+        if (!was.getStartingVertex().equals(became.getStartingVertex())
                 || !was.getEndingVertex().equals(became.getEndingVertex())
                 || !edgeList.contains(was)) {
             throw new IllegalArgumentException();
@@ -164,11 +173,12 @@ public class IncidenceMatrix<T> extends Graph<T> {
 
     private static class ConnectedEdge<T> {
         public enum Direction {
-            FROM_VERTEX,//из вершины 1
-            IN_VERTEX,//в вершину -1
-            LOOP,//2
-            NULL//0
+            FROM_VERTEX,    //из вершины 1
+            IN_VERTEX,      //в вершину -1
+            LOOP,           //2
+            NULL            //0
         }
+
         private Edge<T> edge;
         private final Direction direction;
 

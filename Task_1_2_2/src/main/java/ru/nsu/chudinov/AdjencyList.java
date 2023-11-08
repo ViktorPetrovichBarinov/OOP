@@ -2,9 +2,20 @@ package ru.nsu.chudinov;
 
 import java.util.ArrayList;
 
-public class AdjencyList<T>  extends Graph<T>{
+/**
+ * Some text.
+ *
+ * @param <T>   - Some text.
+ */
+public class AdjencyList<T> extends Graph<T> {
     private final ArrayList<ArrayList<ConnectedVertex<T>>> graph = new ArrayList<>();
 
+    /**
+     * Some text.
+     *
+     * @param vertexList    - Some text.
+     * @param edgeList      - Some text.
+     */
     public AdjencyList(ArrayList<Vertex<T>> vertexList, ArrayList<Edge<T>> edgeList) {
         this.vertexList = vertexList;
         this.edgeList = edgeList;
@@ -35,7 +46,7 @@ public class AdjencyList<T>  extends Graph<T>{
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        if(!vertexList.contains(vertex)) {
+        if (!vertexList.contains(vertex)) {
             throw new IllegalArgumentException();
         }
 
@@ -50,9 +61,9 @@ public class AdjencyList<T>  extends Graph<T>{
 
         int size = vertexList.size();
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             for (int j = 0; j < graph.get(i).size(); j++) {
-                if(graph.get(i).get(j).vertex.equals(vertex)) {
+                if (graph.get(i).get(j).vertex.equals(vertex)) {
                     graph.get(i).remove(j);
                     j--;
                 }
@@ -71,12 +82,12 @@ public class AdjencyList<T>  extends Graph<T>{
 
         int index = vertexList.indexOf(was);
         vertexList.set(index, became);
-        for(int i = 0; i < edgeList.size(); i++) {
-            if(edgeList.get(i).getStartingVertex().equals(was)) {
+        for (int i = 0; i < edgeList.size(); i++) {
+            if (edgeList.get(i).getStartingVertex().equals(was)) {
                 edgeList.get(i).setStartingVertex(became);
             }
 
-            if(edgeList.get(i).getEndingVertex().equals(was)) {
+            if (edgeList.get(i).getEndingVertex().equals(was)) {
                 edgeList.get(i).setEndingVertex(became);
             }
         }
@@ -122,7 +133,7 @@ public class AdjencyList<T>  extends Graph<T>{
 
     @Override
     public void changeEdge(Edge<T> was, Edge<T> became) {
-        if(!was.getStartingVertex().equals(became.getStartingVertex())
+        if (!was.getStartingVertex().equals(became.getStartingVertex())
                 || !was.getEndingVertex().equals(became.getEndingVertex())
                 || !edgeList.contains(was)) {
             throw new IllegalArgumentException();
@@ -132,7 +143,7 @@ public class AdjencyList<T>  extends Graph<T>{
         int index = vertexList.indexOf(was.getStartingVertex());
 
         for (int i = 0; i < graph.get(index).size(); i++) {
-            if(graph.get(index).get(i).vertex.equals(was.getEndingVertex())) {
+            if (graph.get(index).get(i).vertex.equals(was.getEndingVertex())) {
                 graph.get(index).get(i).weight = became.getWeight();
             }
         }

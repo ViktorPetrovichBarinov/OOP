@@ -1,5 +1,9 @@
 package ru.nsu.chudinov;
 
+/**
+ * Some text.
+ * @param <V> - Some text.
+ */
 public class Edge<V> {
     private Integer weight;
     private Vertex<V> startingVertex;
@@ -7,7 +11,7 @@ public class Edge<V> {
 
     //При создании ребро не инициализировано
     //и нужно задать ему вес в дальнейшем
-    public Edge (Integer weight, Vertex<V> start, Vertex<V> end){
+    public Edge(Integer weight, Vertex<V> start, Vertex<V> end){
         this.weight = weight;
         this.startingVertex = start;
         this.endingVertex = end;
@@ -39,13 +43,21 @@ public class Edge<V> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;  // Проверка на ссылку
-        if (obj == null || getClass() != obj.getClass()) return false;  // Проверка на null и класс
+        if (this == obj) {
+            return true;  // Проверка на ссылку
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;  // Проверка на null и класс
+        }
 
         Edge<?> edge = (Edge<?>) obj;  // Приведение объекта к типу Edge
 
-        if (!weight.equals(edge.weight)) return false;  // weight
-        if (!startingVertex.equals(edge.startingVertex)) return false;  // startingVertex
+        if (!weight.equals(edge.weight)) {
+            return false;  // weight
+        }
+        if (!startingVertex.equals(edge.startingVertex)) {
+            return false;  // startingVertex
+        }
         return endingVertex.equals(edge.endingVertex);  // endingVertex
     }
 
