@@ -41,8 +41,7 @@ public class AdjencyList<T>  extends Graph<T>{
             throw new IllegalArgumentException();
         }
 
-        int size = edgeList.size();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < edgeList.size(); i++) {
             Edge<T> currentEdge = edgeList.get(i);
             if (currentEdge.getStartingVertex().equals(vertex)
                     || currentEdge.getEndingVertex().equals(vertex)) {
@@ -51,7 +50,7 @@ public class AdjencyList<T>  extends Graph<T>{
             }
         }
 
-        size = vertexList.size();
+        int size = vertexList.size();
 
         for(int i = 0; i < size; i++) {
             for (int j = 0; j < graph.get(i).size(); j++) {
