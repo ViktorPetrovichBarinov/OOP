@@ -1,22 +1,20 @@
 package ru.nsu.chudinov;
 
-import java.net.CookieHandler;
 import java.util.ArrayList;
 
 public class AdjencyList<T>  extends Graph<T>{
-    private ArrayList<ArrayList<ConnectedVertex<T>>> graph = new ArrayList<>();
+    private final ArrayList<ArrayList<ConnectedVertex<T>>> graph = new ArrayList<>();
 
     public AdjencyList(ArrayList<Vertex<T>> vertexList, ArrayList<Edge<T>> edgeList) {
         this.vertexList = vertexList;
         this.edgeList = edgeList;
         int size = vertexList.size();
         for (int i = 0; i < size; i++) {
-            graph.add(new ArrayList<ConnectedVertex<T>>());
+            graph.add(new ArrayList<>());
         }
 
         for (int i = 0; i < edgeList.size(); i++) {
             Edge<T> currentEdge = edgeList.get(i);
-            Vertex<T> startVertex = currentEdge.getStartingVertex();
             Vertex<T> endVertex = currentEdge.getEndingVertex();
             Integer weight = currentEdge.getWeight();
             ConnectedVertex<T> connectedVertex = new ConnectedVertex<>(endVertex, weight);

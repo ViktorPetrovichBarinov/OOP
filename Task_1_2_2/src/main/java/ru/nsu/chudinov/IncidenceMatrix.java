@@ -3,7 +3,7 @@ package ru.nsu.chudinov;
 import java.util.ArrayList;
 
 public class IncidenceMatrix<T> extends Graph<T> {
-    private ArrayList<ArrayList<ConnectedEdge<T>>> graph = new ArrayList<>();
+    private final ArrayList<ArrayList<ConnectedEdge<T>>> graph = new ArrayList<>();
 
     IncidenceMatrix(ArrayList<Vertex<T>> vertexList, ArrayList<Edge<T>> edgeList) {
         this.vertexList = vertexList;

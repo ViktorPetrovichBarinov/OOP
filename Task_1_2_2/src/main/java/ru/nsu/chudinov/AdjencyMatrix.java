@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AdjencyMatrix<T> extends Graph<T> {
     private final ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-    private Integer size = 0;
+    private Integer size;
 
     public AdjencyMatrix(ArrayList<Vertex<T>> vertexArrayList, ArrayList<Edge<T>> edgeArrayList) {
         this.vertexList = vertexArrayList;

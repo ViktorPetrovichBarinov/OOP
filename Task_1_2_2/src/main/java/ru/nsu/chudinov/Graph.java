@@ -3,7 +3,6 @@ package ru.nsu.chudinov;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 
 public abstract class Graph<T> {
     protected ArrayList<Vertex<T>> vertexList;
