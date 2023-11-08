@@ -2,14 +2,14 @@ package ru.nsu.chudinov;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Some text.
+ */
 public class EdgeTest {
 
     @Test
@@ -60,8 +60,5 @@ public class EdgeTest {
         assertFalse(e1.equals(e2));
         e2.setStartingVertex(start);
         assertTrue(e1.equals(e2));
-
-
-
     }
 }
