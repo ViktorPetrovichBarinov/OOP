@@ -27,9 +27,9 @@ public class AdjencyMatrix<T> extends Graph<T> {
     }
 
     @Override
-    public Boolean addVertex(Vertex<T> vertex) {
+    public void addVertex(Vertex<T> vertex) {
         if (vertexList.contains(vertex)) {
-            return false;
+            throw new IllegalArgumentException();
         }
         ArrayList<Integer> addList = new ArrayList<>();
         for (int i = 0; i < size; i++) {
@@ -41,13 +41,12 @@ public class AdjencyMatrix<T> extends Graph<T> {
             graph.get(i).add(0);
         }
         vertexList.add(vertex);
-        return true;
     }
 
     @Override
-    public Boolean removeVertex(Vertex<T> vertex) {
+    public void removeVertex(Vertex<T> vertex) {
         if(!vertexList.contains(vertex)) {
-            return false;
+            throw new IllegalArgumentException();
         }
         int index = vertexList.indexOf(vertex);
         for (int i = 0; i < size; i++) {
@@ -64,13 +63,12 @@ public class AdjencyMatrix<T> extends Graph<T> {
             }
         }
         size--;
-        return true;
     }
 
     @Override
-    public Boolean changeVertex(Vertex<T> was, Vertex<T> became) {
+    public void changeVertex(Vertex<T> was, Vertex<T> became) {
         if (!vertexList.contains(was) || vertexList.contains(became)) {
-            return false;
+            throw new IllegalArgumentException();
         }
         int index = vertexList.indexOf(was);
         vertexList.set(index, became);
@@ -83,46 +81,40 @@ public class AdjencyMatrix<T> extends Graph<T> {
                 currentEdge.setEndingVertex(became);
             }
         }
-        return true;
     }
 
     @Override
-    public Boolean addEdge(Edge<T> edge) {
+    public void addEdge(Edge<T> edge) {
         if (!vertexList.contains(edge.getStartingVertex())
         || !vertexList.contains(edge.getEndingVertex())) {
-            return false;
+            throw new IllegalArgumentException();
         }
         graph.get(vertexList.indexOf(edge.getStartingVertex()))
                 .set(vertexList.indexOf(edge.getEndingVertex()), edge.getWeight());
         edgeList.add(edge);
-
-        return true;
     }
 
     @Override
-    public Boolean removeEdge(Edge<T> edge) {
+    public void removeEdge(Edge<T> edge) {
         if(!edgeList.contains(edge)) {
-            return false;
+            throw new IllegalArgumentException();
         }
         graph.get(vertexList.indexOf(edge.getStartingVertex()))
                 .set(vertexList.indexOf(edge.getEndingVertex()), 0);
         edgeList.remove(edge);
-
-        return true;
     }
 
     @Override
-    public Boolean changeEdge(Edge<T> was, Edge<T> became) {
+    public void changeEdge(Edge<T> was, Edge<T> became) {
         if(!was.getStartingVertex().equals(became.getStartingVertex())
                 || !was.getEndingVertex().equals(became.getEndingVertex())
                 || !edgeList.contains(was)) {
-            return false;
+            throw new IllegalArgumentException();
         }
 
         graph.get(vertexList.indexOf(was.getStartingVertex()))
                 .set(vertexList.indexOf(was.getEndingVertex()), became.getWeight());
         int index = edgeList.indexOf(was);
         edgeList.set(index, became);
-        return true;
     }
 }

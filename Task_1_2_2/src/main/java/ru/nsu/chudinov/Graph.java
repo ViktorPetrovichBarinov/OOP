@@ -10,17 +10,17 @@ public abstract class Graph<T> {
     protected ArrayList<Edge<T>> edgeList;
 
 
-    public abstract Boolean addVertex (Vertex<T> vertex);
+    public abstract void addVertex (Vertex<T> vertex);
 
-    public abstract Boolean removeVertex (Vertex<T> vertex);
+    public abstract void removeVertex (Vertex<T> vertex);
 
-    public abstract Boolean changeVertex(Vertex<T> was, Vertex<T> became);
+    public abstract void changeVertex(Vertex<T> was, Vertex<T> became);
 
-    public abstract Boolean addEdge (Edge<T> edge);
+    public abstract void addEdge (Edge<T> edge);
 
-    public abstract Boolean removeEdge (Edge<T> edge);
+    public abstract void removeEdge (Edge<T> edge);
 
-    public abstract Boolean changeEdge(Edge<T> was, Edge<T> became);
+    public abstract void changeEdge(Edge<T> was, Edge<T> became);
 
     public ArrayList<Vertex<T>> shortestPath(Vertex<T> vertex) {
         int vertexLength = vertexList.size();
@@ -68,7 +68,6 @@ public abstract class Graph<T> {
         return result;
     }
 
-
     public ArrayList<Edge<T>> getEdge(Vertex<T> vertex) {
         ArrayList<Edge<T>> result = new ArrayList<>();
         int len = this.edgeList.size();
@@ -79,22 +78,4 @@ public abstract class Graph<T> {
         }
         return result;
     }
-
-
-
-    protected static class ConnectedVertex<T> implements Comparable<ConnectedVertex> {
-        protected Vertex<T> vertex;
-        protected Integer weight;
-
-        ConnectedVertex(Vertex<T> vertex, Integer weight) {
-            this.vertex = vertex;
-            this.weight = weight;
-        }
-
-        @Override
-        public int compareTo(ConnectedVertex vertex) {
-            return weight - vertex.weight;
-        }
-    }
 }
-
