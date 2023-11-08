@@ -72,7 +72,7 @@ public class AdjencyMatrix<T> extends Graph<T> {
         }
         int index = vertexList.indexOf(was);
         vertexList.set(index, became);
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < edgeList.size(); i++) {
             Edge<T> currentEdge = edgeList.get(i);
             if(currentEdge.getStartingVertex().equals(was)) {
                 currentEdge.setStartingVertex(became);
