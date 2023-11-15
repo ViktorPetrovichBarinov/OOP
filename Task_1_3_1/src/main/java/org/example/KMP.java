@@ -38,7 +38,6 @@ public class KMP {
                             j++;
                         }
                         if(j == lengthOfPattern) {
-                            System.out.println("Found pattern at index" + (i - j));
                             indexesOfEntry.add(i - j + allCharactersProcessed);
                             j = lps[j - 1];
                         } else if (i < lengthOfBuffer && pattern.charAt(j) != buffer[i]) {

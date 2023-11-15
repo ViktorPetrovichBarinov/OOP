@@ -5,16 +5,19 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.example.KMP.KMPSearch;
 import static org.example.KMP.computeLPSArray;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+/**
+ * Some text.
+ */
 public class KMPTest {
 
     @ParameterizedTest
@@ -25,6 +28,7 @@ public class KMPTest {
 
         assertArrayEquals(expected, inputArray);
     }
+
     static Stream<Arguments> test1() {
         return Stream.of(
                 org.junit.jupiter.params.provider.Arguments.arguments(
@@ -51,19 +55,17 @@ public class KMPTest {
     @Test
     @DisplayName("Default test")
     void test2() {
-        String fileName = "src/test/resources/test1.txt";
-        String pattern = new String("бра".getBytes(), StandardCharsets.UTF_8);
         ArrayList<Integer> answer = new ArrayList<>();
         answer.add(1);
         answer.add(8);
+        String fileName = "src/test/resources/test1.txt";
+        String pattern = new String("бра".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
     }
 
     @Test
     @DisplayName("Long string")
     void test3() {
-        String fileName = "src/test/resources/test2.txt";
-        String pattern = new String("aaa".getBytes(), StandardCharsets.UTF_8);
         ArrayList<Integer> answer = new ArrayList<>();
         answer.add(6);
         answer.add(7);
@@ -73,32 +75,30 @@ public class KMPTest {
         answer.add(28);
         answer.add(29);
         answer.add(30);
-
-
+        String fileName = "src/test/resources/test2.txt";
+        String pattern = new String("aaa".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
     }
 
     @Test
     @DisplayName("Strange symbol")
     void test4() {
-        String fileName = "src/test/resources/test2.txt";
-        String pattern = new String("ぁ".getBytes(), StandardCharsets.UTF_8);
         ArrayList<Integer> answer = new ArrayList<>();
         answer.add(42);
-
+        String fileName = "src/test/resources/test2.txt";
+        String pattern = new String("ぁ".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
     }
 
     @Test
     @DisplayName("more tests")
     void test5() {
-        String fileName = "src/test/resources/test3.txt";
-        String pattern = new String("ab".getBytes(), StandardCharsets.UTF_8);
         ArrayList<Integer> answer = new ArrayList<>();
         answer.add(102);
         answer.add(104);
         answer.add(106);
-
+        String fileName = "src/test/resources/test3.txt";
+        String pattern = new String("ab".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
     }
 }
