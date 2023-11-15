@@ -1,5 +1,10 @@
 package org.example;
 
+import static org.example.KMP.KMPSearch;
+import static org.example.KMP.computeLPSArray;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,10 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
-import static org.example.KMP.KMPSearch;
-import static org.example.KMP.computeLPSArray;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 
 /**
@@ -94,9 +96,9 @@ public class KMPTest {
     @DisplayName("more tests")
     void test5() {
         ArrayList<Integer> answer = new ArrayList<>();
-        answer.add(102);
-        answer.add(104);
-        answer.add(106);
+        answer.add(101);
+        answer.add(103);
+        answer.add(105);
         String fileName = "src/test/resources/test3.txt";
         String pattern = new String("ab".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
