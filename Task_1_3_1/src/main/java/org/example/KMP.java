@@ -1,11 +1,20 @@
 package org.example;
 
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+/**
+ * Some text.
+ */
 public class KMP {
+    /**
+     * Some text.
+     *
+     * @param fileName  - Some text.
+     * @param pattern   - Some text.
+     * @return          - Some text.
+     */
     public static ArrayList<Integer> KMPSearch(String fileName, String pattern) {
         int lengthOfPattern = pattern.length();
         int[] lps = new int[lengthOfPattern];
@@ -24,20 +33,23 @@ public class KMP {
         try {
             File fileDirectory = new File(fileName);
             BufferedReader br = new BufferedReader(
-                    new InputStreamReader(new FileInputStream(fileDirectory), StandardCharsets.UTF_8));
+                    new InputStreamReader(
+                            new FileInputStream(fileDirectory), StandardCharsets.UTF_8));
             while (true) {
-                int numberOfCharactersRead = br.read(buffer, offsetInFile, lengthOfBuffer - offsetInFile);
+                int numberOfCharactersRead =
+                        br.read(buffer, offsetInFile, lengthOfBuffer - offsetInFile);
 
                 int i = 0; // индекс для buffer
                 int j = 0; // индекс для pattern
                 offsetInFile = lengthOfPattern - 1;
                 if (numberOfCharactersRead != -1) {
-                    while((lengthOfBuffer - i) >= (lengthOfPattern - j) && i <= numberOfCharactersRead + offsetInFile - 1) {
+                    while ((lengthOfBuffer - i) >= (lengthOfPattern - j)
+                            && i <= numberOfCharactersRead + offsetInFile - 1) {
                         if (pattern.charAt(j) == buffer[i]) {
                             i++;
                             j++;
                         }
-                        if(j == lengthOfPattern) {
+                        if (j == lengthOfPattern) {
                             indexesOfEntry.add(i - j + allCharactersProcessed);
                             j = lps[j - 1];
                         } else if (i < lengthOfBuffer && pattern.charAt(j) != buffer[i]) {
@@ -64,8 +76,7 @@ public class KMP {
         return null;
     }
 
-    static void computeLPSArray(String pattern, int[] lps)
-    {
+    static void computeLPSArray(String pattern, int[] lps) {
         int lengthPreviousLongestPrefix = 0;
         int index = 1;
         //lps - the longest proper prefix which is also a suffix
