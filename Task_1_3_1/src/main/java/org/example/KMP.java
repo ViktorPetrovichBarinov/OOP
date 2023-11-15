@@ -108,7 +108,12 @@ public class KMP {
     }
 
 
-
+    /**
+     * Some text.
+     *
+     * @param args                          - Some text.
+     * @throws UnsupportedEncodingException - Some text.
+     */
     public static void main(String[] args) throws UnsupportedEncodingException {
         String fileName = "test1.txt";
         String pattern = new String("бра".getBytes(), StandardCharsets.UTF_8);
