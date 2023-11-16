@@ -60,16 +60,16 @@ public class PrefixCalculator {
 
     private void operationConditionForParser(String atom) {
         switch (atom) {
-            case "+" -> operations.push(Operation.PLUS);
-            case "-" -> operations.push(Operation.MINUS);
-            case "*" -> operations.push(Operation.MULTIPLICATION);
-            case "/" -> operations.push(Operation.DIVISION);
-            case "pow" -> operations.push(Operation.POWER);
-            case "log" -> operations.push(Operation.LOGARITHM);
-            case "sqrt" -> operations.push(Operation.SQUARE_ROOT);
-            case "sin" -> operations.push(Operation.SINE);
-            case "cos" -> operations.push(Operation.COSINE);
-            default -> throw new IllegalArgumentException("Incorrect input expression");
+            case "+": operations.push(Operation.PLUS);
+            case "-": operations.push(Operation.MINUS);
+            case "*": operations.push(Operation.MULTIPLICATION);
+            case "/": operations.push(Operation.DIVISION);
+            case "pow": operations.push(Operation.POWER);
+            case "log": operations.push(Operation.LOGARITHM);
+            case "sqrt": operations.push(Operation.SQUARE_ROOT);
+            case "sin": operations.push(Operation.SINE);
+            case "cos": operations.push(Operation.COSINE);
+            default: throw new IllegalArgumentException("Incorrect input expression");
         }
     }
 
