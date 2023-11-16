@@ -22,10 +22,8 @@ public class PrefixCalculator {
         while (true) {
             operations = new Stack<>();
             numbers = new LinkedList<>();
-            System.out.print("""
-                    Enter your expression in 1 string and press "Enter".
-                    If you want to exit press "Ctrl + D".
-                    """);
+            System.out.print("Enter your expression in 1 string and press \"Enter\".\n" +
+                    "If you want to exit press \"Ctrl + D\".\n");
 
             try {
                 if (!scanner.hasNextLine()) {
