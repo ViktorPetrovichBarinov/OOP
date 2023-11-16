@@ -1,14 +1,13 @@
 package org.example;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Some text.
@@ -35,7 +34,7 @@ result : 0.0
 Enter your expression in 1 string and press "Enter".
 If you want to exit press "Ctrl + D".
 The end.
-""";
+            """;
         assertEquals(answer, outputString);
 
         System.setIn(System.in);
@@ -63,7 +62,7 @@ Incorrect input expression
 Enter your expression in 1 string and press "Enter".
 If you want to exit press "Ctrl + D".
 The end.
-""";
+            """;
         assertEquals(answer, outputString);
 
         System.setIn(System.in);
@@ -91,7 +90,7 @@ Incorrect input expression
 Enter your expression in 1 string and press "Enter".
 If you want to exit press "Ctrl + D".
 The end.
-""";
+            """;
         assertEquals(answer, outputString);
 
         System.setIn(System.in);
@@ -119,7 +118,7 @@ Incorrect input expression
 Enter your expression in 1 string and press "Enter".
 If you want to exit press "Ctrl + D".
 The end.
-""";
+            """;
         assertEquals(answer, outputString);
 
         System.setIn(System.in);
@@ -147,7 +146,7 @@ result : 14.0
 Enter your expression in 1 string and press "Enter".
 If you want to exit press "Ctrl + D".
 The end.
-""";
+            """;
         assertEquals(answer, outputString);
 
         System.setIn(System.in);
@@ -158,8 +157,10 @@ The end.
     @Test
     @DisplayName("sin cos")
     void test6() {
-        String inputString = "sin 3.14\n" +
-                "cos 3.14\n";
+        String inputString = """
+                sin 3.14
+                cos 3.14
+                """;
         ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inputStream);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -179,7 +180,7 @@ result : -0.9999987317275395
 Enter your expression in 1 string and press "Enter".
 If you want to exit press "Ctrl + D".
 The end.
-""";
+            """;
         assertEquals(answer, outputString);
 
         System.setIn(System.in);
@@ -190,8 +191,10 @@ The end.
     @Test
     @DisplayName("pow sqrt")
     void test7() {
-        String inputString = "sqrt pow 5 2\n" +
-                "log 2 8\n";
+        String inputString = """
+                sqrt pow 5 2
+                log 2 8
+                """;
         ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inputStream);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -211,7 +214,7 @@ result : 3.0
 Enter your expression in 1 string and press "Enter".
 If you want to exit press "Ctrl + D".
 The end.
-""";
+            """;
         assertEquals(answer, outputString);
 
         System.setIn(System.in);
@@ -243,7 +246,7 @@ result : 3.0
 Enter your expression in 1 string and press "Enter".
 If you want to exit press "Ctrl + D".
 The end.
-""";
+            """;
         assertEquals(answer, outputString);
 
         System.setIn(System.in);
