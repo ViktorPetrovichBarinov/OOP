@@ -13,6 +13,8 @@ public class PrefixCalculator {
     private LinkedList<Double> numbers = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
 
+
+
     /**
      * Some text.
      */
@@ -20,13 +22,14 @@ public class PrefixCalculator {
         while (true) {
             operations = new Stack<>();
             numbers = new LinkedList<>();
-            System.out.println("""
+            System.out.print("""
                     Enter your expression in 1 string and press "Enter".
-                    If you want to exit press "Ctrl + D".""");
+                    If you want to exit press "Ctrl + D".
+                    """);
 
             try {
                 if (!scanner.hasNextLine()) {
-                    System.out.println("The end.");
+                    System.out.print("The end.\n");
                     break;
                 }
                 String inputExpression = scanner.nextLine();
@@ -50,9 +53,9 @@ public class PrefixCalculator {
                 }
 
                 calculateAnswer();
-                System.out.println("result : " + numbers.pop());
+                System.out.print("result : " + numbers.pop() + '\n');
             } catch (Exception e) {
-                System.out.println("Incorrect input expression");
+                System.out.print("Incorrect input expression\n");
             }
         }
     }
@@ -106,6 +109,9 @@ public class PrefixCalculator {
                     numbers.addFirst(Math.cos(numbers.pop()));
                     break;
             }
+        }
+        if (numbers.size() != 1) {
+            throw new IllegalArgumentException();
         }
     }
 
