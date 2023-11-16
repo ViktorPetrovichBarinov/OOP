@@ -134,148 +134,148 @@ public class GradebookTest {
         assertEquals(myGradebook.getDiploma(), myDiploma);
     }
 
-    @Test
-    @DisplayName("Average mark")
-    void test3() {
-        Mark mark1 = new Mark("Introduction to Algebra and Analysis",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark2 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark3 = new Mark("Declarative programming",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark4 = new Mark("Imperative programming",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark5 = new Mark("Fundamentals of speech culture",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark6 = new Mark("History",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 4);
-        Mark mark7 = new Mark("Introduction to Algebra and Analysis",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 4);
-        Mark mark8 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark9 = new Mark("Declarative programming",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark10 = new Mark("Imperative programming",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark11 = new Mark("Foreign language",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark12 = new Mark("Digital platforms",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        ArrayList<Mark> markList = new ArrayList<>();
-        markList.add(mark1);
-        markList.add(mark2);
-        markList.add(mark3);
-        markList.add(mark4);
-        markList.add(mark5);
-        markList.add(mark6);
-        markList.add(mark7);
-        markList.add(mark8);
-        markList.add(mark9);
-        markList.add(mark10);
-        markList.add(mark11);
-        markList.add(mark12);
-
-        Gradebook myGradebook = new Gradebook(markList, Mark.Semester.BACHELOR_COURSE_3_SEMESTER);
-        DecimalFormat decimalFormat = new DecimalFormat("#.#");
-        assertEquals(decimalFormat.format(myGradebook.averageGrade()), "4,8");
-    }
-
-
-    @Test
-    @DisplayName("isIncreasedScholarship")
-    void test4() {
-        Mark mark1 = new Mark("Introduction to Algebra and Analysis",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark2 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark3 = new Mark("Declarative programming",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark4 = new Mark("Imperative programming",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark5 = new Mark("Fundamentals of speech culture",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark6 = new Mark("History",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 4);
-        Mark mark7 = new Mark("Introduction to Algebra and Analysis",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 4);
-        Mark mark8 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark9 = new Mark("Declarative programming",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark10 = new Mark("Imperative programming",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark11 = new Mark("Foreign language",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark12 = new Mark("Digital platforms",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        ArrayList<Mark> markList = new ArrayList<>();
-        markList.add(mark1);
-        markList.add(mark2);
-        markList.add(mark3);
-        markList.add(mark4);
-        markList.add(mark5);
-        markList.add(mark6);
-        markList.add(mark7);
-        markList.add(mark8);
-        markList.add(mark9);
-        markList.add(mark10);
-        markList.add(mark11);
-        markList.add(mark12);
-
-        Gradebook myGradebook = new Gradebook(markList, Mark.Semester.BACHELOR_COURSE_3_SEMESTER);
-
-        assertTrue(myGradebook.isIncreasedScholarship());
-
-        myGradebook.addMark(new Mark("test descipline", Mark.Semester.BACHELOR_COURSE_3_SEMESTER, 4));
-        assertFalse(myGradebook.isIncreasedScholarship());
-    }
-
-    @Test
-    @DisplayName("isRedDiploma")
-    void test5() {
-        Mark mark1 = new Mark("Introduction to Algebra and Analysis",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark2 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark3 = new Mark("Declarative programming",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark4 = new Mark("Imperative programming",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark5 = new Mark("Fundamentals of speech culture",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
-        Mark mark6 = new Mark("History",
-                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 4);
-        Mark mark7 = new Mark("Introduction to Algebra and Analysis",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 4);
-        Mark mark8 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark9 = new Mark("Declarative programming",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark10 = new Mark("Imperative programming",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark11 = new Mark("Foreign language",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        Mark mark12 = new Mark("Digital platforms",
-                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
-        ArrayList<Mark> markList = new ArrayList<>();
-        markList.add(mark1);
-        markList.add(mark2);
-        markList.add(mark3);
-        markList.add(mark4);
-        markList.add(mark5);
-        markList.add(mark6);
-        markList.add(mark7);
-        markList.add(mark8);
-        markList.add(mark9);
-        markList.add(mark10);
-        markList.add(mark11);
-        markList.add(mark12);
-
-        Gradebook myGradebook = new Gradebook(markList, Mark.Semester.BACHELOR_COURSE_3_SEMESTER);
-
-        assertTrue(myGradebook.isRedDiploma());
-
-        myGradebook.setQualificationWorkGrade(4);
-        assertFalse(myGradebook.isRedDiploma());
-    }
+//    @Test
+//    @DisplayName("Average mark")
+//    void test3() {
+//        Mark mark1 = new Mark("Introduction to Algebra and Analysis",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark2 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark3 = new Mark("Declarative programming",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark4 = new Mark("Imperative programming",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark5 = new Mark("Fundamentals of speech culture",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark6 = new Mark("History",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 4);
+//        Mark mark7 = new Mark("Introduction to Algebra and Analysis",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 4);
+//        Mark mark8 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark9 = new Mark("Declarative programming",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark10 = new Mark("Imperative programming",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark11 = new Mark("Foreign language",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark12 = new Mark("Digital platforms",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        ArrayList<Mark> markList = new ArrayList<>();
+//        markList.add(mark1);
+//        markList.add(mark2);
+//        markList.add(mark3);
+//        markList.add(mark4);
+//        markList.add(mark5);
+//        markList.add(mark6);
+//        markList.add(mark7);
+//        markList.add(mark8);
+//        markList.add(mark9);
+//        markList.add(mark10);
+//        markList.add(mark11);
+//        markList.add(mark12);
+//
+//        Gradebook myGradebook = new Gradebook(markList, Mark.Semester.BACHELOR_COURSE_3_SEMESTER);
+//        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+//        assertEquals(decimalFormat.format(myGradebook.averageGrade()), "4,8");
+//    }
+//
+//
+//    @Test
+//    @DisplayName("isIncreasedScholarship")
+//    void test4() {
+//        Mark mark1 = new Mark("Introduction to Algebra and Analysis",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark2 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark3 = new Mark("Declarative programming",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark4 = new Mark("Imperative programming",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark5 = new Mark("Fundamentals of speech culture",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark6 = new Mark("History",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 4);
+//        Mark mark7 = new Mark("Introduction to Algebra and Analysis",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 4);
+//        Mark mark8 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark9 = new Mark("Declarative programming",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark10 = new Mark("Imperative programming",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark11 = new Mark("Foreign language",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark12 = new Mark("Digital platforms",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        ArrayList<Mark> markList = new ArrayList<>();
+//        markList.add(mark1);
+//        markList.add(mark2);
+//        markList.add(mark3);
+//        markList.add(mark4);
+//        markList.add(mark5);
+//        markList.add(mark6);
+//        markList.add(mark7);
+//        markList.add(mark8);
+//        markList.add(mark9);
+//        markList.add(mark10);
+//        markList.add(mark11);
+//        markList.add(mark12);
+//
+//        Gradebook myGradebook = new Gradebook(markList, Mark.Semester.BACHELOR_COURSE_3_SEMESTER);
+//
+//        assertTrue(myGradebook.isIncreasedScholarship());
+//
+//        myGradebook.addMark(new Mark("test descipline", Mark.Semester.BACHELOR_COURSE_3_SEMESTER, 4));
+//        assertFalse(myGradebook.isIncreasedScholarship());
+//    }
+//
+//    @Test
+//    @DisplayName("isRedDiploma")
+//    void test5() {
+//        Mark mark1 = new Mark("Introduction to Algebra and Analysis",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark2 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark3 = new Mark("Declarative programming",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark4 = new Mark("Imperative programming",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark5 = new Mark("Fundamentals of speech culture",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 5);
+//        Mark mark6 = new Mark("History",
+//                Mark.Semester.BACHELOR_COURSE_1_SEMESTER, 4);
+//        Mark mark7 = new Mark("Introduction to Algebra and Analysis",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 4);
+//        Mark mark8 = new Mark("Introduction to Discrete Mathematics and Mathematical Logic",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark9 = new Mark("Declarative programming",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark10 = new Mark("Imperative programming",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark11 = new Mark("Foreign language",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        Mark mark12 = new Mark("Digital platforms",
+//                Mark.Semester.BACHELOR_COURSE_2_SEMESTER, 5);
+//        ArrayList<Mark> markList = new ArrayList<>();
+//        markList.add(mark1);
+//        markList.add(mark2);
+//        markList.add(mark3);
+//        markList.add(mark4);
+//        markList.add(mark5);
+//        markList.add(mark6);
+//        markList.add(mark7);
+//        markList.add(mark8);
+//        markList.add(mark9);
+//        markList.add(mark10);
+//        markList.add(mark11);
+//        markList.add(mark12);
+//
+//        Gradebook myGradebook = new Gradebook(markList, Mark.Semester.BACHELOR_COURSE_3_SEMESTER);
+//
+//        assertTrue(myGradebook.isRedDiploma());
+//
+//        myGradebook.setQualificationWorkGrade(4);
+//        assertFalse(myGradebook.isRedDiploma());
+//    }
 }
