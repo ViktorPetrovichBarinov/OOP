@@ -4,13 +4,20 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
 
+
+/**
+ * Some text.
+ */
 public class PrefixCalculator {
     private Stack<Operation> operations;
     private LinkedList<Double> numbers = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Some text.
+     */
     public void calculator() {
-        while(true) {
+        while (true) {
             operations = new Stack<>();
             numbers = new LinkedList<>();
             System.out.println("""
@@ -101,6 +108,7 @@ public class PrefixCalculator {
             }
         }
     }
+
     enum Operation {
         PLUS,
         MINUS,
@@ -111,10 +119,5 @@ public class PrefixCalculator {
         SQUARE_ROOT,
         SINE,
         COSINE
-    }
-
-    public static void main(String[] args) {
-        PrefixCalculator prefixCalculator = new PrefixCalculator();
-        prefixCalculator.calculator();
     }
 }
