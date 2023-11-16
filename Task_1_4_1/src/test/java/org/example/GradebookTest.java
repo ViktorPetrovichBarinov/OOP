@@ -269,11 +269,14 @@ public class GradebookTest {
         markList.add(mark11);
         markList.add(mark12);
 
-        Gradebook myGradebook = new Gradebook(markList, Mark.Semester.BACHELOR_COURSE_3_SEMESTER);
-
+        Gradebook myGradebook = new Gradebook(markList, Mark.Semester.BACHELOR_COURSE_2_SEMESTER);
+        myGradebook.setCurrentSemester(Mark.Semester.BACHELOR_COURSE_3_SEMESTER);
+        
+        assertEquals(myGradebook.getCurrentSemester(), Mark.Semester.BACHELOR_COURSE_3_SEMESTER);
         assertTrue(myGradebook.isRedDiploma());
 
         myGradebook.setQualificationWorkGrade(4);
+        assertEquals(myGradebook.getQualificationWorkGrade(), 4);
         assertFalse(myGradebook.isRedDiploma());
     }
 }
