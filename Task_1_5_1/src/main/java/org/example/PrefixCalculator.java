@@ -6,8 +6,8 @@ import java.util.Stack;
 
 public class PrefixCalculator {
     private Stack<Operation> operations;
-    private LinkedList<Double> numbers;
-
+    private LinkedList<Double> numbers = new LinkedList<>();
+    Scanner scanner = new Scanner(System.in);
 
     public void calculator() {
         while(true) {
@@ -15,10 +15,9 @@ public class PrefixCalculator {
             numbers = new LinkedList<>();
             System.out.println("""
                     Enter your expression in 1 string and press "Enter".
-                    If you want to exit press "Ctrl + D".
-                    """);
+                    If you want to exit press "Ctrl + D".""");
 
-            try(Scanner scanner = new Scanner(System.in)) {
+            try {
                 if (!scanner.hasNextLine()) {
                     System.out.println("The end.");
                     break;
@@ -26,67 +25,27 @@ public class PrefixCalculator {
                 String inputExpression = scanner.nextLine();
                 inputExpression = inputExpression.toLowerCase();
                 String[] tokens = inputExpression.split("\\s+");
-                Integer tokensLength = tokens.length;
                 boolean flag = true; // true - операции, false - числа
-                for (int i = 0; i < tokensLength; i++) {
+                for (String token : tokens) {
                     //смотрим первый символ, если он символ, то предполагаем,
                     // что вся строка это числа и считаем,
                     // что начали рассматривать числа
-                    if (Character.isDigit(tokens[i].charAt(0))) {
+                    if (Character.isDigit(token.charAt(0))) {
                         flag = false;
                     }
                     //Если рассматриваем числа
                     if (flag) {
-                        operationConditionForParser(tokens[i]);
+                        operationConditionForParser(token);
                     } else {
-                        try {
-                            Double number = Double.parseDouble(tokens[i]);
-                            numbers.add(number);
-                        } catch (Exception e) {
-                            throw new IllegalArgumentException("Incorrect input expression");
-                        }
+                        Double number = Double.parseDouble(token);
+                        numbers.add(number);
                     }
                 }
 
-                while (!operations.isEmpty()) {
-                    Operation currentOperation = operations.pop();
-                    switch (currentOperation) {
-                        case PLUS:
-                            numbers.addFirst(numbers.pop() + numbers.pop());
-                            break;
-                        case MINUS:
-                            numbers.addFirst(numbers.pop() - numbers.pop());
-                            break;
-                        case MULTIPLICATION:
-                            numbers.addFirst(numbers.pop() * numbers.pop());
-                            break;
-                        case DIVISION:
-                            numbers.addFirst(numbers.pop() / numbers.pop());
-                            break;
-                        case LOGARITHM:
-                            double number1 = Math.log(numbers.pop());
-                            double number2 = Math.log(numbers.pop());
-                            numbers.addFirst(number2 / number1);
-                            break;
-                        case POWER:
-                            numbers.addFirst(Math.pow(numbers.pop(), numbers.pop()));
-                            break;
-                        case SQUARE_ROOT:
-                            numbers.addFirst(Math.sqrt(numbers.pop()));
-                            break;
-                        case SINE:
-                            numbers.addFirst(Math.sin(numbers.pop()));
-                            break;
-                        case COSINE:
-                            numbers.addFirst(Math.cos(numbers.pop()));
-                            break;
-                    }
-                }
-                System.out.println(operations);
-                System.out.println(numbers);
+                calculateAnswer();
                 System.out.println("result : " + numbers.pop());
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Incorrect input expression");
             }
         }
     }
@@ -106,6 +65,42 @@ public class PrefixCalculator {
         }
     }
 
+    private void calculateAnswer() {
+        while (!operations.isEmpty()) {
+            Operation currentOperation = operations.pop();
+            switch (currentOperation) {
+                case PLUS:
+                    numbers.addFirst(numbers.pop() + numbers.pop());
+                    break;
+                case MINUS:
+                    numbers.addFirst(numbers.pop() - numbers.pop());
+                    break;
+                case MULTIPLICATION:
+                    numbers.addFirst(numbers.pop() * numbers.pop());
+                    break;
+                case DIVISION:
+                    numbers.addFirst(numbers.pop() / numbers.pop());
+                    break;
+                case LOGARITHM:
+                    double number1 = Math.log(numbers.pop());
+                    double number2 = Math.log(numbers.pop());
+                    numbers.addFirst(number2 / number1);
+                    break;
+                case POWER:
+                    numbers.addFirst(Math.pow(numbers.pop(), numbers.pop()));
+                    break;
+                case SQUARE_ROOT:
+                    numbers.addFirst(Math.sqrt(numbers.pop()));
+                    break;
+                case SINE:
+                    numbers.addFirst(Math.sin(numbers.pop()));
+                    break;
+                case COSINE:
+                    numbers.addFirst(Math.cos(numbers.pop()));
+                    break;
+            }
+        }
+    }
     enum Operation {
         PLUS,
         MINUS,
