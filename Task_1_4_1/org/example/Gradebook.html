@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -153,7 +153,8 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Gradebook</a></span>()</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.util.List,org.example.Mark.Semester)">Gradebook</a></span>&#8203;(java.util.List&lt;<a href="Mark.html" title="class in org.example">Mark</a>&gt;&nbsp;markList,
+         org.example.Mark.Semester&nbsp;currentSemester)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -176,7 +177,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addGrade(org.example.Mark)">addGrade</a></span>&#8203;(<a href="Mark.html" title="class in org.example">Mark</a>&nbsp;mark)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addMark(org.example.Mark)">addMark</a></span>&#8203;(<a href="Mark.html" title="class in org.example">Mark</a>&nbsp;mark)</code></th>
 <td class="colLast">
 <div class="block">Some text.</div>
 </td>
@@ -187,21 +188,46 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deleteMark(org.example.Mark)">deleteMark</a></span>&#8203;(<a href="Mark.html" title="class in org.example">Mark</a>&nbsp;mark)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>org.example.Mark.Semester</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCurrentSemester()">getCurrentSemester</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>java.util.HashMap&lt;java.lang.String,&#8203;<a href="Mark.html" title="class in org.example">Mark</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDiploma()">getDiploma</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="Mark.html" title="class in org.example">Mark</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMarkList()">getMarkList</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>java.lang.Integer</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getQualificationWorkGrade()">getQualificationWorkGrade</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isIncreasedScholarship()">isIncreasedScholarship</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isRedDiploma()">isRedDiploma</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCurrentSemester(org.example.Mark.Semester)">setCurrentSemester</a></span>&#8203;(org.example.Mark.Semester&nbsp;currentSemester)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setQualificationWorkGrade(int)">setQualificationWorkGrade</a></span>&#8203;(int&nbsp;qualificationWorkGrade)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -230,13 +256,14 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;()">
+<a id="&lt;init&gt;(java.util.List,org.example.Mark.Semester)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Gradebook</h4>
-<pre>public&nbsp;Gradebook()</pre>
+<pre>public&nbsp;Gradebook&#8203;(java.util.List&lt;<a href="Mark.html" title="class in org.example">Mark</a>&gt;&nbsp;markList,
+                 org.example.Mark.Semester&nbsp;currentSemester)</pre>
 </li>
 </ul>
 </li>
@@ -249,18 +276,27 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="addGrade(org.example.Mark)">
+<a id="addMark(org.example.Mark)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addGrade</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addGrade&#8203;(<a href="Mark.html" title="class in org.example">Mark</a>&nbsp;mark)</pre>
+<h4>addMark</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;addMark&#8203;(<a href="Mark.html" title="class in org.example">Mark</a>&nbsp;mark)</pre>
 <div class="block">Some text.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>mark</code> - - Some text.</dd>
 </dl>
+</li>
+</ul>
+<a id="deleteMark(org.example.Mark)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteMark</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;deleteMark&#8203;(<a href="Mark.html" title="class in org.example">Mark</a>&nbsp;mark)</pre>
 </li>
 </ul>
 <a id="averageGrade()">
@@ -302,10 +338,46 @@ extends java.lang.Object</pre>
 <a id="setQualificationWorkGrade(int)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setQualificationWorkGrade</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setQualificationWorkGrade&#8203;(int&nbsp;qualificationWorkGrade)</pre>
+</li>
+</ul>
+<a id="getDiploma()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDiploma</h4>
+<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;java.lang.String,&#8203;<a href="Mark.html" title="class in org.example">Mark</a>&gt;&nbsp;getDiploma()</pre>
+</li>
+</ul>
+<a id="getMarkList()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getMarkList</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Mark.html" title="class in org.example">Mark</a>&gt;&nbsp;getMarkList()</pre>
+</li>
+</ul>
+<a id="getCurrentSemester()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getCurrentSemester</h4>
+<pre class="methodSignature">public&nbsp;org.example.Mark.Semester&nbsp;getCurrentSemester()</pre>
+</li>
+</ul>
+<a id="getQualificationWorkGrade()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getQualificationWorkGrade</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Integer&nbsp;getQualificationWorkGrade()</pre>
 </li>
 </ul>
 </li>
