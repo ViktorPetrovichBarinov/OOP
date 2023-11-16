@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Some text.
+ */
 public class Mark {
 
     private String nameOfDiscipline;
@@ -32,6 +35,11 @@ public class Mark {
         this.semester = semester;
     }
 
+    /**
+     * Some text.
+     *
+     * @param grade - Some text.
+     */
     public void setGrade(Integer grade) {
         if (grade < 2 || grade > 5) {
             throw new IllegalArgumentException("Incorrect grade");
