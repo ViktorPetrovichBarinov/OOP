@@ -1,15 +1,13 @@
 package org.example;
 
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Some text.
@@ -225,7 +223,8 @@ public class GradebookTest {
 
         assertTrue(myGradebook.isIncreasedScholarship());
 
-        myGradebook.addMark(new Mark("test descipline", Mark.Semester.BACHELOR_COURSE_3_SEMESTER, 4));
+        myGradebook.addMark(new Mark("test descipline",
+                Mark.Semester.BACHELOR_COURSE_3_SEMESTER, 4));
         assertFalse(myGradebook.isIncreasedScholarship());
     }
 

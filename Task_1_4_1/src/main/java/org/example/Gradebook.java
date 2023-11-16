@@ -14,12 +14,19 @@ public class Gradebook {
     private Mark.Semester currentSemester;
     private Integer qualificationWorkGrade = null;
 
+    /**
+     * Some text.
+     *
+     * @param markList          - Some text.
+     * @param currentSemester   - Some text.
+     */
     public Gradebook(List<Mark> markList, Mark.Semester currentSemester) {
         this.currentSemester = currentSemester;
         for (Mark tmpMark : markList) {
             addMark(tmpMark);
         }
     }
+
     /**
      * Some text.
      *
@@ -38,9 +45,11 @@ public class Gradebook {
             }
         }
         //если в дипломе уже содержиться балл для данной дисциплины, то
-        if(diploma.containsKey(mark.getNameOfDiscipline())) {
-            Mark.Semester lastSemesterForCurrentDiscipline = diploma.get(mark.getNameOfDiscipline()).getSemester();
-            //мы проверяем, что семестр записанный в дипломе меньше, чем семестр, который мы хотим записать
+        if (diploma.containsKey(mark.getNameOfDiscipline())) {
+            Mark.Semester lastSemesterForCurrentDiscipline =
+                    diploma.get(mark.getNameOfDiscipline()).getSemester();
+            //мы проверяем, что семестр записанный в дипломе меньше,
+            //чем семестр, который мы хотим записать
             if (lastSemesterForCurrentDiscipline.compareTo(mark.getSemester()) < 0) {
                 diploma.put(mark.getNameOfDiscipline(), mark);
             }
@@ -50,6 +59,11 @@ public class Gradebook {
         markList.add(mark);
     }
 
+    /**
+     * Some text.
+     *
+     * @param mark  - Some text.
+     */
     public void deleteMark(Mark mark) {
         String disciplineName = mark.getNameOfDiscipline();
         Mark.Semester markSemester = mark.getSemester();
@@ -70,10 +84,10 @@ public class Gradebook {
         markList.remove(deleteMark);
         Mark markForDiploma = null;
         for (Mark tmpMark : markList) {
-            if(tmpMark.getNameOfDiscipline().equals(disciplineName)) {
+            if (tmpMark.getNameOfDiscipline().equals(disciplineName)) {
                 if (markForDiploma == null) {
                     markForDiploma = tmpMark;
-                } else if(markForDiploma.getSemester().compareTo(tmpMark.getSemester()) < 0){
+                } else if (markForDiploma.getSemester().compareTo(tmpMark.getSemester()) < 0) {
                     markForDiploma = tmpMark;
                 }
             }
@@ -82,6 +96,11 @@ public class Gradebook {
 
     }
 
+    /**
+     * Some text.
+     *
+     * @return  - Some text.
+     */
     public double averageGrade() {
         int summaryOfGrades = 0;
         int numberOfGrades = 0;
@@ -90,9 +109,14 @@ public class Gradebook {
             summaryOfGrades += tmpMark.getGrade();
         }
 
-        return  (double)summaryOfGrades / numberOfGrades;
+        return (double) summaryOfGrades / numberOfGrades;
     }
 
+    /**
+     * Some text.
+     *
+     * @return  - Some text.
+     */
     public boolean isIncreasedScholarship() {
         for (Mark tmpMark : markList) {
             if (tmpMark.getSemester() == currentSemester
@@ -103,6 +127,11 @@ public class Gradebook {
         return true;
     }
 
+    /**
+     * Some text.
+     *
+     * @return  - Some text.
+     */
     public boolean isRedDiploma() {
         int numberOfDiplomaDegree = diploma.size();
         int numberOfDiplomaExcellentDegree = 0;
@@ -114,7 +143,8 @@ public class Gradebook {
                 return false;
             }
         }
-        double relationshipExcellentGradesToAllGrades = (double) numberOfDiplomaExcellentDegree / numberOfDiplomaDegree;
+        double relationshipExcellentGradesToAllGrades =
+                (double) numberOfDiplomaExcellentDegree / numberOfDiplomaDegree;
         if (relationshipExcellentGradesToAllGrades < 0.75) {
             return false;
         }
