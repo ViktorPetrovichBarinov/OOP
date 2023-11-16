@@ -151,10 +151,8 @@ public class PrefixCalculatorTest {
     @Test
     @DisplayName("sin cos")
     void test6() {
-        String inputString = """
-                sin 3.14
-                cos 3.14
-                """;
+        String inputString = "sin 3.14\n" +
+                                "cos 3.14\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inputStream);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -184,10 +182,8 @@ public class PrefixCalculatorTest {
     @Test
     @DisplayName("pow sqrt")
     void test7() {
-        String inputString = """
-                sqrt pow 5 2
-                log 2 8
-                """;
+        String inputString = "sqrt pow 5 2\n" +
+                                "log 2 8\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inputStream);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -218,7 +214,7 @@ public class PrefixCalculatorTest {
     @DisplayName("incorrect input then correct input")
     void test8() {
         String inputString = "sqrt pow 5 2 7 8 32.2 88 1\n" +
-                "log 2 8\n";
+                                "log 2 8\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inputStream);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
