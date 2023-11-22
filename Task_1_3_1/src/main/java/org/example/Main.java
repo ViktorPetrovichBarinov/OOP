@@ -6,12 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.example.KMP.KMPSearch;
-
 /**
  * Some text.
  */
 public class Main {
+    /**
+     * Some text.
+     *
+     * @param args  - Some text.
+     */
     public static void main(String[] args) {
         ArrayList<Integer> answer = new ArrayList<>();
         String fileName = "src/test/resources/bigDataTest.txt";
@@ -23,9 +26,9 @@ public class Main {
                 System.out.println("Technical chocolates(create)");
             }
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
                 int countOfElements = 0;
-                for(int i = 0; i < 100000000; i++) {
+                for (int i = 0; i < 100000000; i++) {
                     writer.write("12345678");
                     countOfElements += 8;
                 }

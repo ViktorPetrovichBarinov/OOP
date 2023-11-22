@@ -110,6 +110,9 @@ public class KMPTest {
         assertEquals(answer, KMPSearch(fileName, pattern));
     }
 
+    /**
+     * Тест на больших данных 0.75 гб.
+     */
     public void bigDataTest() {
         ArrayList<Integer> answer = new ArrayList<>();
         answer.add(800000000);
