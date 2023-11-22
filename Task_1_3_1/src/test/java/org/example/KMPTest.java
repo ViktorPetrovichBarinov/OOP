@@ -5,7 +5,12 @@ import static org.example.KMP.computeLPSArray;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.ClosedDirectoryStreamException;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -104,4 +109,15 @@ public class KMPTest {
         String pattern = new String("ab".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
     }
+
+    public void bigDataTest() {
+        ArrayList<Integer> answer = new ArrayList<>();
+        answer.add(800000000);
+        String fileName = "bigDataTest.txt";
+        String pattern = new String("a".getBytes(), StandardCharsets.UTF_8);
+        assertEquals(answer, KMPSearch(fileName, pattern));
+    }
+
+
+
 }

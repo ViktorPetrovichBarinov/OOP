@@ -36,19 +36,23 @@ public class KMP {
 
         ArrayList<Integer> indexesOfEntry = new ArrayList<>();
 
-        KMP test = new KMP();
-        ClassLoader classLoader = test.getClass().getClassLoader();
+        // нужен для получения classLoader'а для обекта
+        KMP kmp = new KMP();
+        //ClassLoader имеет различные методы для работы с классами и ресурсами
+        ClassLoader classLoader = kmp.getClass().getClassLoader();
+        //Получаем URL к интересующему нас ресурсу
         URL resource = classLoader.getResource(fileName);
+        //Если вернул null -> приплыли
         if (resource == null) {
             throw new IllegalArgumentException("file not found! " + fileName);
         }
 
-
+        //дальше работаем как и раньше
         File fileDirectory = null;
         try {
             fileDirectory = new File(resource.toURI());
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            throw new RuntimeException();
         }
 
 
