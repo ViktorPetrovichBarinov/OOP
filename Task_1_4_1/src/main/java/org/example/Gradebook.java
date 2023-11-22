@@ -1,7 +1,11 @@
 package org.example;
 
-import java.util.*;
-import java.util.stream.Collectors;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Some text.
@@ -23,7 +27,7 @@ public class Gradebook {
         for (Mark tmpMark : markList) {
             addMark(tmpMark);
         }
-//        markList.forEach(this::addMark);
+        //markList.forEach(this::addMark);
     }
 
     /**
@@ -38,7 +42,7 @@ public class Gradebook {
         }
         //если для данной дисциплины и данного значения уже есть оценка = ошибка
         if (markList.stream() // преобразуем в поток данных
-                .anyMatch(tmpMark ->//если есть хоть одно совпадение вернёт true
+                .anyMatch(tmpMark -> //если есть хоть одно совпадение вернёт true
                         tmpMark.getNameOfDiscipline().equals(mark.getNameOfDiscipline())
                                 && tmpMark.getSemester() == mark.getSemester())) {
             throw new IllegalArgumentException();
@@ -74,12 +78,12 @@ public class Gradebook {
         diploma.remove(disciplineName);
         //ищем оценку, которую надо удалить
         Mark deleteMark = markList.stream()
-                .filter(tmpMark ->//фильтруем так, чтобы совпадало имя, семестр и оценка
+                .filter(tmpMark -> //фильтруем так, чтобы совпадало имя, семестр и оценка
                         tmpMark.getNameOfDiscipline().equals(disciplineName)
                                 && tmpMark.getSemester() == markSemester
                                 && Objects.equals(tmpMark.getGrade(), mark.getGrade()))
-                .findFirst()//находим первое сопадение
-                .orElse(null);//если не находи то ноль, но такого не может быть т.к. выше проверка
+                .findFirst() //находим первое сопадение
+                .orElse(null); //если не находи то ноль, но такого не может быть т.к. выше проверка
         //на то что диплом содержит такую оценку
 
         //удаляем
@@ -88,7 +92,7 @@ public class Gradebook {
         Mark markForDiploma;
 
         markForDiploma = markList.stream()
-                .filter(tmpMark ->//ищем все оценки с идентичным названием
+                .filter(tmpMark -> //ищем все оценки с идентичным названием
                         tmpMark.getNameOfDiscipline().equals(disciplineName))
                 .max(Comparator.comparing(Mark::getSemester))//берём оценку за последний семестр
                 .orElse(null);
