@@ -18,25 +18,7 @@ public class MainTest {
     void adjencyMatrixTest() {
         ArrayList<Vertex<String>> vertices = new ArrayList<>();
         ArrayList<Edge<String>> edges = new ArrayList<>();
-        try {
-            File file = new File("test.txt");
-            FileReader reader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            int numberOfVertex = Integer.parseInt(bufferedReader.readLine());
-            //добавляем вершины
-            for (int i = 0; i < numberOfVertex; i++) {
-                String currentString = bufferedReader.readLine();
-                vertices.add(new Vertex<>(currentString));
-            }
-            int numberOfEdge = Integer.parseInt(bufferedReader.readLine());
-            for (int i = 0; i < numberOfEdge; i++) {
-                String[] currentSplitArray = bufferedReader.readLine().split(" ");
-                edges.add(new Edge<>(Integer.parseInt(currentSplitArray[2]),
-                        new Vertex<>(currentSplitArray[0]), new Vertex<>(currentSplitArray[1])));
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        Graph.readGraphFromFile(vertices, edges, "test.txt");
 
         AdjencyMatrix<String> graph = new AdjencyMatrix<>(vertices, edges);
         graph.addVertex(new Vertex<>("E"));
@@ -60,25 +42,7 @@ public class MainTest {
     void adjencyListTest() {
         ArrayList<Vertex<String>> vertices = new ArrayList<>();
         ArrayList<Edge<String>> edges = new ArrayList<>();
-        try {
-            File file = new File("test.txt");
-            FileReader reader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            int numberOfVertex = Integer.parseInt(bufferedReader.readLine());
-            //добавляем вершины
-            for (int i = 0; i < numberOfVertex; i++) {
-                String currentString = bufferedReader.readLine();
-                vertices.add(new Vertex<>(currentString));
-            }
-            int numberOfEdge = Integer.parseInt(bufferedReader.readLine());
-            for (int i = 0; i < numberOfEdge; i++) {
-                String[] currentSplitArray = bufferedReader.readLine().split(" ");
-                edges.add(new Edge<>(Integer.parseInt(currentSplitArray[2]),
-                        new Vertex<>(currentSplitArray[0]), new Vertex<>(currentSplitArray[1])));
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        Graph.readGraphFromFile(vertices, edges, "test.txt");
 
         AdjencyList<String> graph = new AdjencyList<>(vertices, edges);
         graph.addVertex(new Vertex<>("E"));
@@ -103,25 +67,7 @@ public class MainTest {
     void incedenceMatrix() {
         ArrayList<Vertex<String>> vertices = new ArrayList<>();
         ArrayList<Edge<String>> edges = new ArrayList<>();
-        try {
-            File file = new File("test.txt");
-            FileReader reader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            int numberOfVertex = Integer.parseInt(bufferedReader.readLine());
-            //добавляем вершины
-            for (int i = 0; i < numberOfVertex; i++) {
-                String currentString = bufferedReader.readLine();
-                vertices.add(new Vertex<>(currentString));
-            }
-            int numberOfEdge = Integer.parseInt(bufferedReader.readLine());
-            for (int i = 0; i < numberOfEdge; i++) {
-                String[] currentSplitArray = bufferedReader.readLine().split(" ");
-                edges.add(new Edge<>(Integer.parseInt(currentSplitArray[2]),
-                        new Vertex<>(currentSplitArray[0]), new Vertex<>(currentSplitArray[1])));
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        Graph.readGraphFromFile(vertices, edges, "test.txt");
 
         IncidenceMatrix<String> graph = new IncidenceMatrix<>(vertices, edges);
         graph.addVertex(new Vertex<>("E"));

@@ -1,8 +1,13 @@
 package ru.nsu.chudinov;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Some text.
@@ -84,7 +89,7 @@ public abstract class Graph<T> {
      * @param vertex    - Some text.
      * @return          - Some text.
      */
-    public ArrayList<Edge<T>> getEdge(Vertex<T> vertex) {
+    private ArrayList<Edge<T>> getEdge(Vertex<T> vertex) {
         ArrayList<Edge<T>> result = new ArrayList<>();
         int len = this.edgeList.size();
         for (int i = 0; i < len; i++) {
@@ -93,5 +98,28 @@ public abstract class Graph<T> {
             }
         }
         return result;
+    }
+
+    public static void readGraphFromFile(List<Vertex<String>> vertices, List<Edge<String>> edges, String filename) {
+        File file = new File(filename);
+
+        try(FileReader reader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(reader);) {
+
+            int numberOfVertex = Integer.parseInt(bufferedReader.readLine());
+            //добавляем вершины
+            for (int i = 0; i < numberOfVertex; i++) {
+                String currentString = bufferedReader.readLine();
+                vertices.add(new Vertex<>(currentString));
+            }
+            int numberOfEdge = Integer.parseInt(bufferedReader.readLine());
+            for (int i = 0; i < numberOfEdge; i++) {
+                String[] currentSplitArray = bufferedReader.readLine().split(" ");
+                edges.add(new Edge<>(Integer.parseInt(currentSplitArray[2]),
+                        new Vertex<>(currentSplitArray[0]), new Vertex<>(currentSplitArray[1])));
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
