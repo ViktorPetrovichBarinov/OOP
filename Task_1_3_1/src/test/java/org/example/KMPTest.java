@@ -61,7 +61,7 @@ public class KMPTest {
         ArrayList<Integer> answer = new ArrayList<>();
         answer.add(1);
         answer.add(8);
-        String fileName = "src/test/resources/test1.txt";
+        String fileName = "test1.txt";
         String pattern = new String("бра".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
     }
@@ -78,7 +78,7 @@ public class KMPTest {
         answer.add(28);
         answer.add(29);
         answer.add(30);
-        String fileName = "src/test/resources/test2.txt";
+        String fileName = "test2.txt";
         String pattern = new String("aaa".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
     }
@@ -88,7 +88,7 @@ public class KMPTest {
     void test4() {
         ArrayList<Integer> answer = new ArrayList<>();
         answer.add(42);
-        String fileName = "src/test/resources/test2.txt";
+        String fileName = "test2.txt";
         String pattern = new String("ぁ".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
     }
@@ -100,7 +100,7 @@ public class KMPTest {
         answer.add(101);
         answer.add(103);
         answer.add(105);
-        String fileName = "src/test/resources/test3.txt";
+        String fileName = "test3.txt";
         String pattern = new String("ab".getBytes(), StandardCharsets.UTF_8);
         assertEquals(answer, KMPSearch(fileName, pattern));
     }

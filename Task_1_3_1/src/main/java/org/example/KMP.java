@@ -1,6 +1,9 @@
 package org.example;
 
+import javax.xml.crypto.URIReferenceException;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -8,6 +11,9 @@ import java.util.ArrayList;
  * Some text.
  */
 public class KMP {
+    private KMP() {
+
+    }
     /**
      * Some text.
      *
@@ -30,11 +36,26 @@ public class KMP {
 
         ArrayList<Integer> indexesOfEntry = new ArrayList<>();
 
+        KMP test = new KMP();
+        ClassLoader classLoader = test.getClass().getClassLoader();
+        URL resource = classLoader.getResource(fileName);
+        if (resource == null) {
+            throw new IllegalArgumentException("file not found! " + fileName);
+        }
+
+
+        File fileDirectory = null;
         try {
-            File fileDirectory = new File(fileName);
-            BufferedReader br = new BufferedReader(
-                    new InputStreamReader(
-                            new FileInputStream(fileDirectory), StandardCharsets.UTF_8));
+            fileDirectory = new File(resource.toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(fileDirectory), StandardCharsets.UTF_8));){
+
             while (true) {
                 int numberOfCharactersRead =
                         br.read(buffer, offsetInFile, lengthOfBuffer - offsetInFile);
@@ -115,7 +136,7 @@ public class KMP {
      * @throws UnsupportedEncodingException - Some text.
      */
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String fileName = "test1.txt";
+        String fileName = "test.txt";
         String pattern = new String("бра".getBytes(), StandardCharsets.UTF_8);
         String myString = "бра";
         System.out.println(KMPSearch(fileName, pattern));
