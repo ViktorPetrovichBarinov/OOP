@@ -1,9 +1,7 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Some text.
@@ -25,6 +23,7 @@ public class Gradebook {
         for (Mark tmpMark : markList) {
             addMark(tmpMark);
         }
+//        markList.forEach(this::addMark);
     }
 
     /**
@@ -38,12 +37,13 @@ public class Gradebook {
             throw new IllegalArgumentException("You are not studying yet this semester");
         }
         //если для данной дисциплины и данного значения уже есть оценка = ошибка
-        for (Mark tmpMark : markList) {
-            if (tmpMark.getNameOfDiscipline().equals(mark.getNameOfDiscipline())
-                && tmpMark.getSemester() == mark.getSemester()) {
-                throw new IllegalArgumentException();
-            }
+        if (markList.stream() // преобразуем в поток данных
+                .anyMatch(tmpMark ->//если есть хоть одно совпадение вернёт true
+                        tmpMark.getNameOfDiscipline().equals(mark.getNameOfDiscipline())
+                                && tmpMark.getSemester() == mark.getSemester())) {
+            throw new IllegalArgumentException();
         }
+
         //если в дипломе уже содержиться балл для данной дисциплины, то
         if (diploma.containsKey(mark.getNameOfDiscipline())) {
             Mark.Semester lastSemesterForCurrentDiscipline =
@@ -72,26 +72,28 @@ public class Gradebook {
             throw new IllegalArgumentException("Incorrect delete mark");
         }
         diploma.remove(disciplineName);
-        Mark deleteMark = null;
-        for (Mark tmpMark : markList) {
-            if (tmpMark.getNameOfDiscipline().equals(disciplineName)
-                && tmpMark.getSemester() == markSemester
-                && Objects.equals(tmpMark.getGrade(), mark.getGrade())) {
-                deleteMark = tmpMark;
-                break;
-            }
-        }
+        //ищем оценку, которую надо удалить
+        Mark deleteMark = markList.stream()
+                .filter(tmpMark ->//фильтруем так, чтобы совпадало имя, семестр и оценка
+                        tmpMark.getNameOfDiscipline().equals(disciplineName)
+                                && tmpMark.getSemester() == markSemester
+                                && Objects.equals(tmpMark.getGrade(), mark.getGrade()))
+                .findFirst()//находим первое сопадение
+                .orElse(null);//если не находи то ноль, но такого не может быть т.к. выше проверка
+        //на то что диплом содержит такую оценку
+
+        //удаляем
         markList.remove(deleteMark);
-        Mark markForDiploma = null;
-        for (Mark tmpMark : markList) {
-            if (tmpMark.getNameOfDiscipline().equals(disciplineName)) {
-                if (markForDiploma == null) {
-                    markForDiploma = tmpMark;
-                } else if (markForDiploma.getSemester().compareTo(tmpMark.getSemester()) < 0) {
-                    markForDiploma = tmpMark;
-                }
-            }
-        }
+
+        Mark markForDiploma;
+
+        markForDiploma = markList.stream()
+                .filter(tmpMark ->//ищем все оценки с идентичным названием
+                        tmpMark.getNameOfDiscipline().equals(disciplineName))
+                .max(Comparator.comparing(Mark::getSemester))//берём оценку за последний семестр
+                .orElse(null);
+
+
         diploma.put(disciplineName, markForDiploma);
 
     }
@@ -103,11 +105,11 @@ public class Gradebook {
      */
     public double averageGrade() {
         int summaryOfGrades = 0;
-        int numberOfGrades = 0;
-        for (Mark tmpMark : markList) {
-            numberOfGrades++;
-            summaryOfGrades += tmpMark.getGrade();
-        }
+        int numberOfGrades = markList.size();
+
+        summaryOfGrades = markList.stream()
+                .mapToInt(Mark::getGrade)
+                .sum();
 
         return (double) summaryOfGrades / numberOfGrades;
     }
@@ -118,13 +120,11 @@ public class Gradebook {
      * @return  - Some text.
      */
     public boolean isIncreasedScholarship() {
-        for (Mark tmpMark : markList) {
-            if (tmpMark.getSemester() == currentSemester
-                && tmpMark.getGrade() != 5) {
-                return false;
-            }
-        }
-        return true;
+        return markList.stream()
+                .filter(tmpMark ->
+                        tmpMark.getSemester() == currentSemester)
+                .allMatch(tmpMark ->
+                        tmpMark.getGrade() == 5);
     }
 
     /**
@@ -135,14 +135,19 @@ public class Gradebook {
     public boolean isRedDiploma() {
         int numberOfDiplomaDegree = diploma.size();
         int numberOfDiplomaExcellentDegree = 0;
-        for (Mark tmpMark : diploma.values()) {
-            if (tmpMark.getGrade() == 5) {
-                numberOfDiplomaExcellentDegree++;
-            }
-            if (tmpMark.getGrade() <= 3) {
-                return false;
-            }
+
+        numberOfDiplomaExcellentDegree = (int) diploma.values().stream()
+                .filter(tmpMark ->
+                        tmpMark.getGrade() == 5)
+                .count();
+
+        boolean isFalse = (diploma.values().stream()
+                .anyMatch(tmpMark ->
+                        tmpMark.getGrade() <= 3));
+        if (isFalse) {
+            return false;
         }
+
         double relationshipExcellentGradesToAllGrades =
                 (double) numberOfDiplomaExcellentDegree / numberOfDiplomaDegree;
         if (relationshipExcellentGradesToAllGrades < 0.75) {
