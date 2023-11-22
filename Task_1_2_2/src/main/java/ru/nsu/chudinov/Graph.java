@@ -58,7 +58,7 @@ public abstract class Graph<T> {
             }
             mark[shortest] = true;
 
-            ArrayList<Edge<T>> adjacentEdge = getEdge(this.vertexList.get(shortest));
+            ArrayList<Edge<T>> adjacentEdge = getEdgeList(this.vertexList.get(shortest));
             int edgeLen = adjacentEdge.size();
             for (int j = 0; j < edgeLen; j++) {
                 Edge<T> cur = adjacentEdge.get(j);
@@ -89,7 +89,7 @@ public abstract class Graph<T> {
      * @param vertex    - Some text.
      * @return          - Some text.
      */
-    private ArrayList<Edge<T>> getEdge(Vertex<T> vertex) {
+    private ArrayList<Edge<T>> getEdgeList(Vertex<T> vertex) {
         ArrayList<Edge<T>> result = new ArrayList<>();
         int len = this.edgeList.size();
         for (int i = 0; i < len; i++) {
