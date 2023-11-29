@@ -196,12 +196,19 @@ class ExpressionProcessor {
 
     public void calculate() {
         while (true) {
+            this.operations = new Stack<>();
+            this.numbers = new LinkedList<>();
             String inputExpression = expressionReader.readExpression();
             if (inputExpression == null) {
                 System.out.print("The end.\n");
                 break;
             }
-            processExpression(inputExpression);
+            try {
+                processExpression(inputExpression);
+            } catch (Exception e) {
+                System.out.print("Incorrect input expression\n");
+            }
+
         }
     }
 
@@ -209,6 +216,9 @@ class ExpressionProcessor {
         String[] tokens = inputExpression.split("\\s+");
         boolean flag = true; // true - операции, false - числа
         for (String token : tokens) {
+            //смотрим первый символ, если он символ, то предполагаем,
+            // что вся строка это числа и считаем,
+            // что начали рассматривать числа
             if (Character.isDigit(token.charAt(0))) {
                 flag = false;
             }
@@ -251,6 +261,9 @@ class ExpressionProcessor {
                 double result = currentOperation.perform(operand1);
                 numbers.addFirst(result);
             }
+        }
+        if (numbers.size() != 1) {
+            throw new IllegalArgumentException();
         }
     }
 }
