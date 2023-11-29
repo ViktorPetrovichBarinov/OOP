@@ -22,8 +22,8 @@ public class PrefixCalculator {
         while (true) {
             operations = new Stack<>();
             numbers = new LinkedList<>();
-            System.out.print("Enter your expression in 1 string and press \"Enter\".\n" +
-                    "If you want to exit press \"Ctrl + D\".\n");
+            System.out.print("Enter your expression in 1 string and press \"Enter\".\n"
+                   + "If you want to exit press \"Ctrl + D\".\n");
 
             try {
                 if (!scanner.hasNextLine()) {
@@ -124,6 +124,8 @@ public class PrefixCalculator {
                 case COSINE:
                     numbers.addFirst(Math.cos(numbers.pop()));
                     break;
+                default:
+                    throw new RuntimeException();
             }
         }
         if (numbers.size() != 1) {

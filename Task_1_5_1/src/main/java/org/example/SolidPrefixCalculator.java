@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
 
+/**
+ * Some text.
+ */
 public class SolidPrefixCalculator {
     interface Operation {
         double perform(double... args);
@@ -162,8 +165,8 @@ public class SolidPrefixCalculator {
 
         @Override
         public String readExpression() {
-            System.out.print("Enter your expression in 1 string and press \"Enter\".\n" +
-                    "If you want to exit press \"Ctrl + D\".\n");
+            System.out.print("Enter your expression in 1 string and press \"Enter\".\n"
+                    + "If you want to exit press \"Ctrl + D\".\n");
             if (scanner.hasNextLine()) {
                 return scanner.nextLine().toLowerCase();
             }
@@ -173,13 +176,18 @@ public class SolidPrefixCalculator {
 
 }
 
+/**
+ * Some text.
+ */
 class ExpressionProcessor {
     private Stack<SolidPrefixCalculator.Operation> operations;
     private LinkedList<Double> numbers = new LinkedList<>();
     private SolidPrefixCalculator.ExpressionReader expressionReader;
     private SolidPrefixCalculator.OperationFactory operationFactory;
 
-    public ExpressionProcessor(SolidPrefixCalculator.ExpressionReader expressionReader, SolidPrefixCalculator.OperationFactory operationFactory) {
+    public ExpressionProcessor(
+            SolidPrefixCalculator.ExpressionReader expressionReader,
+            SolidPrefixCalculator.OperationFactory operationFactory) {
         this.expressionReader = expressionReader;
         this.operationFactory = operationFactory;
         this.operations = new Stack<>();
@@ -217,7 +225,7 @@ class ExpressionProcessor {
     }
 
     private void operationConditionForParser(String atom) {
-        SolidPrefixCalculator.Operation operation = (SolidPrefixCalculator.Operation) operationFactory.createOperation(atom);
+        SolidPrefixCalculator.Operation operation = operationFactory.createOperation(atom);
         operations.push(operation);
     }
 
