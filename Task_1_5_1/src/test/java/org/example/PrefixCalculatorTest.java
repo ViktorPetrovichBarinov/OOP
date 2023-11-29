@@ -27,12 +27,12 @@ public class PrefixCalculatorTest {
         PrefixCalculator prefixCalculator = new PrefixCalculator();
         prefixCalculator.calculator();
         String outputString = byteArrayOutputStream.toString();
-        String answer = "Enter your expression in 1 string and press \"Enter\".\n" +
-                        "If you want to exit press \"Ctrl + D\".\n" +
-                        "result : 0.0\n" +
-                        "Enter your expression in 1 string and press \"Enter\".\n" +
-                        "If you want to exit press \"Ctrl + D\".\n" +
-                        "The end.\n";
+        String answer = "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "result : 0.0\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "The end.\n";
         assertEquals(answer, outputString);
 
         System.setIn(System.in);
@@ -53,12 +53,12 @@ public class PrefixCalculatorTest {
         PrefixCalculator prefixCalculator = new PrefixCalculator();
         prefixCalculator.calculator();
         String outputString = byteArrayOutputStream.toString();
-        String answer = "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "Incorrect input expression\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "The end.\n";
+        String answer = "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "Incorrect input expression\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "The end.\n";
 
         assertEquals(answer, outputString);
 
@@ -80,12 +80,12 @@ public class PrefixCalculatorTest {
         PrefixCalculator prefixCalculator = new PrefixCalculator();
         prefixCalculator.calculator();
         String outputString = byteArrayOutputStream.toString();
-        String answer = "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "Incorrect input expression\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "The end.\n";
+        String answer = "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "Incorrect input expression\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "The end.\n";
 
         assertEquals(answer, outputString);
 
@@ -107,12 +107,12 @@ public class PrefixCalculatorTest {
         PrefixCalculator prefixCalculator = new PrefixCalculator();
         prefixCalculator.calculator();
         String outputString = byteArrayOutputStream.toString();
-        String answer = "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "Incorrect input expression\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "The end.\n";
+        String answer = "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "Incorrect input expression\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "The end.\n";
 
         assertEquals(answer, outputString);
 
@@ -134,12 +134,12 @@ public class PrefixCalculatorTest {
         PrefixCalculator prefixCalculator = new PrefixCalculator();
         prefixCalculator.calculator();
         String outputString = byteArrayOutputStream.toString();
-        String answer = "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "result : 14.0\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "The end.\n";
+        String answer = "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "result : 14.0\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "The end.\n";
 
         assertEquals(answer, outputString);
 
@@ -162,15 +162,15 @@ public class PrefixCalculatorTest {
         PrefixCalculator prefixCalculator = new PrefixCalculator();
         prefixCalculator.calculator();
         String outputString = byteArrayOutputStream.toString();
-        String answer = "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "result : 0.0015926529164868282\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "result : -0.9999987317275395\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "The end.\n";
+        String answer = "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "result : 0.0015926529164868282\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "result : -0.9999987317275395\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "The end.\n";
 
         assertEquals(answer, outputString);
 
@@ -193,15 +193,15 @@ public class PrefixCalculatorTest {
         PrefixCalculator prefixCalculator = new PrefixCalculator();
         prefixCalculator.calculator();
         String outputString = byteArrayOutputStream.toString();
-        String answer = "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "result : 5.0\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "result : 3.0\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "The end.\n";
+        String answer = "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "result : 5.0\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "result : 3.0\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "The end.\n";
 
         assertEquals(answer, outputString);
 
@@ -213,8 +213,8 @@ public class PrefixCalculatorTest {
     @Test
     @DisplayName("incorrect input then correct input")
     void test8() {
-        String inputString = "sqrt pow 5 2 7 8 32.2 88 1\n" +
-                                "log 2 8\n";
+        String inputString = "sqrt pow 5 2 7 8 32.2 88 1\n"
+                + "log 2 8\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
         System.setIn(inputStream);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -224,15 +224,15 @@ public class PrefixCalculatorTest {
         PrefixCalculator prefixCalculator = new PrefixCalculator();
         prefixCalculator.calculator();
         String outputString = byteArrayOutputStream.toString();
-        String answer = "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "Incorrect input expression\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "result : 3.0\n" +
-                "Enter your expression in 1 string and press \"Enter\".\n" +
-                "If you want to exit press \"Ctrl + D\".\n" +
-                "The end.\n";
+        String answer = "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "Incorrect input expression\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "result : 3.0\n"
+                + "Enter your expression in 1 string and press \"Enter\".\n"
+                + "If you want to exit press \"Ctrl + D\".\n"
+                + "The end.\n";
 
         assertEquals(answer, outputString);
 
