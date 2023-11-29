@@ -21,7 +21,10 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-core:2.16.0")
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.16.0")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.0")
 
+// https://mvnrepository.com/artifact/args4j/args4j
+    implementation("args4j:args4j:2.33")
 }
 
 tasks.test {
