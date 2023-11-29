@@ -242,21 +242,7 @@ public class PrefixCalculatorTest {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     @Test
     @DisplayName("Default test SOLID")
     void test1Solid() {
@@ -271,7 +257,8 @@ public class PrefixCalculatorTest {
                 new SolidPrefixCalculator.ConsoleExpressionReader();
         SolidPrefixCalculator.OperationFactory operationFactory =
                 new SolidPrefixCalculator.DefaultOperationFactory();
-        ExpressionProcessor expressionProcessor = new ExpressionProcessor(expressionReader, operationFactory);
+        ExpressionProcessor expressionProcessor =
+                new ExpressionProcessor(expressionReader, operationFactory);
         expressionProcessor.calculate();
 
         String outputString = byteArrayOutputStream.toString();
@@ -302,7 +289,8 @@ public class PrefixCalculatorTest {
                 new SolidPrefixCalculator.ConsoleExpressionReader();
         SolidPrefixCalculator.OperationFactory operationFactory =
                 new SolidPrefixCalculator.DefaultOperationFactory();
-        ExpressionProcessor expressionProcessor = new ExpressionProcessor(expressionReader, operationFactory);
+        ExpressionProcessor expressionProcessor =
+                new ExpressionProcessor(expressionReader, operationFactory);
         expressionProcessor.calculate();
 
         String outputString = byteArrayOutputStream.toString();
@@ -334,7 +322,8 @@ public class PrefixCalculatorTest {
                 new SolidPrefixCalculator.ConsoleExpressionReader();
         SolidPrefixCalculator.OperationFactory operationFactory =
                 new SolidPrefixCalculator.DefaultOperationFactory();
-        ExpressionProcessor expressionProcessor = new ExpressionProcessor(expressionReader, operationFactory);
+        ExpressionProcessor expressionProcessor =
+                new ExpressionProcessor(expressionReader, operationFactory);
         expressionProcessor.calculate();
 
         String outputString = byteArrayOutputStream.toString();
@@ -366,7 +355,8 @@ public class PrefixCalculatorTest {
                 new SolidPrefixCalculator.ConsoleExpressionReader();
         SolidPrefixCalculator.OperationFactory operationFactory =
                 new SolidPrefixCalculator.DefaultOperationFactory();
-        ExpressionProcessor expressionProcessor = new ExpressionProcessor(expressionReader, operationFactory);
+        ExpressionProcessor expressionProcessor =
+                new ExpressionProcessor(expressionReader, operationFactory);
         expressionProcessor.calculate();
 
         String outputString = byteArrayOutputStream.toString();
@@ -398,7 +388,8 @@ public class PrefixCalculatorTest {
                 new SolidPrefixCalculator.ConsoleExpressionReader();
         SolidPrefixCalculator.OperationFactory operationFactory =
                 new SolidPrefixCalculator.DefaultOperationFactory();
-        ExpressionProcessor expressionProcessor = new ExpressionProcessor(expressionReader, operationFactory);
+        ExpressionProcessor expressionProcessor =
+                new ExpressionProcessor(expressionReader, operationFactory);
         expressionProcessor.calculate();
 
         String outputString = byteArrayOutputStream.toString();
@@ -431,7 +422,8 @@ public class PrefixCalculatorTest {
                 new SolidPrefixCalculator.ConsoleExpressionReader();
         SolidPrefixCalculator.OperationFactory operationFactory =
                 new SolidPrefixCalculator.DefaultOperationFactory();
-        ExpressionProcessor expressionProcessor = new ExpressionProcessor(expressionReader, operationFactory);
+        ExpressionProcessor expressionProcessor =
+                new ExpressionProcessor(expressionReader, operationFactory);
         expressionProcessor.calculate();
 
         String outputString = byteArrayOutputStream.toString();
@@ -467,7 +459,8 @@ public class PrefixCalculatorTest {
                 new SolidPrefixCalculator.ConsoleExpressionReader();
         SolidPrefixCalculator.OperationFactory operationFactory =
                 new SolidPrefixCalculator.DefaultOperationFactory();
-        ExpressionProcessor expressionProcessor = new ExpressionProcessor(expressionReader, operationFactory);
+        ExpressionProcessor expressionProcessor =
+                new ExpressionProcessor(expressionReader, operationFactory);
         expressionProcessor.calculate();
 
         String outputString = byteArrayOutputStream.toString();
@@ -503,7 +496,8 @@ public class PrefixCalculatorTest {
                 new SolidPrefixCalculator.ConsoleExpressionReader();
         SolidPrefixCalculator.OperationFactory operationFactory =
                 new SolidPrefixCalculator.DefaultOperationFactory();
-        ExpressionProcessor expressionProcessor = new ExpressionProcessor(expressionReader, operationFactory);
+        ExpressionProcessor expressionProcessor =
+                new ExpressionProcessor(expressionReader, operationFactory);
         expressionProcessor.calculate();
 
         String outputString = byteArrayOutputStream.toString();
