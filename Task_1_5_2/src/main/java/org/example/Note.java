@@ -1,51 +1,60 @@
 package org.example;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class Note {
+    private String noteName;
+    private String noteBody;
 
-    @JsonSerialize
-    private String note;
-    private String content;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Date createDate;
 
-    public Note(String note, String content, Date createTime) {
-        this.note = note;
-        this.content = content;
-        this.createDate = createTime;
-    }
-
+    //Этот конструктор для Jackson нужен
     public Note() {
 
     }
 
-    public String getNote() {
-        return note;
+    public Note(String noteName, String noteBody, Date createDate) {
+        this.noteName = noteName;
+        this.noteBody = noteBody;
+        this.createDate = createDate;
     }
 
-    public String getContent() {
-        return content;
+
+    public String getNoteName() {
+        return noteName;
+    }
+
+    public void setNoteName(String noteName) {
+        this.noteName = noteName;
+    }
+
+    public String getNoteBody() {
+        return noteBody;
+    }
+
+    public void setNoteBody(String noteBody) {
+        this.noteBody = noteBody;
     }
 
     public Date getCreateDate() {
         return createDate;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        StringBuilder outputString = new StringBuilder();
+        outputString.append("Note name: ").append(noteName).append("\n");
+        outputString.append("Note content: ").append(noteBody).append("\n");
+        outputString.append("CreateDate: ").append(dateFormat.format(createDate)).append("\n");
+        return outputString.toString();
     }
 }

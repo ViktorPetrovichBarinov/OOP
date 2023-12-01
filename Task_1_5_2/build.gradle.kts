@@ -10,21 +10,16 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation("args4j:args4j:2.33")
+
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
     implementation("com.fasterxml.jackson.core:jackson-core:2.16.0")
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.16.0")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.0")
-
-// https://mvnrepository.com/artifact/args4j/args4j
-    implementation("args4j:args4j:2.33")
 }
 
 tasks.test {
