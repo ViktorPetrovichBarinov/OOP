@@ -43,12 +43,11 @@ public class Tests {
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);
 
-        String filePathForCurrentTest = "src/test/java/org/example/forTest.json";
+        String filePathForCurrentTest = "forTest.json";
         CommandParser commandParser = new CommandParser(filePathForCurrentTest);
 
         String[] command1 = new String[]{"-show", "02.12.2023 04:15", "02.12.2023 05:25", "word1", "word3"};
         commandParser.parse(command1);
-
 
         String capturedOutput = outputStream.toString();
 
