@@ -11,7 +11,13 @@ import java.util.List;
  * Some text.
  */
 public class JsonReader {
-    public static List<Note> readObjectsFromJason(String filePath) {
+    /**
+     * Some text.
+     *
+     * @param filePath  - Some text.
+     * @return          - Some text.
+     */
+    protected static List<Note> readObjectsFromJason(String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.readValue(new File(filePath), new TypeReference<List<Note>>() {});

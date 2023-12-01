@@ -38,7 +38,7 @@ public class CommandParser {
         this.filePath = filePath;
     }
 
-    void parse(String[] args) {
+    public void parse(String[] args) {
         CmdLineParser parser = new CmdLineParser(this);
         setAllFalse();
 

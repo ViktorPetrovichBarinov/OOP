@@ -1,7 +1,9 @@
 package org.example;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.example.JsonReader.readObjectsFromJason;
+import static org.example.JsonWriter.initJsonFile;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -10,14 +12,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.example.JsonReader.readObjectsFromJason;
-import static org.example.JsonWriter.initJsonFile;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+
+/**
+ * Some text.
+ */
 public class Tests {
     String filePath = "notebook.json";
+
     @BeforeEach
     void initialization() {
         if (Files.exists(Path.of(filePath))) {
@@ -111,9 +117,10 @@ public class Tests {
         }
     }
 
+    PrintStream originalOut = System.out;
+
     @Test
     void test4() {
-        PrintStream originalOut = System.out;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);

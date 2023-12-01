@@ -16,7 +16,7 @@ public class JsonWriter {
      *
      * @param filePath  - Some text.
      */
-    public static void initJsonFile(String filePath) {
+    protected static void initJsonFile(String filePath) {
         List<Note> notes = new ArrayList<>();
         writeObjectsToJson(notes, filePath);
     }
@@ -27,7 +27,7 @@ public class JsonWriter {
      * @param notes     - Some text.
      * @param filePath  - Some text.
      */
-    public static void writeObjectsToJson(List<Note> notes, String filePath) {
+    protected static void writeObjectsToJson(List<Note> notes, String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -45,7 +45,7 @@ public class JsonWriter {
      * @param note      - Some text.
      * @param filePath  - Some text.
      */
-    public static void addObjectToJson(Note note, String filePath) {
+    protected static void addObjectToJson(Note note, String filePath) {
         List<Note> notes = readObjectsFromJason(filePath);
 
         if (notes == null) {
