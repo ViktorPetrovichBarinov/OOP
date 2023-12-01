@@ -40,20 +40,4 @@ public class JsonWriter {
         writeObjectsToJson(notes, filePath);
     }
 
-    public static void main(String[] args) {
-        Date currentDate = new Date();
-        Note note1 = new Note("Name1", "Body1", currentDate);
-        Note note2 = new Note("Name2", "Body2", currentDate);
-        Note note3 = new Note("Name3", "Body3", currentDate);
-        Note note4 = new Note("Name3", "Body3", currentDate);
-        List<Note> notes = new ArrayList<>();
-        notes.add(note1);
-        notes.add(note2);
-        notes.add(note3);
-
-        addObjectToJson(note4, "test.json");
-
-
-    }
-
 }

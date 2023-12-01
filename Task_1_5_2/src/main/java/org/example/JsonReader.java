@@ -19,11 +19,4 @@ public class JsonReader {
         }
     }
 
-    public static void main(String[] args) {
-        List<Note> notes = readObjectsFromJason("test.json");
-        for (Note note : notes) {
-            System.out.println("note: " + note.toString());
-        }
-
-    }
 }
