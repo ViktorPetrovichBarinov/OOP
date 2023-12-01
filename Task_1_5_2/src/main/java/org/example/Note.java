@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Some text.
+ */
 public class Note {
     private String noteName;
     private String noteBody;
@@ -16,6 +19,13 @@ public class Note {
 
     }
 
+    /**
+     * Some text.
+     *
+     * @param noteName  - Some text.
+     * @param noteBody  - Some text.
+     * @param createDate- Some text.
+     */
     public Note(String noteName, String noteBody, Date createDate) {
         this.noteName = noteName;
         this.noteBody = noteBody;

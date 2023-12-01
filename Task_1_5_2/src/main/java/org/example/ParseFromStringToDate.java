@@ -4,7 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class parseFromStringToDate {
+/**
+ * Some text.
+ */
+public class ParseFromStringToDate {
     public static Date fromStringToDate(String str) {
         Date parseDate;
         try {

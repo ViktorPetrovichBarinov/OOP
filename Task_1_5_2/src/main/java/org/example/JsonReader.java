@@ -5,9 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Some text.
+ */
 public class JsonReader {
     public static List<Note> readObjectsFromJason(String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();

@@ -1,16 +1,21 @@
 package org.example;
 
+import static org.example.JsonReader.readObjectsFromJason;
+
+import static org.example.JsonWriter.addObjectToJson;
+import static org.example.JsonWriter.writeObjectsToJson;
+import static org.example.parseFromStringToDate.fromStringToDate;
+
+import java.util.Date;
+import java.util.List;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
-import java.util.Date;
-import java.util.List;
-
-import static org.example.JsonReader.readObjectsFromJason;
-import static org.example.JsonWriter.*;
-import static org.example.parseFromStringToDate.fromStringToDate;
 
 
+/**
+ * Some text.
+ */
 public class CommandParser {
     private final String filePath;
 
@@ -42,7 +47,7 @@ public class CommandParser {
             if (countActiveCommands() > 1) {
                 System.out.println(
                         "Error: The application does not support "
-                                        + "processing multiple commands at once.Enter only one command");
+                                + "processing multiple commands at once.Enter only one command");
                 //parser.printUsage(System.err);
             }
 
@@ -52,11 +57,12 @@ public class CommandParser {
                 rmCommandHandle();
             } else if (show) {
                 showCommandHandle();
-            } else if (faq){
+            } else if (faq) {
                 faqCommandHandle();
 
             } else {
-                System.err.println("Enter: notebook -FAQ for information about the application commands;");
+                System.err.println("Enter: notebook -FAQ "
+                        + "for information about the application commands;");
                 //parser.printUsage(System.err);
             }
         } catch (Exception e) {
@@ -124,7 +130,8 @@ public class CommandParser {
         }
         if (arguments.length == 1) {
             System.err.println("-show have 0 or 2 and more argument");
-            System.err.println("2 and more arg: -show \"from time\" \"to time\" \"keyword1\" \"keyword2\"...");
+            System.err.println("2 and more arg: -show \"from time\""
+                    + " \"to time\" \"keyword1\" \"keyword2\"...");
             return;
         }
 
@@ -137,7 +144,8 @@ public class CommandParser {
             }
 
             for (Note note : notes) {
-                if (note.getCreateDate().compareTo(from) > 0 && note.getCreateDate().compareTo(to) < 0) {
+                if (note.getCreateDate().compareTo(from) > 0
+                        && note.getCreateDate().compareTo(to) < 0) {
                     if (arguments.length >= 3) {
                         boolean isGoodWord = true;
                         for (int i = 2; i < arguments.length; i++) {

@@ -1,12 +1,19 @@
 package org.example;
 
+import static org.example.JsonWriter.initJsonFile;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-
-import static org.example.JsonWriter.initJsonFile;
-
+/**
+ * Some text.
+ */
 public class Main {
+    /**
+     * Some text.
+     *
+     * @param args  - Some text.
+     */
     public static void main(String[] args) {
         // Указываем кодировку cp1251
         String consoleEncoding = "Cp1251";

@@ -1,22 +1,32 @@
 package org.example;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.example.JsonReader.readObjectsFromJason;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static org.example.JsonReader.readObjectsFromJason;
+
 
 public class JsonWriter {
-
+    /**
+     * Some text.
+     *
+     * @param filePath  - Some text.
+     */
     public static void initJsonFile(String filePath) {
         List<Note> notes = new ArrayList<>();
         writeObjectsToJson(notes, filePath);
     }
 
+    /**
+     * Some text.
+     *
+     * @param notes     - Some text.
+     * @param filePath  - Some text.
+     */
     public static void writeObjectsToJson(List<Note> notes, String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -29,6 +39,12 @@ public class JsonWriter {
 
     }
 
+    /**
+     * Some text.
+     *
+     * @param note      - Some text.
+     * @param filePath  - Some text.
+     */
     public static void addObjectToJson(Note note, String filePath) {
         List<Note> notes = readObjectsFromJason(filePath);
 
