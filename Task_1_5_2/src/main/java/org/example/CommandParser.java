@@ -23,6 +23,9 @@ public class CommandParser {
     @Option(name = "-show", usage = "Show note list.")
     private boolean show;
 
+    @Option(name = "-FAQ", usage = "Show FAQ list.")
+    private boolean faq;
+
     @Argument(metaVar = "arguments", usage = "Arguments fot the command.")
     private String[] arguments;
 
@@ -40,7 +43,7 @@ public class CommandParser {
                 System.out.println(
                         "Error: The application does not support "
                                         + "processing multiple commands at once.Enter only one command");
-                parser.printUsage(System.err);
+                //parser.printUsage(System.err);
             }
 
             if (add) {
@@ -49,22 +52,24 @@ public class CommandParser {
                 rmCommandHandle();
             } else if (show) {
                 showCommandHandle();
+            } else if (faq){
+                faqCommandHandle();
+
             } else {
                 System.err.println("Enter: notebook -FAQ for information about the application commands;");
-                parser.printUsage(System.err);
+                //parser.printUsage(System.err);
             }
         } catch (Exception e) {
-            System.err.println(e.getMessage());
-            parser.printUsage(System.err);
+            //parser.printUsage(System.err);
         }
     }
 
 
     private void addCommandHandle() {
         if (arguments == null || arguments.length > 2 || arguments.length == 0) {
-            System.err.println("-add have 1 or 2 arguments"
-            + "1 arg: -add \"Note name\""
-            + "2 arg: -add \"Note name\" \"Note body\"");
+            System.err.println("-add have 1 or 2 arguments");
+            System.err.println("1 arg: -add \"Note name\"");
+            System.err.println("2 arg: -add \"Note name\" \"Note body\"");
             return;
         }
         String name = arguments[0];
@@ -81,8 +86,8 @@ public class CommandParser {
 
     private void rmCommandHandle() {
         if (arguments == null || arguments.length != 1) {
-            System.err.println("-rn have 1 argument"
-                    + "1 arg: -rm \"Note name\"");
+            System.err.println("-rn have 1 argument");
+            System.err.println("1 arg: -rm \"Note name\"");
             return;
         }
         String name = arguments[0];
@@ -118,8 +123,8 @@ public class CommandParser {
             return;
         }
         if (arguments.length == 1) {
-            System.err.println("-show have 0 or 2 and more argument"
-                    + "2 and more arg: -show \"from time\" \"to time\" \"keyword1\" \"keyword2\"...");
+            System.err.println("-show have 0 or 2 and more argument");
+            System.err.println("2 and more arg: -show \"from time\" \"to time\" \"keyword1\" \"keyword2\"...");
             return;
         }
 
@@ -134,11 +139,16 @@ public class CommandParser {
             for (Note note : notes) {
                 if (note.getCreateDate().compareTo(from) > 0 && note.getCreateDate().compareTo(to) < 0) {
                     if (arguments.length >= 3) {
-                        for (int i = 2; i < arguments.length - 1; i++) {
+                        boolean isGoodWord = true;
+                        for (int i = 2; i < arguments.length; i++) {
                             if (note.getNoteName().contains(arguments[i])) {
-                                System.out.println(note);
-                                break;
+                                continue;
                             }
+                            isGoodWord = false;
+                            break;
+                        }
+                        if (isGoodWord) {
+                            System.out.println(note);
                         }
                     } else {
                         System.out.println(note);
@@ -148,6 +158,12 @@ public class CommandParser {
             }
         }
 
+    }
+
+    private void faqCommandHandle() {
+        System.out.println("\"-add\" - add note to note list");
+        System.out.println("\"-rm\" - remove note from note list");
+        System.out.println("\"-show\"- show all notes from note list");
     }
 
 
@@ -160,6 +176,9 @@ public class CommandParser {
             count++;
         }
         if (show) {
+            count++;
+        }
+        if (faq) {
             count++;
         }
         return count;

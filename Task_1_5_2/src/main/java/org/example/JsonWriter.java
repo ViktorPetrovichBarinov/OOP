@@ -22,9 +22,9 @@ public class JsonWriter {
 
         try {
             objectMapper.writeValue(new File(filePath), notes);
-            System.out.println("Записали");
+            System.out.println("Write out");
         } catch (IOException e) {
-            System.err.println("Не записали");
+            System.err.println("Didn't write out");
         }
 
     }
