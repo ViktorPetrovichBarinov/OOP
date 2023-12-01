@@ -37,26 +37,7 @@ public class Tests {
         }
     }
 
-    @Test
-    void test5() {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setOut(printStream);
 
-        String filePathForCurrentTest = "forTest.json";
-        CommandParser commandParser = new CommandParser(filePathForCurrentTest);
-
-        String[] command1 = new String[]{"-show", "02.12.2023 04:15", "02.12.2023 05:25", "word1", "word3"};
-        commandParser.parse(command1);
-
-        String capturedOutput = outputStream.toString();
-
-        assertTrue(capturedOutput.contains("Note name:"));// word1 word2 word3
-        assertTrue(capturedOutput.contains("Note content:"));
-        assertTrue(capturedOutput.contains("CreateDate:"));//2023-12-02 04:22:55
-
-        System.setOut(originalOut);
-    }
 
     @Test
     void test1() {
@@ -177,5 +158,36 @@ public class Tests {
         System.setOut(originalOut);
     }
 
+    @Test
+    void test5() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
 
+        CommandParser commandParser = new CommandParser(filePath);
+        String[] command0 = new String[]{"-rm", "Name3"};
+        commandParser.parse(command0);
+
+        String[] command1 = new String[]{"-add", "Name1", "Body1"};
+
+        commandParser.parse(command1);
+
+        String[] command2 = new String[]{"-add", "Name2"};
+        commandParser.parse(command2);
+
+        String[] command3 = new String[]{"-add", "Name3"};
+        commandParser.parse(command3);
+
+        String[] command4 = new String[]{"-rm", "Name2"};
+        commandParser.parse(command4);
+        String[] command5 = new String[]{"-show", "02.12.2020 04:15", "02.12.2030 04:25", "Name1"};
+        new CommandParser(filePath).parse(command5);
+
+        String capturedOutput = outputStream.toString();
+
+        assertTrue(capturedOutput.contains("Write out"));
+        assertTrue(capturedOutput.contains("Note name: Name1"));
+        assertTrue(capturedOutput.contains("Note content: Body1"));
+        System.setOut(originalOut);
+    }
 }
