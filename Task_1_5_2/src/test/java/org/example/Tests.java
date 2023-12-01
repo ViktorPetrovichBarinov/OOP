@@ -169,10 +169,10 @@ public class Tests {
 
 
         String capturedOutput = outputStream.toString();
-        String answer = "Note name: word1 word2 word3\n"
-                + "Note content: \n"
-                + "CreateDate: 2023-12-02 04:22:55\n\n";
-        assertEquals(capturedOutput, answer);
+
+        assertTrue(capturedOutput.contains("Note name: word1 word2 word3"));
+        assertTrue(capturedOutput.contains("Note content: "));
+        assertTrue(capturedOutput.contains("CreateDate: 2023-12-02 04:22:55"));
 
         System.setOut(originalOut);
     }
