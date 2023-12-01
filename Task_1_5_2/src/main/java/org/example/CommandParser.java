@@ -46,9 +46,9 @@ public class CommandParser {
             parser.parseArgument(args);
 
             if (countActiveCommands() > 1) {
-                System.out.println(
+                System.out.print(
                         "Error: The application does not support "
-                                + "processing multiple commands at once.Enter only one command");
+                                + "processing multiple commands at once.Enter only one command\n");
                 //parser.printUsage(System.err);
             }
 
@@ -62,8 +62,8 @@ public class CommandParser {
                 faqCommandHandle();
 
             } else {
-                System.err.println("Enter: notebook -FAQ "
-                        + "for information about the application commands;");
+                System.err.print("Enter: notebook -FAQ "
+                        + "for information about the application commands;\n");
                 //parser.printUsage(System.err);
             }
         } catch (Exception e) {
@@ -74,9 +74,9 @@ public class CommandParser {
 
     private void addCommandHandle() {
         if (arguments == null || arguments.length > 2 || arguments.length == 0) {
-            System.err.println("-add have 1 or 2 arguments");
-            System.err.println("1 arg: -add \"Note name\"");
-            System.err.println("2 arg: -add \"Note name\" \"Note body\"");
+            System.err.print("-add have 1 or 2 arguments\n");
+            System.err.print("1 arg: -add \"Note name\"\n");
+            System.err.print("2 arg: -add \"Note name\" \"Note body\"\n");
             return;
         }
         String name = arguments[0];
@@ -93,14 +93,14 @@ public class CommandParser {
 
     private void rmCommandHandle() {
         if (arguments == null || arguments.length != 1) {
-            System.err.println("-rn have 1 argument");
-            System.err.println("1 arg: -rm \"Note name\"");
+            System.err.print("-rn have 1 argument\n");
+            System.err.print("1 arg: -rm \"Note name\"\n");
             return;
         }
         String name = arguments[0];
         List<Note> notes = readObjectsFromJason(filePath);
         if (notes == null) {
-            System.err.println("A note with that name was not found");
+            System.err.print("A note with that name was not found\n");
             return;
         }
         int startNotesLength = notes.size();
@@ -111,7 +111,7 @@ public class CommandParser {
             }
         }
         if (notes.size() == startNotesLength) {
-            System.err.println("A note with that name was not found");
+            System.err.print("A note with that name was not found\n");
             return;
         }
         writeObjectsToJson(notes, filePath);
@@ -120,7 +120,7 @@ public class CommandParser {
     private void showCommandHandle() {
         List<Note> notes = readObjectsFromJason(filePath);
         if (notes == null) {
-            System.out.println("You have no notes");
+            System.out.print("You have no notes\n");
             return;
         }
         if (arguments == null || arguments.length == 0) {
@@ -130,9 +130,9 @@ public class CommandParser {
             return;
         }
         if (arguments.length == 1) {
-            System.err.println("-show have 0 or 2 and more argument");
-            System.err.println("2 and more arg: -show \"from time\""
-                    + " \"to time\" \"keyword1\" \"keyword2\"...");
+            System.err.print("-show have 0 or 2 and more argument\n");
+            System.err.print("2 and more arg: -show \"from time\""
+                    + " \"to time\" \"keyword1\" \"keyword2\"...\n");
             return;
         }
 
@@ -141,7 +141,7 @@ public class CommandParser {
             Date from = fromStringToDate(arguments[0]);
             Date to = fromStringToDate(arguments[1]);
             if (from == null || to == null) {
-                System.err.println("Date format: dd.MM.yyyy (H)H:mm");
+                System.err.print("Date format: dd.MM.yyyy (H)H:mm\n");
             }
 
             for (Note note : notes) {
@@ -157,10 +157,10 @@ public class CommandParser {
                             break;
                         }
                         if (isGoodWord) {
-                            System.out.println(note);
+                            System.out.print(note + "\n");
                         }
                     } else {
-                        System.out.println(note);
+                        System.out.print(note + "\n");
                     }
 
                 }
@@ -170,9 +170,9 @@ public class CommandParser {
     }
 
     private void faqCommandHandle() {
-        System.out.println("\"-add\" - add note to note list");
-        System.out.println("\"-rm\" - remove note from note list");
-        System.out.println("\"-show\"- show all notes from note list");
+        System.out.print("\"-add\" - add note to note list\n");
+        System.out.print("\"-rm\" - remove note from note list\n");
+        System.out.print("\"-show\"- show all notes from note list\n");
     }
 
 

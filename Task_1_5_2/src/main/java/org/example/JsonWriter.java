@@ -32,9 +32,9 @@ public class JsonWriter {
 
         try {
             objectMapper.writeValue(new File(filePath), notes);
-            System.out.println("Write out");
+            System.out.print("Write out\n");
         } catch (IOException e) {
-            System.err.println("Didn't write out");
+            System.err.print("Didn't write out\n");
         }
 
     }

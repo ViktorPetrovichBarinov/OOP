@@ -22,7 +22,7 @@ public class JsonReader {
         try {
             return objectMapper.readValue(new File(filePath), new TypeReference<List<Note>>() {});
         } catch (IOException e) {
-            System.err.println("Error reading from file");
+            System.err.print("Error reading from file\n");
             return null;
         }
     }
