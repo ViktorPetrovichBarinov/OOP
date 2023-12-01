@@ -4,7 +4,7 @@ import static org.example.JsonReader.readObjectsFromJason;
 
 import static org.example.JsonWriter.addObjectToJson;
 import static org.example.JsonWriter.writeObjectsToJson;
-import static org.example.parseFromStringToDate.fromStringToDate;
+import static org.example.ParseFromStringToDate.fromStringToDate;
 
 import java.util.Date;
 import java.util.List;
@@ -40,6 +40,7 @@ public class CommandParser {
 
     void parse(String[] args) {
         CmdLineParser parser = new CmdLineParser(this);
+        setAllFalse();
 
         try {
             parser.parseArgument(args);
@@ -190,5 +191,12 @@ public class CommandParser {
             count++;
         }
         return count;
+    }
+
+    private void setAllFalse() {
+        this.faq = false;
+        this.show = false;
+        this.remove = false;
+        this.add = false;
     }
 }
