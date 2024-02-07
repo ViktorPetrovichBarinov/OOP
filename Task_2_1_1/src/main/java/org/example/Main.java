@@ -10,7 +10,7 @@ public class Main {
      */
     public static void main(String[] args) {
         long[] array = {
-            1000000000000000003L,
+            1000000000000000003L/*,
             1000000000000000009L,
             1000000000000000031L,
             1000000000000000079L,
@@ -32,24 +32,26 @@ public class Main {
             1000000000000000877L,
             1000000000000000913L,
             1000000000000000931L,
-            1000000000000000997L};
+            1000000000000000997L*/};
 
         long startTime;
         long endTime;
 
         startTime = System.currentTimeMillis();
-        System.out.print(streamCalculation(array, 4));
+        System.out.print("sequential calculus: " + sequentialCalculation(array));
         endTime = System.currentTimeMillis();
         System.out.println("  ||  " + (endTime - startTime));
 
-        startTime = System.currentTimeMillis();
-        System.out.print(threadCalculation(array, 4));
-        endTime = System.currentTimeMillis();
-        System.out.println("  ||  " + (endTime - startTime));
+        for (int i = 1; i <= 4; i++) {
+            startTime = System.currentTimeMillis();
+            System.out.print("thread calculus(" + i + "): " + threadCalculation(array, i));
+            endTime = System.currentTimeMillis();
+            System.out.println("  ||  " + (endTime - startTime));
+        }
 
         startTime = System.currentTimeMillis();
-        System.out.print(sequentialCalculation(array));
+        System.out.print("stream calculus:" + streamCalculation(array, 4));
         endTime = System.currentTimeMillis();
         System.out.println("  ||  " + (endTime - startTime));
-            }
+    }
 }
