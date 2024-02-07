@@ -1,13 +1,16 @@
 package org.example;
 
-import static org.example.Logic.*;
+import static org.example.Logic.isPrimeNumber;
+import static org.example.Logic.sequentialCalculation;
+import static org.example.Logic.threadCalculation;
+import static org.example.Logic.streamCalculation;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.MethodSource;
+
 
 
 /**

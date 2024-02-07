@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Some text.
+ */
 public class Logic {
 
     static boolean sequentialCalculation(long[] number) {
@@ -17,21 +20,23 @@ public class Logic {
 
 
 
-    private static AtomicBoolean threadCalculationResult = new AtomicBoolean();//хранит результат,
+    private static AtomicBoolean threadCalculationResult = new AtomicBoolean(); //хранит результат,
     // чтобы каждый поток мог убится, если мы нашли не простое число
-    private static AtomicInteger threadCalculationIndex = new AtomicInteger();//текущий индекс, который обрабатывают потоки
+    private static AtomicInteger threadCalculationIndex = new AtomicInteger(); //текущий индекс, который обрабатывают потоки
+
     static boolean threadCalculation(long[] number, int numberOfThreads) {
         threadCalculationResult.set(true);
         threadCalculationIndex.set(0);
-        Thread[] threads = new Thread[numberOfThreads];//инициализируем
+        Thread[] threads = new Thread[numberOfThreads]; //инициализируем
 
-        for (int i = 0; i < numberOfThreads; i++) {//создаём потоки
+        for (int i = 0; i < numberOfThreads; i++) { //создаём потоки
             threads[i] = new Thread(() -> {
-                while(threadCalculationIndex.get() < number.length
-                        && threadCalculationResult.get()) {//пока мы не обработали все индексы
+                while (threadCalculationIndex.get() < number.length
+                        && threadCalculationResult.get()) { //пока мы не обработали все индексы
                     //и не нашли хотя бы одно не простое число, то продолжаем обработку массива
                     int index = threadCalculationIndex.getAndIncrement();
-                    if (!isPrimeNumber(number[index])) {//если число не простое, завершаем работу потока
+                    if (!isPrimeNumber(number[index])) {
+                        //если число не простое, завершаем работу потока
                         threadCalculationResult.set(false);
                         break;
                     }
@@ -39,15 +44,15 @@ public class Logic {
             });
         }
 
-        for (int i = 0; i < numberOfThreads; i++) {//стартуем все потоки
+        for (int i = 0; i < numberOfThreads; i++) { //стартуем все потоки
             threads[i].start();
         }
 
-        for (int i = 0; i < numberOfThreads; i++){//ожидаем завершения всех потоков
+        for (int i = 0; i < numberOfThreads; i++) { //ожидаем завершения всех потоков
             try {
                 threads[i].join();
             } catch (InterruptedException e) {
-
+                System.exit(-1);
             }
         }
 
@@ -55,10 +60,18 @@ public class Logic {
     }
 
 
+    /**
+     * Some text.
+     *
+     * @param numbers - Some text.
+     * @param numberOfThreads - Some text.
+     * @return - Some text.
+     */
     public static boolean streamCalculation(long[] numbers, int numberOfThreads) {
 
         //изменяем на нужное
-        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", String.valueOf(numberOfThreads));
+        System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism",
+                String.valueOf(numberOfThreads));
 
         return Arrays.stream(numbers)
                 .parallel()
