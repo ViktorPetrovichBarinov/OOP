@@ -3,7 +3,7 @@ package org.example;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ParallelCalculation extends Calculation{
+public class ParallelCalculation extends Calculation {
 
 
     ParallelCalculation(int numberOfThreads) {
@@ -16,9 +16,13 @@ public class ParallelCalculation extends Calculation{
     }
 
     private int numberOfThreads;
-    private final AtomicBoolean threadCalculationResult; //хранит результат,
+
+    // Хранит результат,
     // чтобы каждый поток мог убиться, если мы нашли не простое число
-    private final AtomicInteger threadCalculationIndex; //текущий индекс, который обрабатывают потоки
+    private final AtomicBoolean threadCalculationResult;
+
+    //текущий индекс, который обрабатывают потоки
+    private final AtomicInteger threadCalculationIndex;
 
     public void setNumberOfThreads(int numberOfThreads) {
         this.numberOfThreads = numberOfThreads;

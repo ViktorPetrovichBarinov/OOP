@@ -3,6 +3,9 @@ package org.example;
 import java.util.Arrays;
 import java.util.stream.LongStream;
 
+/**
+ * Class for my realisation of calculation
+ */
 public class StreamCalculation extends Calculation{
 
     StreamCalculation(int numberOfThreads) {
@@ -11,8 +14,14 @@ public class StreamCalculation extends Calculation{
         }
         this.numberOfThreads = numberOfThreads;
     }
+
     private int numberOfThreads;
 
+    /**
+     * Method sets number of threads for calculation
+     *
+     * @param numberOfThreads - Some text.
+     */
     public void setNumberOfThreads(int numberOfThreads) {
         if (numberOfThreads <= 0) {
             throw new IllegalArgumentException("Number of threads can't be negative.");

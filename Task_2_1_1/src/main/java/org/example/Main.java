@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Results for table
+ */
 public class Main {
     /**
      * Some text.

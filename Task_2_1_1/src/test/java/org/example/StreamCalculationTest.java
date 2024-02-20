@@ -3,17 +3,22 @@ package org.example;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests for StreamCalculation
+ */
 public class StreamCalculationTest {
 
     @ParameterizedTest
     @MethodSource("createIsPrimeArrayStreamCalculationTests")
     void checkThatArrayIsPrimeOrNotForStream(long[] numbers, boolean isPrime) {
         StreamCalculation streamCalculation = new StreamCalculation(6);
+        assertEquals(streamCalculation.calculate(numbers), isPrime);
+
+        streamCalculation.setNumberOfThreads(4);
         assertEquals(streamCalculation.calculate(numbers), isPrime);
     }
 
