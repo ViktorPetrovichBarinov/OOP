@@ -22,7 +22,7 @@ public class StreamCalculation extends Calculation{
      *
      * @param numberOfThreads - Some text.
      */
-    public void setNumberOfThreads(int numberOfThreads) {
+    public void setNumberOfThreads(int numberOfThreads) throws IllegalArgumentException{
         if (numberOfThreads <= 0) {
             throw new IllegalArgumentException("Number of threads can't be negative.");
         }

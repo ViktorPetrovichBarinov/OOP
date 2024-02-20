@@ -3,6 +3,8 @@ package org.example;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Stream;
+
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -30,5 +32,15 @@ public class StreamCalculationTest {
                 Arguments.of(new long[]{2, 3, 5, 7, Integer.MIN_VALUE}, false),
                 Arguments.of(new long[]{2, 3, 5, 7, 1000000000000000003L}, true)
         );
+    }
+
+    @Test
+    void errorTest() {
+        StreamCalculation streamCalculation = new StreamCalculation(6);
+        try {
+            streamCalculation.setNumberOfThreads(-1);
+        } catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(), "Number of threads can't be negative.");
+        }
     }
 }
