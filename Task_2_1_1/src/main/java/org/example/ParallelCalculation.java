@@ -30,6 +30,14 @@ public class ParallelCalculation extends Calculation{
         threadCalculationIndex.set(0);
         Thread[] threads = new Thread[numberOfThreads]; //инициализируем
 
+        createCalculationThread(threads, numbers);
+
+        startAndJoin(threads);
+
+        return threadCalculationResult.get();
+    }
+
+    private void createCalculationThread(Thread[] threads, long[] numbers) {
         for (int i = 0; i < numberOfThreads; i++) { //создаём потоки
             threads[i] = new Thread(() -> {
                 while (threadCalculationIndex.get() < numbers.length
@@ -44,7 +52,9 @@ public class ParallelCalculation extends Calculation{
                 }
             });
         }
+    }
 
+    private void startAndJoin(Thread[] threads) {
         for (int i = 0; i < numberOfThreads; i++) { //стартуем все потоки
             threads[i].start();
         }
@@ -56,8 +66,6 @@ public class ParallelCalculation extends Calculation{
                 System.exit(-1);
             }
         }
-
-        return threadCalculationResult.get();
     }
 
 }
