@@ -1,7 +1,7 @@
 package org.example;
 
 /**
- * Results for table
+ * Results for table.
  */
 public class Main {
     /**

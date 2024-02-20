@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.stream.LongStream;
 
 /**
- * Class for my realisation of calculation
+ * Class for my realisation of calculation.
  */
 public class StreamCalculation extends Calculation{
 
@@ -18,7 +18,7 @@ public class StreamCalculation extends Calculation{
     private int numberOfThreads;
 
     /**
-     * Method sets number of threads for calculation
+     * Method sets number of threads for calculation.
      *
      * @param numberOfThreads - Some text.
      */

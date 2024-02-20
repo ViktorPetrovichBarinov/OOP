@@ -1,6 +1,9 @@
 package org.example;
 
-public abstract class Calculation {
+/**
+ * The class will perform the search for arrays of prime numbers.
+ */
+abstract class Calculation {
 
     abstract public boolean calculate(long[] numbers);
 
