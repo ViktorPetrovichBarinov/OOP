@@ -10,10 +10,10 @@ public class Main {
      */
     public static void main(String[] args) {
         long[] array = {
-            1000000000000000003L/*,
+            1000000000000000003L,
             1000000000000000009L,
             1000000000000000031L,
-            1000000000000000079L,
+            1000000000000000079L/*,
             1000000000000000177L,
             1000000000000000183L,
             1000000000000000201L,
@@ -37,20 +37,25 @@ public class Main {
         long startTime;
         long endTime;
 
+        SequentialCalculation sequentialCalculation = new SequentialCalculation();
         startTime = System.currentTimeMillis();
-        System.out.print("sequential calculus: " + sequentialCalculation(array));
+        System.out.print("sequential calculus: " + sequentialCalculation.calculate(array));
         endTime = System.currentTimeMillis();
         System.out.println("  ||  " + (endTime - startTime));
 
+        ParallelCalculation parallelCalculation = new ParallelCalculation(1);
         for (int i = 1; i <= 4; i++) {
+            parallelCalculation.setNumberOfThreads(i);
             startTime = System.currentTimeMillis();
-            System.out.print("thread calculus(" + i + "): " + threadCalculation(array, i));
+            System.out.print("thread calculus(" + i + "): " + parallelCalculation.calculate(array));
             endTime = System.currentTimeMillis();
             System.out.println("  ||  " + (endTime - startTime));
         }
 
+        StreamCalculation streamCalculation = new StreamCalculation(1);
+        streamCalculation.setNumberOfThreads(4);
         startTime = System.currentTimeMillis();
-        System.out.print("stream calculus:" + streamCalculation(array, 4));
+        System.out.print("stream calculus: " + streamCalculation.calculate(array));
         endTime = System.currentTimeMillis();
         System.out.println("  ||  " + (endTime - startTime));
     }
