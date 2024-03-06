@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
 
-        Controller controller = new Controller(4);
+        Controller controller = new Controller(4, 10);
         controller.startWorking();
     }
 }

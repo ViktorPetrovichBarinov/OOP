@@ -1,34 +1,34 @@
 package org.example;
 
-import org.example.BackerLogic.BackerController;
+import org.example.BackerLogic.BakerController;
+import org.example.Queu.MyBlockingQueue;
+import org.example.UserLogic.UserInterface;
+import org.example.deliviryLogic.DeliveryController;
 import org.example.ordersLogic.Order;
 
-import java.lang.reflect.Parameter;
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class Controller {
-    private final int maxSizeOfWaitingForCookingOrder;
-    private final Queue<Order> waitingForCookingOrder = new LinkedList<>();
-
+    private final MyBlockingQueue<Order> waitingForCookingOrder;
+    private final MyBlockingQueue<Order> waitingToBeSentOrder;
 
     private final static String START_MESSAGE = "This is pizzeria, we are waiting for your orders";
 
-    public Controller (int maxSizeOfWaitingForCookingOrder) {
-        this.maxSizeOfWaitingForCookingOrder = maxSizeOfWaitingForCookingOrder;
+    public Controller (int maxSizeOfWaitingForCookingOrder, int maxSizeOfWaitingToBeSentOrder) {
+        waitingForCookingOrder = new MyBlockingQueue<>(maxSizeOfWaitingForCookingOrder);
+        waitingToBeSentOrder = new MyBlockingQueue<>(maxSizeOfWaitingToBeSentOrder);
     }
 
 
     public void startWorking() throws InterruptedException {
 
 
-        UserInterface ui = new UserInterface(waitingForCookingOrder, maxSizeOfWaitingForCookingOrder, START_MESSAGE);
+        UserInterface ui = new UserInterface(waitingForCookingOrder, START_MESSAGE);
         ui.start();
         int[] bakersArray = new int[] {5, 5, 5, 5};
-        BackerController bakerController = new BackerController(waitingForCookingOrder, maxSizeOfWaitingForCookingOrder, bakersArray);
+        BakerController bakerController = new BakerController(waitingForCookingOrder, waitingToBeSentOrder, bakersArray);
         bakerController.start();
-
-
+        int[] deliverymanArray = new int[] {1,2,3,4};
+        DeliveryController deliveryController = new DeliveryController(waitingToBeSentOrder,deliverymanArray);
+        deliveryController.start();
 
     }
 

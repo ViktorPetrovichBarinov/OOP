@@ -1,25 +1,36 @@
 package org.example.BackerLogic;
 
+import org.example.Queu.MyBlockingQueue;
 import org.example.ordersLogic.Order;
+import org.example.ordersLogic.State;
 
 public class BakerThread implements Runnable {
+    private final MyBlockingQueue<Order> waitingToBeSent;
     private int secondsToOnePizza;
     private Order order;
-    public BakerThread(int secondsToOnePizza, Order order) {
+    public BakerThread(MyBlockingQueue<Order> waitingToBeSent,int secondsToOnePizza, Order order) {
+        this.waitingToBeSent = waitingToBeSent;
         this.secondsToOnePizza = secondsToOnePizza;
         this.order = order;
     }
 
     @Override
     public void run() {
+        System.out.println("Start cooking order {" + order.id() + "}:" + order.pizzaName());
+        order.setState(State.COOKING);
         try {
-            System.out.println("Приступил к выполненю заказа:" + order.pizzaName());
             Thread.sleep(secondsToOnePizza * 1000L);
-            System.out.println("Name: " + order.pizzaName());
-            System.out.println("Id: " + order.id());
-            System.out.println("was transferred to the warehouse");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        order.setState(State.WAITING_TO_BE_SENT);
+        synchronized (waitingToBeSent) {
+            try {
+                waitingToBeSent.enqueue(order);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println("Pizza: " + order.pizzaName() + " {" + order.id() + "} was transferred to the warehouse");
     }
 }
