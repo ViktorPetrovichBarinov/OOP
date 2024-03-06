@@ -3,6 +3,7 @@ package org.example;
 import org.example.BackerLogic.BakerController;
 import org.example.Queu.MyBlockingQueue;
 import org.example.UserLogic.UserInterface;
+import org.example.config.Config;
 import org.example.deliviryLogic.DeliveryController;
 import org.example.deliviryLogic.DeliveryMan;
 import org.example.ordersLogic.Order;
@@ -18,19 +19,17 @@ public class Controller {
     private BakerController bakerController;
     private DeliveryController deliveryController;
 
-    public Controller (int maxSizeOfWaitingForCookingOrder, int maxSizeOfWaitingToBeSentOrder) {
-        waitingForCookingOrder = new MyBlockingQueue<>(maxSizeOfWaitingForCookingOrder);
-        waitingToBeSentOrder = new MyBlockingQueue<>(maxSizeOfWaitingToBeSentOrder);
+    public Controller (Config config) {
+        waitingForCookingOrder = new MyBlockingQueue<>(config.getMaxSizeOfWaitingForCookingOrder());
+        int[] bakersArray = config.getBakersArray().stream().mapToInt(Integer::intValue).toArray();
+        waitingToBeSentOrder = new MyBlockingQueue<>(config.getMaxSizeOfWaitingToBeSentOrder());
 
         this.userInterface = new UserInterface(waitingForCookingOrder, START_MESSAGE);
 
-        int[] bakersArray = new int[] {5, 5, 5, 5};
+
         this.bakerController = new BakerController(waitingForCookingOrder, waitingToBeSentOrder, bakersArray);
 
-        DeliveryMan[] deliverymanArray = new DeliveryMan[] {new DeliveryMan(1, 10),
-                new DeliveryMan(2, 15),
-                new DeliveryMan(3, 20),
-                new DeliveryMan(4, 25)};
+        DeliveryMan[] deliverymanArray = config.getDeliverymanArray().toArray(new DeliveryMan[0]);
         this.deliveryController = new DeliveryController(waitingToBeSentOrder,deliverymanArray);
 
 
