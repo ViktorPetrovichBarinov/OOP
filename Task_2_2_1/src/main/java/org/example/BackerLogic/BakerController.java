@@ -11,6 +11,7 @@ public class BakerController extends Thread{
     private final int[] bakersArray;
     private final Thread[] bakerThreads;
 
+
     public BakerController(MyBlockingQueue<Order> waitingForCookingOrder, MyBlockingQueue<Order> waitingToBeSentOrder, int[] bakersArray) {
         this.waitingForCookingOrder = waitingForCookingOrder;
         this.waitingToBeSentOrder = waitingToBeSentOrder;
@@ -26,32 +27,44 @@ public class BakerController extends Thread{
     @Override
     public void run() {
         while(true) {
+            if (Thread.currentThread().isInterrupted() && waitingForCookingOrder.getNumberOfElements() == 0) {
+                break;
+            }
             boolean isFound = false;
             Order currentOrder = null;
             for (int i = 0; i < bakerThreads.length && !isFound; i++) {
                 if (!bakerThreads[i].isAlive()) {
                     synchronized (waitingForCookingOrder) {
+
                         try {
-                            currentOrder = waitingForCookingOrder.dequeue();
+                            if (!Thread.currentThread().isInterrupted()) {
+                                currentOrder = waitingForCookingOrder.dequeue();
+                            }
                         } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+
                         }
                     }
-                    bakerThreads[i] = new Thread(new BakerThread(waitingToBeSentOrder, bakersArray[i], currentOrder));
-                    bakerThreads[i].start();
-                    isFound = true;
+                    if (currentOrder != null) {
+                        bakerThreads[i] = new Thread(new BakerThread(waitingToBeSentOrder, bakersArray[i], currentOrder));
+                        bakerThreads[i].start();
+                        isFound = true;
+                    }
                 }
             }
             if (!isFound) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+
                 }
             } else {
                 System.out.println("Baker was found for order {" + currentOrder.id() + "}  \"" + currentOrder.pizzaName() + "\"");
             }
         }
+        System.out.println("The bakery has run out of orders");
+
     }
+
+
     
 }

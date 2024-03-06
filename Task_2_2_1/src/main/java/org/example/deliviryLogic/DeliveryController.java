@@ -10,17 +10,17 @@ import static org.example.ordersLogic.State.NULL;
 
 public class DeliveryController extends Thread{
     private final MyBlockingQueue<Order> waitingToBeSentOrder;
-    private final int[] deliverymansArray;
-    private final Thread[] deliverymansThreads;
+    private final DeliveryMan[] deliverymanArray;
+    private final Thread[] deliverymanThreads;
 
-    public DeliveryController(MyBlockingQueue<Order> waitingToBeSentOrder, int[] deliverymansArray) {
+    public DeliveryController(MyBlockingQueue<Order> waitingToBeSentOrder, DeliveryMan[] deliverymanArray) {
         this.waitingToBeSentOrder = waitingToBeSentOrder;
-        this.deliverymansArray = deliverymansArray;
-        this.deliverymansThreads = new Thread[deliverymansArray.length];
+        this.deliverymanArray = deliverymanArray;
+        this.deliverymanThreads = new Thread[deliverymanArray.length];
 
-        for (int i = 0; i < deliverymansArray.length; i++) {
+        for (int i = 0; i < deliverymanArray.length; i++) {
             Order fakeOrder = new Order("", -1, NULL);
-            deliverymansThreads[i] = new Thread(new BakerThread(waitingToBeSentOrder, deliverymansArray[i], fakeOrder));
+            deliverymanThreads[i] = new Thread(new DeliverymanThread(waitingToBeSentOrder, new ArrayList<>(), deliverymanArray[i].timeToOnePizza()));
         }
     }
 
@@ -28,24 +28,27 @@ public class DeliveryController extends Thread{
     @Override
     public void run() {
         while(true) {
+            if (Thread.currentThread().isInterrupted() && waitingToBeSentOrder.getNumberOfElements() == 0) {
+                break;
+            }
             boolean isFound = false;
-            Order currentOrder;
             if (waitingToBeSentOrder.getNumberOfElements() != 0) {//проверяем есть ли пицца на складе, есл инету ожидаем
-                for (int i = 0; i < deliverymansThreads.length && !isFound; i++) {//Если есть, то ищем доставщика
-                    if (!deliverymansThreads[i].isAlive()) {//если нашли свободного доставщика
+                for (int i = 0; i < deliverymanThreads.length && !isFound; i++) {//Если есть, то ищем доставщика
+                    if (!deliverymanThreads[i].isAlive()) {//если нашли свободного доставщика
                         ArrayList<Order> ordersForDeliveryMan = new ArrayList<>();//начинаем заполнять егэ рюкзак
                         synchronized (waitingToBeSentOrder) {//синхронизируемся на очереди
-                            while(ordersForDeliveryMan.size() != deliverymansArray[i]
+                            while(ordersForDeliveryMan.size() != deliverymanArray[i].pizzasCapacity()
                                     && waitingToBeSentOrder.getNumberOfElements() != 0) {//пока не заполнился рюкзак и не закончились заказы
                                 try {
                                     ordersForDeliveryMan.add(waitingToBeSentOrder.dequeue());//добавляем элемент из очереди
                                 } catch (InterruptedException e) {
-                                    throw new RuntimeException(e);
+
                                 }
                             }
                         }
-                        deliverymansThreads[i] = new Thread(new DeliverymanThread(waitingToBeSentOrder, ordersForDeliveryMan));
-                        deliverymansThreads[i].start();
+                        deliverymanThreads[i] = new Thread(new DeliverymanThread(waitingToBeSentOrder,
+                                ordersForDeliveryMan, deliverymanArray[i].timeToOnePizza()));
+                        deliverymanThreads[i].start();
                         isFound = true;
                     }
                 }
@@ -54,10 +57,11 @@ public class DeliveryController extends Thread{
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+
                 }
             }
         }
+        System.out.println("Out of pizzas in the warehouse");
 
     }
 

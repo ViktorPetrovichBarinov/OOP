@@ -21,7 +21,7 @@ public class UserInterface extends Thread{
 
     private final MyBlockingQueue<Order> waitingForCookingOrder;
 
-    private final Scanner input = new Scanner(System.in);
+
     private final AtomicInteger numberOfNextOrder = new AtomicInteger(1);
     public UserInterface(MyBlockingQueue<Order> waitingForCookingOrder, String startMessage) {
         this.waitingForCookingOrder = waitingForCookingOrder;
@@ -31,26 +31,31 @@ public class UserInterface extends Thread{
 
     @Override
     public void run() {
-        while(true) {
-            System.out.println("Enter name of pizza that you would like: ");
-            String pizzaName = input.nextLine();
-            System.out.println("Pizza name: " + pizzaName);
-            synchronized (waitingForCookingOrder) {
-                if (waitingForCookingOrder.getNumberOfElements() == waitingForCookingOrder.getMaxCapacity()) {
-                    System.out.println("Sorry the service is overloaded, please wait a minute.");
-                    continue;
+        try (Scanner input = new Scanner(System.in)) {
+            while(true) {
+                System.out.println("Enter name of pizza that you would like: ");
+                String pizzaName = input.nextLine();
+                System.out.println("Pizza name: " + pizzaName);
+                synchronized (waitingForCookingOrder) {
+                    if (waitingForCookingOrder.getNumberOfElements() == waitingForCookingOrder.getMaxCapacity()) {
+                        System.out.println("Sorry the service is overloaded, please wait a minute.");
+                        continue;
+                    }
+                }
+                int orderNumber = numberOfNextOrder.getAndIncrement();
+                Order currentOrder = new Order(pizzaName, orderNumber, org.example.ordersLogic.State.WAITING_FOR_COOKING);
+                synchronized (waitingForCookingOrder) {
+                    try {
+                        waitingForCookingOrder.enqueue(currentOrder);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
-            int orderNumber = numberOfNextOrder.getAndIncrement();
-            Order currentOrder = new Order(pizzaName, orderNumber, org.example.ordersLogic.State.WAITING_FOR_COOKING);
-            synchronized (waitingForCookingOrder) {
-                try {
-                    waitingForCookingOrder.enqueue(currentOrder);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+        } catch (Exception e) {
+            System.out.println("We do not accept orders");
         }
+
     }
 
 

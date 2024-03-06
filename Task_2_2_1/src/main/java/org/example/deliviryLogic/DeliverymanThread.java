@@ -2,16 +2,18 @@ package org.example.deliviryLogic;
 
 import org.example.Queu.MyBlockingQueue;
 import org.example.ordersLogic.Order;
+import org.example.ordersLogic.State;
 
 import java.util.ArrayList;
 
 public class DeliverymanThread implements Runnable{
     private final MyBlockingQueue<Order> waitingToBeSentOrder;
     private final ArrayList<Order> ordersInTheBag;
-    private final static Integer timeToOnePizza = 20;
-    public DeliverymanThread(MyBlockingQueue<Order> waitingToBeSentOrder, ArrayList<Order> orderInTheBag) {
+    private final Integer timeToOnePizza;
+    public DeliverymanThread(MyBlockingQueue<Order> waitingToBeSentOrder, ArrayList<Order> orderInTheBag, int timeToOnePizza) {
         this.waitingToBeSentOrder = waitingToBeSentOrder;
         this.ordersInTheBag = orderInTheBag;
+        this.timeToOnePizza = timeToOnePizza;
     }
 
     @Override
@@ -29,6 +31,7 @@ public class DeliverymanThread implements Runnable{
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            ordersInTheBag.get(i).setState(State.DELIVERED);
             String pizzaName = ordersInTheBag.get(i).pizzaName();
             int id = ordersInTheBag.get(i).id();
             System.out.println("Order " + pizzaName + "{" + id + "} was delivered");
