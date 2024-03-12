@@ -1,13 +1,9 @@
-package org.example.UserLogic;
+package org.example.userLogic;
 
-import org.example.Queu.MyBlockingQueue;
-import org.example.ordersLogic.Order;
-import org.example.ordersLogic.State;
-
-import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
-
+import org.example.queue.MyBlockingQueue;
+import org.example.ordersLogic.Order;
 
 /**
  * Класс ответветственнен за общение с пользователем.
@@ -16,13 +12,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  */
 public class UserInterface extends Thread{
-//    private final int maxSizeOfWaitingForCookingOrder;
-//    private final Queue<Order> waitingForCookingOrder;
-
     private final MyBlockingQueue<Order> waitingForCookingOrder;
-
-
     private final AtomicInteger numberOfNextOrder = new AtomicInteger(1);
+
     public UserInterface(MyBlockingQueue<Order> waitingForCookingOrder, String startMessage) {
         this.waitingForCookingOrder = waitingForCookingOrder;
         System.out.println(startMessage);
@@ -32,18 +24,22 @@ public class UserInterface extends Thread{
     @Override
     public void run() {
         try (Scanner input = new Scanner(System.in)) {
-            while(true) {
+            while (true) {
                 System.out.println("Enter name of pizza that you would like: ");
                 String pizzaName = input.nextLine();
                 System.out.println("Pizza name: " + pizzaName);
                 synchronized (waitingForCookingOrder) {
-                    if (waitingForCookingOrder.getNumberOfElements() == waitingForCookingOrder.getMaxCapacity()) {
-                        System.out.println("Sorry the service is overloaded, please wait a minute.");
+                    int numberOfElements = waitingForCookingOrder.getNumberOfElements();
+                    int maxCapacity = waitingForCookingOrder.getMaxCapacity();
+                    if (numberOfElements == maxCapacity) {
+                        String output = "Sorry the service is overloaded, please wait a minute.";
+                        System.out.println(output);
                         continue;
                     }
                 }
                 int orderNumber = numberOfNextOrder.getAndIncrement();
-                Order currentOrder = new Order(pizzaName, orderNumber, org.example.ordersLogic.State.WAITING_FOR_COOKING);
+                Order currentOrder = new Order(
+                        pizzaName, orderNumber, org.example.ordersLogic.State.WAITING_FOR_COOKING);
                 synchronized (waitingForCookingOrder) {
                     try {
                         waitingForCookingOrder.enqueue(currentOrder);

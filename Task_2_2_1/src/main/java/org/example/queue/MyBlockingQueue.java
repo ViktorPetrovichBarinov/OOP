@@ -1,31 +1,33 @@
-package org.example.Queu;
+package org.example.queue;
 
-import javax.swing.text.DefaultEditorKit;
-import java.util.LinkedList;
 import java.util.Queue;
+import java.util.LinkedList;
 
 /**
- * Моя реализация кастомной очереди
- * @param <T>
+ * Моя реализация кастомной очереди.
+ *
+ * @param <T> - S.
  */
 public class MyBlockingQueue<T> implements CustomBlockingQueue<T> {
 
     private final int size;
     private Queue<T> queue = new LinkedList<>();
-    public MyBlockingQueue (int size) {
+
+    public MyBlockingQueue(int size) {
         this.size = size;
     }
 
 
     /**
      * Ложит элемент в конец очереди, если места закончились, то падает в ожидание,
-     * если очередь пустая, то пробуждает потоки, которые хотят достать что-либо
-     * @param item
-     * @throws InterruptedException
+     * если очередь пустая, то пробуждает потоки, которые хотят достать что-либо.
+     *
+     * @param item - S.
+     * @throws InterruptedException - S.
      */
     @Override
     public void enqueue(T item) throws InterruptedException {
-        while(queue.size() == size) {
+        while (queue.size() == size) {
             wait();
         }
         if (queue.isEmpty()) {
@@ -37,7 +39,7 @@ public class MyBlockingQueue<T> implements CustomBlockingQueue<T> {
     
     @Override
     public T dequeue() throws InterruptedException {
-        while(queue.isEmpty()) {
+        while (queue.isEmpty()) {
             wait();
         }
         if (queue.size() == size) {

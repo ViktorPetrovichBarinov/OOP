@@ -1,7 +1,7 @@
 package org.example.BackerLogic;
 
 import org.example.Interrupt;
-import org.example.Queu.MyBlockingQueue;
+import org.example.queue.MyBlockingQueue;
 import org.example.ordersLogic.Order;
 
 import static org.example.ordersLogic.State.NULL;
@@ -67,7 +67,7 @@ public class BakerController extends Thread{
 
                 }
             } else {
-                System.out.println("Baker was found for order {" + currentOrder.id() + "}  \"" + currentOrder.pizzaName() + "\"");
+                System.out.println("Baker was found for order {" + currentOrder.id() + "} \"" + currentOrder.pizzaName() + "\"");
             }
         }
         System.out.println("The bakery has fulfilled all orders");

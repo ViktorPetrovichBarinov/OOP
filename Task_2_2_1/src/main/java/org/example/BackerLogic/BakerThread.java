@@ -1,6 +1,6 @@
 package org.example.BackerLogic;
 
-import org.example.Queu.MyBlockingQueue;
+import org.example.queue.MyBlockingQueue;
 import org.example.ordersLogic.Order;
 import org.example.ordersLogic.State;
 

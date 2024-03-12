@@ -1,8 +1,7 @@
 package org.example.deliviryLogic;
 
-import org.example.BackerLogic.BakerThread;
 import org.example.Interrupt;
-import org.example.Queu.MyBlockingQueue;
+import org.example.queue.MyBlockingQueue;
 import org.example.ordersLogic.Order;
 
 import java.util.ArrayList;
@@ -48,16 +47,21 @@ public class DeliveryController extends Thread{
                         ArrayList<Order> ordersForDeliveryMan = new ArrayList<>();//начинаем заполнять егэ рюкзак
                         synchronized (waitingToBeSentOrder) {//синхронизируемся на очереди
                             while(ordersForDeliveryMan.size() != deliverymanArray[i].pizzasCapacity()
-                                    && waitingToBeSentOrder.getNumberOfElements() != 0) {//пока не заполнился рюкзак и не закончились заказы
+                                    && waitingToBeSentOrder.getNumberOfElements() != 0) {
+                                //пока не заполнился рюкзак и не закончились заказы
                                 try {
-                                    ordersForDeliveryMan.add(waitingToBeSentOrder.dequeue());//добавляем элемент из очереди
+                                    //добавляем элемент из очереди
+                                    ordersForDeliveryMan.add(waitingToBeSentOrder.dequeue());
                                 } catch (InterruptedException e) {
 
                                 }
                             }
                         }
-                        deliverymanThreads[i] = new Thread(new DeliverymanThread(waitingToBeSentOrder,
-                                ordersForDeliveryMan, deliverymanArray[i].timeToOnePizza()));
+                        deliverymanThreads[i] = new Thread(
+                                new DeliverymanThread(
+                                        waitingToBeSentOrder,
+                                        ordersForDeliveryMan,
+                                        deliverymanArray[i].timeToOnePizza()));
                         deliverymanThreads[i].start();
                         isFound = true;
                     }
