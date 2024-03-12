@@ -55,8 +55,5 @@ public class UserInterface extends Thread{
         } catch (Exception e) {
             System.out.println("We do not accept orders");
         }
-
     }
-
-
 }

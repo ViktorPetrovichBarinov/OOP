@@ -9,13 +9,8 @@ import java.nio.file.Paths;
 
 public class JsonConfig {
     ObjectMapper objectMapper = new ObjectMapper();
-    public Config jsonFileToPojo(String path) throws IOException, InterruptedException {
+    public Config jsonFileToPojo(String path) {
         File file = new File(path);
-        if(file.exists()) {
-            System.out.println("File found");
-        } else {
-            System.out.println("No found");
-        }
 
         try {
             byte[] fileBytes = Files.readAllBytes(Paths.get(path));

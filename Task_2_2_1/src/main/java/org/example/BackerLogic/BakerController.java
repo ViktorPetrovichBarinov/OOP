@@ -1,5 +1,6 @@
 package org.example.BackerLogic;
 
+import org.example.Interrupt;
 import org.example.Queu.MyBlockingQueue;
 import org.example.ordersLogic.Order;
 
@@ -11,6 +12,7 @@ public class BakerController extends Thread{
     private final int[] bakersArray;
     private final Thread[] bakerThreads;
 
+    public Interrupt interrupt = Interrupt.NOT_INTERRUPT;
 
     public BakerController(MyBlockingQueue<Order> waitingForCookingOrder, MyBlockingQueue<Order> waitingToBeSentOrder, int[] bakersArray) {
         this.waitingForCookingOrder = waitingForCookingOrder;
@@ -27,7 +29,14 @@ public class BakerController extends Thread{
     @Override
     public void run() {
         while(true) {
-            if (Thread.currentThread().isInterrupted() && waitingForCookingOrder.getNumberOfElements() == 0) {
+            if (interrupt == Interrupt.INTERRUPT && waitingForCookingOrder.getNumberOfElements() == 0) {
+                while(isBakerAlive()) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
                 break;
             }
             boolean isFound = false;
@@ -41,7 +50,7 @@ public class BakerController extends Thread{
                                 currentOrder = waitingForCookingOrder.dequeue();
                             }
                         } catch (InterruptedException e) {
-
+                            break;
                         }
                     }
                     if (currentOrder != null) {
@@ -61,10 +70,16 @@ public class BakerController extends Thread{
                 System.out.println("Baker was found for order {" + currentOrder.id() + "}  \"" + currentOrder.pizzaName() + "\"");
             }
         }
-        System.out.println("The bakery has run out of orders");
+        System.out.println("The bakery has fulfilled all orders");
 
     }
 
-
-    
+    private boolean isBakerAlive() {
+        for (int i = 0; i < bakerThreads.length; i++) {
+            if (bakerThreads[i].isAlive()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

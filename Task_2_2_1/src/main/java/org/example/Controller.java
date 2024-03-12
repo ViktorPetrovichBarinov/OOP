@@ -26,13 +26,10 @@ public class Controller {
 
         this.userInterface = new UserInterface(waitingForCookingOrder, START_MESSAGE);
 
-
         this.bakerController = new BakerController(waitingForCookingOrder, waitingToBeSentOrder, bakersArray);
 
         DeliveryMan[] deliverymanArray = config.getDeliverymanArray().toArray(new DeliveryMan[0]);
         this.deliveryController = new DeliveryController(waitingToBeSentOrder,deliverymanArray);
-
-
     }
 
 
@@ -40,13 +37,32 @@ public class Controller {
         userInterface.start();
         bakerController.start();
         deliveryController.start();
+
+        userInterfaceCheck();
     }
 
+    private void userInterfaceCheck() throws InterruptedException {
+        while(userInterface.isAlive()) {
+            Thread.sleep(1000);
+        }
+        bakerController.interrupt = Interrupt.INTERRUPT;
+        bakerController.interrupt();
+        bakerControllerCheck();
+    }
 
+    private void bakerControllerCheck() throws InterruptedException {
+        while(bakerController.isAlive()) {
+            Thread.sleep(1000);
+        }
+        deliveryController.interrupt = Interrupt.INTERRUPT;
+        deliveryController.interrupt();
+        deliveryControllerCheck();
+    }
 
-
-
-
-
-
+    private void deliveryControllerCheck() throws InterruptedException {
+        while(deliveryController.isAlive()) {
+            Thread.sleep(1000);
+        }
+        System.out.println("Success!");
+    }
 }

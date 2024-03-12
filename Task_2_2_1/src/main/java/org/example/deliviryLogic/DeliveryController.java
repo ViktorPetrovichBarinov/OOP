@@ -1,6 +1,7 @@
 package org.example.deliviryLogic;
 
 import org.example.BackerLogic.BakerThread;
+import org.example.Interrupt;
 import org.example.Queu.MyBlockingQueue;
 import org.example.ordersLogic.Order;
 
@@ -12,6 +13,8 @@ public class DeliveryController extends Thread{
     private final MyBlockingQueue<Order> waitingToBeSentOrder;
     private final DeliveryMan[] deliverymanArray;
     private final Thread[] deliverymanThreads;
+
+    public Interrupt interrupt = Interrupt.NOT_INTERRUPT;
 
     public DeliveryController(MyBlockingQueue<Order> waitingToBeSentOrder, DeliveryMan[] deliverymanArray) {
         this.waitingToBeSentOrder = waitingToBeSentOrder;
@@ -28,7 +31,14 @@ public class DeliveryController extends Thread{
     @Override
     public void run() {
         while(true) {
-            if (Thread.currentThread().isInterrupted() && waitingToBeSentOrder.getNumberOfElements() == 0) {
+            if (interrupt == Interrupt.INTERRUPT && waitingToBeSentOrder.getNumberOfElements() == 0) {
+                while(isDeliverymanAlive()) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
                 break;
             }
             boolean isFound = false;
@@ -61,8 +71,17 @@ public class DeliveryController extends Thread{
                 }
             }
         }
-        System.out.println("Out of pizzas in the warehouse");
+        System.out.println("Delivery completed all orders");
 
     }
 
+
+    private boolean isDeliverymanAlive() {
+        for (int i = 0; i < deliverymanThreads.length; i++) {
+            if (deliverymanThreads[i].isAlive()) {
+                return  true;
+            }
+        }
+        return false;
+    }
 }
