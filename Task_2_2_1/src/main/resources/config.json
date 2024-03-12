@@ -1,1 +1,14 @@
-{"maxSizeOfWaitingForCookingOrder":25,"bakersArray":[2,3,4],"maxSizeOfWaitingToBeSentOrder":15,"deliverymanArray":[{"pizzasCapacity":5,"timeToOnePizza":20},{"pizzasCapacity":8,"timeToOnePizza":15}]}
+{
+  "maxSizeOfWaitingForCookingOrder":25,
+  "bakersArray":[2,3,4],
+  "maxSizeOfWaitingToBeSentOrder":15,
+  "deliverymanArray":
+  [
+    {
+      "pizzasCapacity":5,
+      "timeToOnePizza":20
+    },
+    {"pizzasCapacity":8,
+      "timeToOnePizza":15}
+  ]
+}
