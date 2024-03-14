@@ -19,18 +19,19 @@ public class Controller {
     /**
      * Конструктор класса "Контроллер".
      *
-     * @param config
+     * @param config - S.
      */
     public Controller(Config config) {
-        MyBlockingQueue<Order> waitingForCookingOrder = new MyBlockingQueue<>(config.getMaxSizeOfWaitingForCookingOrder());
+        MyBlockingQueue<Order> waitingForCookingOrder =
+                new MyBlockingQueue<>(config.getMaxSizeOfWaitingForCookingOrder());
+        MyBlockingQueue<Order> waitingToBeSentOrder =
+                new MyBlockingQueue<>(config.getMaxSizeOfWaitingToBeSentOrder());
         int[] bakersArray = config.getBakersArray().stream().mapToInt(Integer::intValue).toArray();
-        MyBlockingQueue<Order> waitingToBeSentOrder = new MyBlockingQueue<>(config.getMaxSizeOfWaitingToBeSentOrder());
 
         String START_MESSAGE = "This is pizzeria, we are waiting for your orders";
         this.userInterface = new UserInterface(waitingForCookingOrder, START_MESSAGE);
-
-        this.bakerController = new BakerController(
-                waitingForCookingOrder, waitingToBeSentOrder, bakersArray);
+        this.bakerController =
+                new BakerController(waitingForCookingOrder, waitingToBeSentOrder, bakersArray);
 
         DeliveryMan[] deliverymanArray = config.getDeliverymanArray().toArray(new DeliveryMan[0]);
         this.deliveryController = new DeliveryController(waitingToBeSentOrder, deliverymanArray);
@@ -40,7 +41,7 @@ public class Controller {
     /**
      * Метод запускает работу каждого сервиса.
      *
-     * @throws InterruptedException
+     * @throws InterruptedException - S.
      */
     public void startWorking() throws InterruptedException {
         userInterface.start();
@@ -51,7 +52,7 @@ public class Controller {
     }
 
     private void userInterfaceCheck() throws InterruptedException {
-        while(userInterface.isAlive()){
+        while (userInterface.isAlive()) {
             Thread.sleep(1000);
         }
         bakerController.interrupt = Interrupt.INTERRUPT;
@@ -60,7 +61,7 @@ public class Controller {
     }
 
     private void bakerControllerCheck() throws InterruptedException {
-        while(bakerController.isAlive()){
+        while (bakerController.isAlive()) {
             Thread.sleep(1000);
         }
         deliveryController.interrupt = Interrupt.INTERRUPT;
@@ -69,7 +70,7 @@ public class Controller {
     }
 
     private void deliveryControllerCheck() throws InterruptedException {
-        while(deliveryController.isAlive()){
+        while (deliveryController.isAlive()) {
             Thread.sleep(1000);
         }
         System.out.println("Success!");

@@ -9,17 +9,15 @@ import java.util.LinkedList;
  * @param <T> - S.
  */
 public class MyBlockingQueue<T> implements CustomBlockingQueue<T> {
-
     private final int size;
-    private Queue<T> queue = new LinkedList<>();
+    private final Queue<T> queue = new LinkedList<>();
 
     public MyBlockingQueue(int size) {
         this.size = size;
     }
 
-
     /**
-     * Ложит элемент в конец очереди, если места закончились, то падает в ожидание,
+     * Кладёт элемент в конец очереди, если места закончились, то падает в ожидание,
      * если очередь пустая, то пробуждает потоки, которые хотят достать что-либо.
      *
      * @param item - S.

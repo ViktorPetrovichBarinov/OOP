@@ -8,8 +8,7 @@ import org.example.ordersLogic.Order;
 /**
  * Класс ответветственнен за общение с пользователем.
  * Запускается отдельным потоком.
- * Задача считать имя пиццы, которую хочет заказать пользователь,
- *
+ * Задача считать имя пиццы, которую хочет заказать пользователь.
  */
 public class UserInterface extends Thread{
     private final MyBlockingQueue<Order> waitingForCookingOrder;
@@ -20,7 +19,9 @@ public class UserInterface extends Thread{
         System.out.println(startMessage);
     }
 
-
+    /**
+     * Метод запускает работу сервиса, обрабатывающего сообщения пользователя.
+     */
     @Override
     public void run() {
         try (Scanner input = new Scanner(System.in)) {
@@ -38,8 +39,11 @@ public class UserInterface extends Thread{
                     }
                 }
                 int orderNumber = numberOfNextOrder.getAndIncrement();
-                Order currentOrder = new Order(
-                        pizzaName, orderNumber, org.example.ordersLogic.State.WAITING_FOR_COOKING);
+                Order currentOrder =
+                        new Order(
+                                pizzaName,
+                                orderNumber,
+                                org.example.ordersLogic.State.WAITING_FOR_COOKING);
                 synchronized (waitingForCookingOrder) {
                     try {
                         waitingForCookingOrder.enqueue(currentOrder);

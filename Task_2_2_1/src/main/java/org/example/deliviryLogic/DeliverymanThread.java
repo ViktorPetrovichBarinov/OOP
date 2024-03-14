@@ -7,15 +7,16 @@ import org.example.ordersLogic.State;
 import java.util.ArrayList;
 
 public class DeliverymanThread implements Runnable{
-    private final MyBlockingQueue<Order> waitingToBeSentOrder;
     private final ArrayList<Order> ordersInTheBag;
     private final Integer timeToOnePizza;
-    public DeliverymanThread(MyBlockingQueue<Order> waitingToBeSentOrder, ArrayList<Order> orderInTheBag, int timeToOnePizza) {
-        this.waitingToBeSentOrder = waitingToBeSentOrder;
+    public DeliverymanThread(ArrayList<Order> orderInTheBag, int timeToOnePizza) {
         this.ordersInTheBag = orderInTheBag;
         this.timeToOnePizza = timeToOnePizza;
     }
 
+    /**
+     * Метод запускает работу сервиса доставки.
+     */
     @Override
     public void run() {
         System.out.println("Deliveryman starting delivery orders:");
@@ -36,8 +37,5 @@ public class DeliverymanThread implements Runnable{
             int id = ordersInTheBag.get(i).id();
             System.out.println("Order " + pizzaName + "{" + id + "} was delivered");
         }
-
-
     }
-
 }

@@ -22,14 +22,19 @@ public class BakerController extends Thread{
 
         for (int i = 0; i < bakersArray.length; i++) {
             Order fakeOrder = new Order("", -1, NULL);
-            bakerThreads[i] = new Thread(new BakerThread(waitingToBeSentOrder, bakersArray[i], fakeOrder));
+            bakerThreads[i] = new Thread(
+                    new BakerThread(
+                            waitingToBeSentOrder,
+                            bakersArray[i],
+                            fakeOrder));
         }
     }
 
     @Override
     public void run() {
         while(true) {
-            if (interrupt == Interrupt.INTERRUPT && waitingForCookingOrder.getNumberOfElements() == 0) {
+            if (interrupt == Interrupt.INTERRUPT
+                    && waitingForCookingOrder.getNumberOfElements() == 0) {
                 while(isBakerAlive()) {
                     try {
                         Thread.sleep(1000);
@@ -54,8 +59,12 @@ public class BakerController extends Thread{
                         }
                     }
                     if (currentOrder != null) {
-                        bakerThreads[i] = new Thread(new BakerThread(waitingToBeSentOrder, bakersArray[i], currentOrder));
-                        bakerThreads[i].start();
+                        bakerThreads[i] = new Thread(
+                                new BakerThread(
+                                        waitingToBeSentOrder,
+                                        bakersArray[i],
+                                        currentOrder));
+                                        bakerThreads[i].start();
                         isFound = true;
                     }
                 }
@@ -63,11 +72,15 @@ public class BakerController extends Thread{
             if (!isFound) {
                 try {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
 
                 }
             } else {
-                System.out.println("Baker was found for order {" + currentOrder.id() + "} \"" + currentOrder.pizzaName() + "\"");
+                System.out.println("Baker was found for order {"
+                        + currentOrder.id()
+                        + "} \""
+                        + currentOrder.pizzaName()
+                        + "\"");
             }
         }
         System.out.println("The bakery has fulfilled all orders");
@@ -75,8 +88,8 @@ public class BakerController extends Thread{
     }
 
     private boolean isBakerAlive() {
-        for (int i = 0; i < bakerThreads.length; i++) {
-            if (bakerThreads[i].isAlive()) {
+        for (Thread bakerThread : bakerThreads) {
+            if (bakerThread.isAlive()) {
                 return true;
             }
         }

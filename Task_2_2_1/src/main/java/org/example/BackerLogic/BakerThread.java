@@ -6,8 +6,8 @@ import org.example.ordersLogic.State;
 
 public class BakerThread implements Runnable {
     private final MyBlockingQueue<Order> waitingToBeSent;
-    private int secondsToOnePizza;
-    private Order order;
+    private final int secondsToOnePizza;
+    private final Order order;
     public BakerThread(MyBlockingQueue<Order> waitingToBeSent,int secondsToOnePizza, Order order) {
         this.waitingToBeSent = waitingToBeSent;
         this.secondsToOnePizza = secondsToOnePizza;
@@ -16,7 +16,10 @@ public class BakerThread implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Start cooking order {" + order.id() + "}:" + order.pizzaName());
+        System.out.println("Start cooking order {"
+                + order.id()
+                + "}:"
+                + order.pizzaName());
         order.setState(State.COOKING);
         try {
             Thread.sleep(secondsToOnePizza * 1000L);
@@ -31,6 +34,9 @@ public class BakerThread implements Runnable {
                 throw new RuntimeException(e);
             }
         }
-        System.out.println("Pizza: " + order.pizzaName() + " {" + order.id() + "} was transferred to the warehouse");
+        System.out.println("Pizza: "
+                + order.pizzaName()
+                + " {" + order.id()
+                + "} was transferred to the warehouse");
     }
 }

@@ -1,8 +1,8 @@
 package org.example.ordersLogic;
 
-public class Order{
-    private String pizzaName;
-    private int id;
+public class Order {
+    private final String pizzaName;
+    private final int id;
     private State state;
     public Order(String pizzaName, int id, State state) {
         this.pizzaName = pizzaName;

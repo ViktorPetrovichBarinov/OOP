@@ -22,7 +22,7 @@ public class DeliveryController extends Thread{
 
         for (int i = 0; i < deliverymanArray.length; i++) {
             Order fakeOrder = new Order("", -1, NULL);
-            deliverymanThreads[i] = new Thread(new DeliverymanThread(waitingToBeSentOrder, new ArrayList<>(), deliverymanArray[i].timeToOnePizza()));
+            deliverymanThreads[i] = new Thread(new DeliverymanThread(new ArrayList<>(), deliverymanArray[i].timeToOnePizza()));
         }
     }
 
@@ -59,7 +59,6 @@ public class DeliveryController extends Thread{
                         }
                         deliverymanThreads[i] = new Thread(
                                 new DeliverymanThread(
-                                        waitingToBeSentOrder,
                                         ordersForDeliveryMan,
                                         deliverymanArray[i].timeToOnePizza()));
                         deliverymanThreads[i].start();

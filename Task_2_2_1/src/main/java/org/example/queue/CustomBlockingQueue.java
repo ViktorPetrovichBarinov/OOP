@@ -8,7 +8,19 @@ package org.example.queue;
  */
 public interface CustomBlockingQueue<Type> {
 
+    /**
+     * Положить элемент в очередь.
+     *
+     * @param item - S.
+     * @throws InterruptedException - S.
+     */
     void enqueue(Type item) throws InterruptedException;
 
+    /**
+     * Достать элемент из очереди.
+     *
+     * @return - S.
+     * @throws InterruptedException - S.
+     */
     Type dequeue() throws InterruptedException;
 }

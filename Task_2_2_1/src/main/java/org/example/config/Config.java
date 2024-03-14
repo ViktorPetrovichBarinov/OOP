@@ -1,10 +1,6 @@
 package org.example.config;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import org.example.deliviryLogic.DeliveryMan;
-
 import java.util.List;
 
 public class Config {

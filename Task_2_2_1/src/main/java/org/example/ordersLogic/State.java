@@ -1,4 +1,5 @@
 package org.example.ordersLogic;
+
 public enum State {
     NULL,
     WAITING_FOR_COOKING,
