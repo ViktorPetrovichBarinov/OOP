@@ -1,9 +1,20 @@
-package org.example.ordersLogic;
+package org.example.orders_logic;
 
+/**
+ * Клаас содержит характеристики заказа.
+ */
 public class Order {
     private final String pizzaName;
     private final int id;
     private State state;
+
+    /**
+     * Конструктор.
+     *
+     * @param pizzaName - имя пиццы.
+     * @param id - номер заказа пиццы.
+     * @param state - текущее состояние.
+     */
     public Order(String pizzaName, int id, State state) {
         this.pizzaName = pizzaName;
         this.id = id;

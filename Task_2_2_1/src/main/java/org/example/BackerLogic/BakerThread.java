@@ -1,14 +1,25 @@
 package org.example.BackerLogic;
 
+import org.example.orders_logic.Order;
+import org.example.orders_logic.State;
 import org.example.queue.MyBlockingQueue;
-import org.example.ordersLogic.Order;
-import org.example.ordersLogic.State;
 
+/**
+ * Класс ответственен за выполнение работы пекаря в другом потоке.
+ */
 public class BakerThread implements Runnable {
     private final MyBlockingQueue<Order> waitingToBeSent;
     private final int secondsToOnePizza;
     private final Order order;
-    public BakerThread(MyBlockingQueue<Order> waitingToBeSent,int secondsToOnePizza, Order order) {
+
+    /**
+     * Конструктор.
+     *
+     * @param waitingToBeSent - очередь приготовленных, ожидающих отправку заказов.
+     * @param secondsToOnePizza - время на приготовление одной пиццы.
+     * @param order - сам заказ, который надо приготовить.
+     */
+    public BakerThread(MyBlockingQueue<Order> waitingToBeSent, int secondsToOnePizza, Order order) {
         this.waitingToBeSent = waitingToBeSent;
         this.secondsToOnePizza = secondsToOnePizza;
         this.order = order;

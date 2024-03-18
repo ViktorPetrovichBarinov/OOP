@@ -2,15 +2,15 @@ package org.example.userLogic;
 
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.example.orders_logic.Order;
 import org.example.queue.MyBlockingQueue;
-import org.example.ordersLogic.Order;
 
 /**
  * Класс ответветственнен за общение с пользователем.
  * Запускается отдельным потоком.
  * Задача считать имя пиццы, которую хочет заказать пользователь.
  */
-public class UserInterface extends Thread{
+public class UserInterface extends Thread {
     private final MyBlockingQueue<Order> waitingForCookingOrder;
     private final AtomicInteger numberOfNextOrder = new AtomicInteger(1);
 
@@ -43,7 +43,7 @@ public class UserInterface extends Thread{
                         new Order(
                                 pizzaName,
                                 orderNumber,
-                                org.example.ordersLogic.State.WAITING_FOR_COOKING);
+                                org.example.orders_logic.State.WAITING_FOR_COOKING);
                 synchronized (waitingForCookingOrder) {
                     try {
                         waitingForCookingOrder.enqueue(currentOrder);

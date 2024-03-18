@@ -1,14 +1,16 @@
-package org.example.deliviryLogic;
+package org.example.deliviry_logic;
 
-import org.example.queue.MyBlockingQueue;
-import org.example.ordersLogic.Order;
-import org.example.ordersLogic.State;
-
+import org.example.orders_logic.Order;
+import org.example.orders_logic.State;
 import java.util.ArrayList;
 
-public class DeliverymanThread implements Runnable{
+/**
+ * Класс, ответственен за запуск потока доставщика.
+ */
+public class DeliverymanThread implements Runnable {
     private final ArrayList<Order> ordersInTheBag;
     private final Integer timeToOnePizza;
+
     public DeliverymanThread(ArrayList<Order> orderInTheBag, int timeToOnePizza) {
         this.ordersInTheBag = orderInTheBag;
         this.timeToOnePizza = timeToOnePizza;

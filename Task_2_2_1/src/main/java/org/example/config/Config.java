@@ -1,6 +1,6 @@
 package org.example.config;
 
-import org.example.deliviryLogic.DeliveryMan;
+import org.example.deliviry_logic.DeliveryMan;
 import java.util.List;
 
 public class Config {

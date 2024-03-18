@@ -4,9 +4,9 @@ import org.example.BackerLogic.BakerController;
 import org.example.queue.MyBlockingQueue;
 import org.example.userLogic.UserInterface;
 import org.example.config.Config;
-import org.example.deliviryLogic.DeliveryController;
-import org.example.deliviryLogic.DeliveryMan;
-import org.example.ordersLogic.Order;
+import org.example.deliviry_logic.DeliveryController;
+import org.example.deliviry_logic.DeliveryMan;
+import org.example.orders_logic.Order;
 
 /**
  * Класс "Контроллер" ответственнен за работу всех сервисов.
@@ -28,8 +28,8 @@ public class Controller {
                 new MyBlockingQueue<>(config.getMaxSizeOfWaitingToBeSentOrder());
         int[] bakersArray = config.getBakersArray().stream().mapToInt(Integer::intValue).toArray();
 
-        String START_MESSAGE = "This is pizzeria, we are waiting for your orders";
-        this.userInterface = new UserInterface(waitingForCookingOrder, START_MESSAGE);
+        String startMessage = "This is pizzeria, we are waiting for your orders";
+        this.userInterface = new UserInterface(waitingForCookingOrder, startMessage);
         this.bakerController =
                 new BakerController(waitingForCookingOrder, waitingToBeSentOrder, bakersArray);
 

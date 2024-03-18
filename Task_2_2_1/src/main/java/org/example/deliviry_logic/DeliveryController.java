@@ -1,37 +1,47 @@
-package org.example.deliviryLogic;
+package org.example.deliviry_logic;
 
 import org.example.Interrupt;
 import org.example.queue.MyBlockingQueue;
-import org.example.ordersLogic.Order;
-
+import org.example.orders_logic.Order;
 import java.util.ArrayList;
 
-import static org.example.ordersLogic.State.NULL;
+import static org.example.orders_logic.State.NULL;
 
-public class DeliveryController extends Thread{
+public class DeliveryController extends Thread {
     private final MyBlockingQueue<Order> waitingToBeSentOrder;
     private final DeliveryMan[] deliverymanArray;
     private final Thread[] deliverymanThreads;
 
     public Interrupt interrupt = Interrupt.NOT_INTERRUPT;
 
-    public DeliveryController(MyBlockingQueue<Order> waitingToBeSentOrder, DeliveryMan[] deliverymanArray) {
+    /**
+     * Конструктор.
+     *
+     * @param waitingToBeSentOrder - очередь пицц ожидающих доставщика.
+     * @param deliverymanArray - список доставщиков.
+     */
+    public DeliveryController(
+            MyBlockingQueue<Order> waitingToBeSentOrder,
+            DeliveryMan[] deliverymanArray) {
         this.waitingToBeSentOrder = waitingToBeSentOrder;
         this.deliverymanArray = deliverymanArray;
         this.deliverymanThreads = new Thread[deliverymanArray.length];
 
         for (int i = 0; i < deliverymanArray.length; i++) {
             Order fakeOrder = new Order("", -1, NULL);
-            deliverymanThreads[i] = new Thread(new DeliverymanThread(new ArrayList<>(), deliverymanArray[i].timeToOnePizza()));
+            deliverymanThreads[i] = new Thread(
+                    new DeliverymanThread(
+                            new ArrayList<>(), deliverymanArray[i].timeToFirstPizza()));
         }
     }
 
 
     @Override
     public void run() {
-        while(true) {
-            if (interrupt == Interrupt.INTERRUPT && waitingToBeSentOrder.getNumberOfElements() == 0) {
-                while(isDeliverymanAlive()) {
+        while (true) {
+            if (interrupt == Interrupt.INTERRUPT
+                    && waitingToBeSentOrder.getNumberOfElements() == 0) {
+                while (isDeliverymanAlive()) {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -41,18 +51,18 @@ public class DeliveryController extends Thread{
                 break;
             }
             boolean isFound = false;
-            if (waitingToBeSentOrder.getNumberOfElements() != 0) {//проверяем есть ли пицца на складе, есл инету ожидаем
-                for (int i = 0; i < deliverymanThreads.length && !isFound; i++) {//Если есть, то ищем доставщика
-                    if (!deliverymanThreads[i].isAlive()) {//если нашли свободного доставщика
-                        ArrayList<Order> ordersForDeliveryMan = new ArrayList<>();//начинаем заполнять егэ рюкзак
-                        synchronized (waitingToBeSentOrder) {//синхронизируемся на очереди
+            if (waitingToBeSentOrder.getNumberOfElements() != 0) { //проверяем есть ли пицца на складе, есл инету ожидаем
+                for (int i = 0; i < deliverymanThreads.length && !isFound; i++) { //Если есть, то ищем доставщика
+                    if (!deliverymanThreads[i].isAlive()) { //если нашли свободного доставщика
+                        ArrayList<Order> ordersForDeliveryMan = new ArrayList<>(); //начинаем заполнять егэ рюкзак
+                        synchronized (waitingToBeSentOrder) { //синхронизируемся на очереди
                             while(ordersForDeliveryMan.size() != deliverymanArray[i].pizzasCapacity()
                                     && waitingToBeSentOrder.getNumberOfElements() != 0) {
                                 //пока не заполнился рюкзак и не закончились заказы
                                 try {
                                     //добавляем элемент из очереди
                                     ordersForDeliveryMan.add(waitingToBeSentOrder.dequeue());
-                                } catch (InterruptedException e) {
+                                } catch (InterruptedException ignored) {
 
                                 }
                             }
@@ -60,7 +70,7 @@ public class DeliveryController extends Thread{
                         deliverymanThreads[i] = new Thread(
                                 new DeliverymanThread(
                                         ordersForDeliveryMan,
-                                        deliverymanArray[i].timeToOnePizza()));
+                                        deliverymanArray[i].timeToFirstPizza()));
                         deliverymanThreads[i].start();
                         isFound = true;
                     }
@@ -69,7 +79,7 @@ public class DeliveryController extends Thread{
             if (!isFound) {
                 try {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
+                } catch (InterruptedException ignored) {
 
                 }
             }

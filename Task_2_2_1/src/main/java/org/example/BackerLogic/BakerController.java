@@ -2,11 +2,15 @@ package org.example.BackerLogic;
 
 import org.example.Interrupt;
 import org.example.queue.MyBlockingQueue;
-import org.example.ordersLogic.Order;
+import org.example.orders_logic.Order;
 
-import static org.example.ordersLogic.State.NULL;
+import static org.example.orders_logic.State.NULL;
 
-public class BakerController extends Thread{
+
+/**
+ * Класс ответственен за контроль поваров.
+ */
+public class BakerController extends Thread {
     private final MyBlockingQueue<Order> waitingForCookingOrder;
     private final MyBlockingQueue<Order> waitingToBeSentOrder;
     private final int[] bakersArray;
@@ -14,6 +18,13 @@ public class BakerController extends Thread{
 
     public Interrupt interrupt = Interrupt.NOT_INTERRUPT;
 
+    /**
+     * Конструктор.
+     *
+     * @param waitingForCookingOrder - очередь заказов, которые ожидают повара.
+     * @param waitingToBeSentOrder - очередь заказов, ожидающих доставщика.
+     * @param bakersArray - массив пекарей.
+     */
     public BakerController(MyBlockingQueue<Order> waitingForCookingOrder, MyBlockingQueue<Order> waitingToBeSentOrder, int[] bakersArray) {
         this.waitingForCookingOrder = waitingForCookingOrder;
         this.waitingToBeSentOrder = waitingToBeSentOrder;
@@ -32,10 +43,10 @@ public class BakerController extends Thread{
 
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             if (interrupt == Interrupt.INTERRUPT
                     && waitingForCookingOrder.getNumberOfElements() == 0) {
-                while(isBakerAlive()) {
+                while (isBakerAlive()) {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
