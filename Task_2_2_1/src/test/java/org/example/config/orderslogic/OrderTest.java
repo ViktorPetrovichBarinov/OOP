@@ -7,7 +7,7 @@ import org.example.orderslogic.State;
 import org.junit.jupiter.api.Test;
 
 /**
- * Тесты для класса Order
+ * Тесты для класса Order.
  */
 public class OrderTest {
 

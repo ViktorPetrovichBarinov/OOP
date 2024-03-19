@@ -2,9 +2,9 @@ package org.example.config.queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import org.example.queue.MyBlockingQueue;
 import org.junit.jupiter.api.Test;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Тесты для класса MyBlockingQueue.

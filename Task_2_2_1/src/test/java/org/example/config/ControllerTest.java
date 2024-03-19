@@ -2,20 +2,21 @@ package org.example.config;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.example.Controller;
-import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import org.example.Controller;
+import org.junit.jupiter.api.Test;
 
 /**
  * Тесты для класса Controller.
  */
 public class ControllerTest {
+    PrintStream originalOut;
     @Test
     void test1() throws IOException, InterruptedException {
-        PrintStream originalOut = System.out;
+        originalOut = System.out;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);

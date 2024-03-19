@@ -2,12 +2,13 @@ package org.example.config.config;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.example.config.Config;
-import org.example.delivirylogic.DeliveryMan;
-import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.example.config.Config;
+import org.example.delivirylogic.DeliveryMan;
+import org.junit.jupiter.api.Test;
+
 
 /**
  * Тесты для класса Config.
