@@ -24,8 +24,6 @@ public class JsonConfig {
         try {
             byte[] fileBytes = Files.readAllBytes(Paths.get(path));
             String fileContent = new String(fileBytes);
-
-            System.out.println(fileContent);
         } catch (IOException e) {
             e.printStackTrace();
         }

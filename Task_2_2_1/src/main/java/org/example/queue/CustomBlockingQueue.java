@@ -23,4 +23,8 @@ public interface CustomBlockingQueue<T> {
      * @throws InterruptedException - S.
      */
     T dequeue() throws InterruptedException;
+
+    int getMaxCapacity();
+
+    int getNumberOfElements();
 }
