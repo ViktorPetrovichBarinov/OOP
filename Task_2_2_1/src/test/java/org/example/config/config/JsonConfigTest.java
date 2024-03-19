@@ -1,5 +1,7 @@
 package org.example.config.config;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.example.Controller;
 import org.example.config.Config;
 import org.example.config.JsonConfig;
@@ -7,10 +9,9 @@ import org.example.delivirylogic.DeliveryMan;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * Тесты для класса JsonConfig.
+ */
 public class JsonConfigTest {
 
     private Config config;
@@ -32,12 +33,12 @@ public class JsonConfigTest {
             assertEquals(config.getBakersArray().get(i), bakersArray[i]);
         }
         assertEquals(config.getMaxSizeOfWaitingToBeSentOrder(), 15);
-        DeliveryMan[] deliveryMEN = new DeliveryMan[] {
-                new DeliveryMan(5, 20),
-                new DeliveryMan(8, 15)
+        DeliveryMan[] deliveryMen = new DeliveryMan[] {
+            new DeliveryMan(5, 20),
+            new DeliveryMan(8, 15)
         };
         for (int i = 0; i < config.getDeliverymanArray().size(); i++) {
-            assertEquals(config.getDeliverymanArray().get(i), deliveryMEN[i]);
+            assertEquals(config.getDeliverymanArray().get(i), deliveryMen[i]);
         }
     }
 

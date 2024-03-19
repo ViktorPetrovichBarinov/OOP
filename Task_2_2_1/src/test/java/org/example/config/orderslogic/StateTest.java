@@ -1,10 +1,13 @@
 package org.example.config.orderslogic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.example.orderslogic.State;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * Some text.
+ */
 public class StateTest {
     @Test
     public void testNullState() {

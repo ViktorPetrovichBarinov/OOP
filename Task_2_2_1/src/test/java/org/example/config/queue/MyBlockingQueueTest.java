@@ -1,13 +1,14 @@
 package org.example.config.queue;
 
-import org.example.Main;
-import org.example.queue.MyBlockingQueue;
-import org.junit.jupiter.api.Test;
-
-import java.util.concurrent.atomic.AtomicInteger;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.example.queue.MyBlockingQueue;
+import org.junit.jupiter.api.Test;
+import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * Тесты для класса MyBlockingQueue.
+ */
 public class MyBlockingQueueTest {
 
     @Test
@@ -83,7 +84,7 @@ public class MyBlockingQueueTest {
         MyBlockingQueue<Integer> blockingQueue = new MyBlockingQueue<>(5);
         assertEquals(blockingQueue.getMaxCapacity(), 5);
         assertEquals(blockingQueue.getNumberOfElements(), 0);
-        synchronized (blockingQueue){
+        synchronized (blockingQueue) {
             blockingQueue.enqueue(5);
             blockingQueue.enqueue(5);
             blockingQueue.enqueue(5);

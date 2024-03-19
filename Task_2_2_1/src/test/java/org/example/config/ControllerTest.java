@@ -1,18 +1,17 @@
 package org.example.config;
 
-import org.example.Controller;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.example.Controller;
+import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+/**
+ * Тесты для класса Controller.
+ */
 public class ControllerTest {
     @Test
     void test1() throws IOException, InterruptedException {
@@ -36,18 +35,16 @@ public class ControllerTest {
             }
         });
 
-
-        /*"1\n\u0004"*/
-        StringBuilder str = new StringBuilder();
-        str.append("1\n2\n3\n4\n5\n6\n7\n8\n9\n");
-        str.append("10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n");
+        StringBuilder str = new StringBuilder()
+                .append("1\n2\n3\n4\n5\n6\n7\n8\n9\n")
+                .append("10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n");
         String userInput = str.toString();
         ByteArrayInputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(inputStream);
 
         cont.start();
 
-        while(cont.isAlive()) {
+        while (cont.isAlive()) {
             Thread.sleep(1000);
         }
 

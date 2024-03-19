@@ -1,10 +1,13 @@
 package org.example.config;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.example.Interrupt;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * Тесты для класса Interrupt.
+ */
 public class InterruptTest {
     @Test
     public void testInterrupt() {

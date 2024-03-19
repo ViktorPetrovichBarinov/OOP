@@ -1,11 +1,14 @@
 package org.example.config.orderslogic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.example.orderslogic.Order;
 import org.example.orderslogic.State;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * Тесты для класса Order
+ */
 public class OrderTest {
 
     @Test

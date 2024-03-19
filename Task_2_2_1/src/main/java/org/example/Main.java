@@ -2,12 +2,6 @@ package org.example;
 
 import org.example.config.Config;
 import org.example.config.JsonConfig;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 
 /**
  * Main.
@@ -30,7 +24,6 @@ public class Main {
         try {
             controller.startWorking();
         } catch (InterruptedException e) {
-            System.err.println("Incorrect exit.");
             e.printStackTrace();
         }
 
