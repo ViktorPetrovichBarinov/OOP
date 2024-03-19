@@ -1,0 +1,16 @@
+{
+  "maxSizeOfWaitingForCookingOrder":10,
+  "bakersArray":[1,2,3],
+  "maxSizeOfWaitingToBeSentOrder":3,
+  "deliverymanArray":
+  [
+    {
+      "pizzasCapacity":3,
+      "timeToFirstPizza":5
+    },
+    {
+      "pizzasCapacity":1,
+      "timeToFirstPizza":3
+    }
+  ]
+}
