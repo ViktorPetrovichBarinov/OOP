@@ -1,17 +1,34 @@
 package org.example.config;
 
-import org.example.deliviry_logic.DeliveryMan;
 import java.util.List;
+import org.example.deliviry_logic.DeliveryMan;
 
+/**
+ * Класс ответственен за конфигурацию Controller.
+ */
 public class Config {
     private int maxSizeOfWaitingForCookingOrder;
     private List<Integer> bakersArray;
     private int maxSizeOfWaitingToBeSentOrder;
     private List<DeliveryMan> deliverymanArray;
 
+    /**
+     * Конструктор без параметров.
+     */
     public Config() {
 
     }
+
+    /**
+     * Конструктор.
+     *
+     * @param maxSizeOfWaitingForCookingOrder - максимальный размер очереди,
+     *                                        ожидающих повара заказов.
+     * @param bakersArray - массив пекарей.
+     * @param maxSizeOfWaitingToBeSentOrder - максимальный размер очереди,
+     *                                      ожидающих доставщика заказов.
+     * @param deliverymanArray - массив доставщиков.
+     */
     public Config(int maxSizeOfWaitingForCookingOrder,
                   List<Integer> bakersArray,
                   int maxSizeOfWaitingToBeSentOrder,

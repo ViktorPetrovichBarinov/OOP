@@ -1,4 +1,4 @@
-package org.example.userLogic;
+package org.example.user_logic;
 
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;

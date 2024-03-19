@@ -1,11 +1,10 @@
-package org.example.BackerLogic;
-
-import org.example.Interrupt;
-import org.example.queue.MyBlockingQueue;
-import org.example.orders_logic.Order;
+package org.example.backer_logic;
 
 import static org.example.orders_logic.State.NULL;
 
+import org.example.Interrupt;
+import org.example.orders_logic.Order;
+import org.example.queue.MyBlockingQueue;
 
 /**
  * Класс ответственен за контроль поваров.
@@ -25,7 +24,10 @@ public class BakerController extends Thread {
      * @param waitingToBeSentOrder - очередь заказов, ожидающих доставщика.
      * @param bakersArray - массив пекарей.
      */
-    public BakerController(MyBlockingQueue<Order> waitingForCookingOrder, MyBlockingQueue<Order> waitingToBeSentOrder, int[] bakersArray) {
+    public BakerController(
+            MyBlockingQueue<Order> waitingForCookingOrder,
+            MyBlockingQueue<Order> waitingToBeSentOrder,
+            int[] bakersArray) {
         this.waitingForCookingOrder = waitingForCookingOrder;
         this.waitingToBeSentOrder = waitingToBeSentOrder;
         this.bakersArray = bakersArray;

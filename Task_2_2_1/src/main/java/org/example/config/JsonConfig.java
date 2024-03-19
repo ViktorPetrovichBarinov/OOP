@@ -6,8 +6,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * Класс ответственен за считывание конфига из json-файла.
+ */
 public class JsonConfig {
     ObjectMapper objectMapper = new ObjectMapper();
+
+    /**
+     * Метод считывает конфиг из json-файла.
+     *
+     * @param path - путь до json-файла.
+     * @return - Config.class.
+     */
     public Config jsonFileToPojo(String path) {
         File file = new File(path);
 

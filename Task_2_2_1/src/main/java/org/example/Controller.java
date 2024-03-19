@@ -1,12 +1,13 @@
 package org.example;
 
-import org.example.BackerLogic.BakerController;
-import org.example.queue.MyBlockingQueue;
-import org.example.userLogic.UserInterface;
+import org.example.backer_logic.BakerController;
 import org.example.config.Config;
 import org.example.deliviry_logic.DeliveryController;
 import org.example.deliviry_logic.DeliveryMan;
 import org.example.orders_logic.Order;
+import org.example.queue.MyBlockingQueue;
+import org.example.user_logic.UserInterface;
+
 
 /**
  * Класс "Контроллер" ответственнен за работу всех сервисов.
@@ -22,16 +23,13 @@ public class Controller {
      * @param config - S.
      */
     public Controller(Config config) {
-        MyBlockingQueue<Order> waitingForCookingOrder =
-                new MyBlockingQueue<>(config.getMaxSizeOfWaitingForCookingOrder());
-        MyBlockingQueue<Order> waitingToBeSentOrder =
-                new MyBlockingQueue<>(config.getMaxSizeOfWaitingToBeSentOrder());
+        MyBlockingQueue<Order> waitingForCookingOrder = new MyBlockingQueue<>(config.getMaxSizeOfWaitingForCookingOrder());
+        MyBlockingQueue<Order> waitingToBeSentOrder = new MyBlockingQueue<>(config.getMaxSizeOfWaitingToBeSentOrder());
         int[] bakersArray = config.getBakersArray().stream().mapToInt(Integer::intValue).toArray();
 
         String startMessage = "This is pizzeria, we are waiting for your orders";
         this.userInterface = new UserInterface(waitingForCookingOrder, startMessage);
-        this.bakerController =
-                new BakerController(waitingForCookingOrder, waitingToBeSentOrder, bakersArray);
+        this.bakerController = new BakerController(waitingForCookingOrder, waitingToBeSentOrder, bakersArray);
 
         DeliveryMan[] deliverymanArray = config.getDeliverymanArray().toArray(new DeliveryMan[0]);
         this.deliveryController = new DeliveryController(waitingToBeSentOrder, deliverymanArray);
