@@ -72,8 +72,7 @@ public class BakerController extends Thread {
                         }
                     }
                     if (currentOrder != null) {
-                        bakerThreads[i] = new Thread(
-                                new BakerThread(
+                        bakerThreads[i] = new Thread(new BakerThread(
                                         waitingToBeSentOrder,
                                         bakersArray[i],
                                         currentOrder));
