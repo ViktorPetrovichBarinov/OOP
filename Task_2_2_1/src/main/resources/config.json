@@ -6,9 +6,11 @@
   [
     {
       "pizzasCapacity":5,
-      "timeToOnePizza":20
+      "timeToFirstPizza":20
     },
-    {"pizzasCapacity":8,
-      "timeToOnePizza":15}
+    {
+      "pizzasCapacity":8,
+      "timeToFirstPizza":15
+    }
   ]
 }

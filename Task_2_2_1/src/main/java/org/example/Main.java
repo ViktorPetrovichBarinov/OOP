@@ -18,11 +18,14 @@ public class Main {
         Config config = jsonConfig.jsonFileToPojo("build/resources/main/config.json");
 
         Controller controller = new Controller(config);
+
         try {
             controller.startWorking();
         } catch (InterruptedException e) {
             System.err.println("Incorrect exit.");
             e.printStackTrace();
         }
+
+
     }
 }
