@@ -1,4 +1,4 @@
-package org.example.orders_logic;
+package org.example.orderslogic;
 
 /**
  * Енам для явного указания состояния пиццы.

@@ -1,4 +1,4 @@
-package org.example.deliviry_logic;
+package org.example.delivirylogic;
 
 /**
  * Вспомогательный рекорд.

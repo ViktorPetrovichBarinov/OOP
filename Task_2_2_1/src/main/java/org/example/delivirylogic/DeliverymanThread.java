@@ -1,8 +1,8 @@
-package org.example.deliviry_logic;
+package org.example.delivirylogic;
 
-import org.example.orders_logic.Order;
-import org.example.orders_logic.State;
 import java.util.ArrayList;
+import org.example.orderslogic.Order;
+import org.example.orderslogic.State;
 
 /**
  * Класс, ответственен за запуск потока доставщика.

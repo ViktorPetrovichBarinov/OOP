@@ -1,9 +1,9 @@
-package org.example.backer_logic;
+package org.example.backerlogic;
 
-import static org.example.orders_logic.State.NULL;
+import static org.example.orderslogic.State.NULL;
 
 import org.example.Interrupt;
-import org.example.orders_logic.Order;
+import org.example.orderslogic.Order;
 import org.example.queue.MyBlockingQueue;
 
 /**

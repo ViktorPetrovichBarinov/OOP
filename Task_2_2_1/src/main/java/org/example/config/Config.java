@@ -1,7 +1,7 @@
 package org.example.config;
 
 import java.util.List;
-import org.example.deliviry_logic.DeliveryMan;
+import org.example.delivirylogic.DeliveryMan;
 
 /**
  * Класс ответственен за конфигурацию Controller.

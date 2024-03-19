@@ -1,7 +1,7 @@
-package org.example.backer_logic;
+package org.example.backerlogic;
 
-import org.example.orders_logic.Order;
-import org.example.orders_logic.State;
+import org.example.orderslogic.Order;
+import org.example.orderslogic.State;
 import org.example.queue.MyBlockingQueue;
 
 /**

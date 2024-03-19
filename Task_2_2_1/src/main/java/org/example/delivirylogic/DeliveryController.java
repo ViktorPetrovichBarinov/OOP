@@ -1,12 +1,15 @@
-package org.example.deliviry_logic;
+package org.example.delivirylogic;
 
-import org.example.Interrupt;
-import org.example.queue.MyBlockingQueue;
-import org.example.orders_logic.Order;
+import static org.example.orderslogic.State.NULL;
+
 import java.util.ArrayList;
+import org.example.Interrupt;
+import org.example.orderslogic.Order;
+import org.example.queue.MyBlockingQueue;
 
-import static org.example.orders_logic.State.NULL;
-
+/**
+ * Микросервис осуществляет работу с доставщиками.
+ */
 public class DeliveryController extends Thread {
     private final MyBlockingQueue<Order> waitingToBeSentOrder;
     private final DeliveryMan[] deliverymanArray;
@@ -51,12 +54,16 @@ public class DeliveryController extends Thread {
                 break;
             }
             boolean isFound = false;
-            if (waitingToBeSentOrder.getNumberOfElements() != 0) { //проверяем есть ли пицца на складе, есл инету ожидаем
-                for (int i = 0; i < deliverymanThreads.length && !isFound; i++) { //Если есть, то ищем доставщика
-                    if (!deliverymanThreads[i].isAlive()) { //если нашли свободного доставщика
-                        ArrayList<Order> ordersForDeliveryMan = new ArrayList<>(); //начинаем заполнять егэ рюкзак
+            //проверяем есть ли пицца на складе, есл инету ожидаем
+            if (waitingToBeSentOrder.getNumberOfElements() != 0) {
+                //Если есть, то ищем доставщика
+                for (int i = 0; i < deliverymanThreads.length && !isFound; i++) {
+                    //если нашли свободного доставщика
+                    if (!deliverymanThreads[i].isAlive()) {
+                        //начинаем заполнять егэ рюкзак
+                        ArrayList<Order> ordersForDeliveryMan = new ArrayList<>();
                         synchronized (waitingToBeSentOrder) { //синхронизируемся на очереди
-                            while(ordersForDeliveryMan.size() != deliverymanArray[i].pizzasCapacity()
+                            while (ordersForDeliveryMan.size() != deliverymanArray[i].pizzasCapacity()
                                     && waitingToBeSentOrder.getNumberOfElements() != 0) {
                                 //пока не заполнился рюкзак и не закончились заказы
                                 try {

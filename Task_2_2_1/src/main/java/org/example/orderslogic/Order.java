@@ -1,4 +1,4 @@
-package org.example.orders_logic;
+package org.example.orderslogic;
 
 /**
  * Клаас содержит характеристики заказа.

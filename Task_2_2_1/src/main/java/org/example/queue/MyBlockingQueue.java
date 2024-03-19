@@ -1,7 +1,7 @@
 package org.example.queue;
 
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Моя реализация кастомной очереди.

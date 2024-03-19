@@ -1,8 +1,8 @@
-package org.example.user_logic;
+package org.example.userlogic;
 
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.example.orders_logic.Order;
+import org.example.orderslogic.Order;
 import org.example.queue.MyBlockingQueue;
 
 /**
@@ -43,7 +43,7 @@ public class UserInterface extends Thread {
                         new Order(
                                 pizzaName,
                                 orderNumber,
-                                org.example.orders_logic.State.WAITING_FOR_COOKING);
+                                org.example.orderslogic.State.WAITING_FOR_COOKING);
                 synchronized (waitingForCookingOrder) {
                     try {
                         waitingForCookingOrder.enqueue(currentOrder);
