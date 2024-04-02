@@ -1,6 +1,6 @@
 package org.example.task_2_3_1;
 
-public enum GridState {
+public enum FieldState {
     EMPTY,
     SNAKE,
     WALL,

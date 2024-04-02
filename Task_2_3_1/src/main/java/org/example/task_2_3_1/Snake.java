@@ -12,6 +12,10 @@ public class Snake {
         this.speed = speed;
     }
 
+    public int getSnakeSize() {
+        return snakeCoordinates.size();
+    }
+
     public void addTail(Coordinates tailCoords) {
         snakeCoordinates.add(tailCoords);
     }
@@ -22,5 +26,18 @@ public class Snake {
 
     public void setHead(Coordinates head) {
         snakeCoordinates.set(0, head);
+    }
+
+    public void shiftBody() {
+
+        for (int i = snakeCoordinates.size() - 1; i >= 1; i--) {
+            int x = snakeCoordinates.get(i - 1).x();
+            int y = snakeCoordinates.get(i - 1).y();
+            snakeCoordinates.set(i, new Coordinates(x, y));
+        }
+    }
+
+    public Coordinates getLastElem() {
+        return snakeCoordinates.get(snakeCoordinates.size() - 1);
     }
 }
