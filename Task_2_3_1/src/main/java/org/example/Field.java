@@ -1,4 +1,6 @@
-package org.example.task_2_3_1;
+package org.example;
+
+import org.example.enums.FieldState;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,12 +9,12 @@ import java.util.Random;
  * Класс ответственнен за работу с полем.
  */
 public class Field {
-    private int width;
-    private int height;
-    private ArrayList<ArrayList<FieldState>> field;
-    private ArrayList<Coordinates> foodList = new ArrayList<>();
-    private ArrayList<Coordinates> wallList = new ArrayList<>();
-    private Random random;
+    private final int width;
+    private final int height;
+    private final ArrayList<ArrayList<FieldState>> field;
+    private final ArrayList<Coordinates> foodList = new ArrayList<>();
+    private final ArrayList<Coordinates> wallList = new ArrayList<>();
+    private final Random random;
 
     public Field(int width, int height, Random random) {
         this.width = width;
@@ -64,6 +66,9 @@ public class Field {
     }
 
     public void setOneWall(int x, int y) {
+        if (x >= width || y >= height || x < 0 || y < 0) {
+            throw new RuntimeException("Out of bounds");
+        }
         field.get(x).set(y, FieldState.WALL);
         wallList.add(new Coordinates(x, y));
     }
@@ -81,7 +86,7 @@ public class Field {
                 setOneWall(i, y1);
             }
         } else {
-            throw new RuntimeException();
+            throw new RuntimeException("Incorrect line coordinates");
         }
     }
 }

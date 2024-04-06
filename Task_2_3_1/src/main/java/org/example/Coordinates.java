@@ -1,4 +1,4 @@
-package org.example.task_2_3_1;
+package org.example;
 
 public record Coordinates(int x, int y) {
 }
