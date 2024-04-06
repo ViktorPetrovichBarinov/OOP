@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.enums.FieldState;
 import java.util.ArrayList;
 import java.util.Random;
+import org.example.enums.FieldState;
 
 /**
  * Класс ответственнен за работу с полем.
@@ -44,10 +44,16 @@ public class Field {
         field.get(x).set(y, grid);
     }
 
-    public ArrayList<Coordinates> getFoodList(){
+    public ArrayList<Coordinates> getFoodList() {
         return foodList;
     }
 
+    /**
+     * Some text.
+     *
+     * @param x - Some text.
+     * @param y - Some text.
+     */
     public void removeFood(int x, int y) {
         setField(x, y, FieldState.EMPTY);
         for (Coordinates coord : foodList) {
@@ -58,9 +64,11 @@ public class Field {
         }
     }
 
-
+    /**
+     * Some text.
+     */
     public void generateFood() {
-        while(true) {
+        while (true) {
             int x = random.nextInt(width);
             int y = random.nextInt(height);
             if (getField(x, y) == FieldState.EMPTY) {
@@ -71,6 +79,12 @@ public class Field {
         }
     }
 
+    /**
+     * Some text.
+     *
+     * @param x - Some text.
+     * @param y - Some text.
+     */
     public void setOneWall(int x, int y) {
         if (x >= width || y >= height || x < 0 || y < 0) {
             throw new RuntimeException("Out of bounds");
@@ -82,6 +96,15 @@ public class Field {
     public ArrayList<Coordinates> getWallList() {
         return wallList;
     }
+
+    /**
+     * Some text.
+     *
+     * @param x1 - Some text.
+     * @param y1 - Some text.
+     * @param x2 - Some text.
+     * @param y2 - Some text.
+     */
     public void setLineOfWalls(int x1, int y1, int x2, int y2) {
         if (x1 == x2) {
             for (int i = Math.min(y1, y2); i <= Math.max(y1, y2); i++) {
