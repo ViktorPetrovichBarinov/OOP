@@ -1,10 +1,10 @@
-package org.example;
+package org.example.task_2_3_1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Random;
-import org.example.enums.FieldState;
+import org.example.task_2_3_1.enums.FieldState;
 import org.junit.jupiter.api.Test;
 
 /**

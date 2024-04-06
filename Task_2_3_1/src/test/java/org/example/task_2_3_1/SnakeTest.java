@@ -1,9 +1,9 @@
-package org.example;
+package org.example.task_2_3_1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import org.example.enums.Directions;
+import org.example.task_2_3_1.enums.Directions;
 import org.junit.jupiter.api.Test;
 
 /**

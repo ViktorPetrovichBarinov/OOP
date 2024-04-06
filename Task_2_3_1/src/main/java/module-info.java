@@ -11,8 +11,8 @@ module org.example.task_2_3_1 {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens org.example to javafx.fxml;
-    exports org.example;
-    exports org.example.enums;
-    opens org.example.enums to javafx.fxml;
+    opens org.example.task_2_3_1 to javafx.fxml;
+    exports org.example.task_2_3_1;
+    exports org.example.task_2_3_1.enums;
+    opens org.example.task_2_3_1.enums to javafx.fxml;
 }

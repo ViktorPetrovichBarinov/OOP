@@ -1,4 +1,4 @@
-package org.example;
+package org.example.task_2_3_1;
 
 /**
  * Рекорд представляет координаты.

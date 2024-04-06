@@ -1,8 +1,8 @@
-package org.example;
+package org.example.task_2_3_1;
 
 import java.util.ArrayList;
 import java.util.Random;
-import org.example.enums.FieldState;
+import org.example.task_2_3_1.enums.FieldState;
 
 /**
  * Класс ответственнен за работу с полем.

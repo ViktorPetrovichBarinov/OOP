@@ -1,4 +1,4 @@
-package org.example;
+package org.example.task_2_3_1;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,8 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.example.enums.Directions;
-import org.example.enums.FieldState;
+import org.example.task_2_3_1.enums.Directions;
+import org.example.task_2_3_1.enums.FieldState;
 
 /**
  * Класс ответственен за запуск всей игры.
