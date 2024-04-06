@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.enums.FieldState;
-
 import java.util.ArrayList;
 import java.util.Random;
 

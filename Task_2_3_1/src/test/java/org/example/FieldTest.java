@@ -1,11 +1,11 @@
 package org.example;
 
-import org.example.enums.FieldState;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.List;
 import java.util.Random;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.example.enums.FieldState;
+import org.junit.jupiter.api.Test;
 
 /**
  * Тесты для класса поля.

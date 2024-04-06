@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -13,9 +15,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.example.enums.Directions;
 import org.example.enums.FieldState;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Класс ответственен за запуск всей игры.

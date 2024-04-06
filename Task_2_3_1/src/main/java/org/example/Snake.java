@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.enums.Directions;
 import java.util.ArrayList;
+import org.example.enums.Directions;
 
 /**
  * Класс змеи.
