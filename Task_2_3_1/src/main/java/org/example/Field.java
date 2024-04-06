@@ -16,6 +16,13 @@ public class Field {
     private final ArrayList<Coordinates> wallList = new ArrayList<>();
     private final Random random;
 
+    /**
+     * Конструктор поля.
+     *
+     * @param width - ширина.
+     * @param height - высота.
+     * @param random - сид.
+     */
     public Field(int width, int height, Random random) {
         this.width = width;
         this.height = height;

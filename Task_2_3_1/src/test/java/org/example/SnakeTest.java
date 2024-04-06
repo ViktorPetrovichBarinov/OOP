@@ -2,11 +2,13 @@ package org.example;
 
 import org.example.enums.Directions;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Тесты для класса змеи.
+ */
 public class SnakeTest {
 
     @Test

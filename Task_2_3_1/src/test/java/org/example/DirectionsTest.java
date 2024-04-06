@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Тесты для енама направления.
+ */
 public class DirectionsTest {
     @Test
     public void testEnumValues() {

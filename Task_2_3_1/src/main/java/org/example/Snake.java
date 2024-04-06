@@ -1,9 +1,11 @@
 package org.example;
 
 import org.example.enums.Directions;
-
 import java.util.ArrayList;
 
+/**
+ * Класс змеи.
+ */
 public class Snake {
     Directions direction;
     Directions lastTickDirection;
