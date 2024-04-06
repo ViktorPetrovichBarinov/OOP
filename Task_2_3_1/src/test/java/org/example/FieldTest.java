@@ -47,9 +47,9 @@ public class FieldTest {
         field.generateFood();
         assertFalse(field.getFoodList().isEmpty());
         for (int i = 0; i < 5; i++) {
-             for (int j = 0; j < 5; j++) {
-                 field.removeFood(i, j);
-             }
+            for (int j = 0; j < 5; j++) {
+                field.removeFood(i, j);
+            }
         }
         assertTrue(field.getFoodList().isEmpty());
         for (int i = 0; i < 5; i++) {

@@ -32,7 +32,6 @@ public class Game extends Application {
     private Field field;
 
     private final static int WINNING_SCORE = 30;
-
     private static boolean isGameOver = false;
     private static boolean isGameWin = false;
 
@@ -80,6 +79,9 @@ public class Game extends Application {
         stage.show();
     }
 
+    /**
+     * Some text.
+     */
     public void initialization() {
         field = new Field(this.levelWidth, this.levelHeight, new Random());
         isGameOver = false;
@@ -89,11 +91,14 @@ public class Game extends Application {
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
 
         snake = new Snake(Directions.RIGHT, new ArrayList<>(), 1, Directions.RIGHT);
-        snake.addTail(new Coordinates(5,5));
+        snake.addTail(new Coordinates(5, 5));
         field.setField(5, 5, FieldState.SNAKE);
         createLevel();
     }
 
+    /**
+     * Some text.
+     */
     public void createLevel() {
         field.setLineOfWalls(0, 0, 0, 5);
         field.setLineOfWalls(0, levelHeight - 6, 0, levelHeight - 1);
@@ -115,6 +120,11 @@ public class Game extends Application {
         field.generateFood();
     }
 
+    /**
+     * Some text.
+     *
+     * @param gc - Some text.
+     */
     public void tick(GraphicsContext gc) {
         if (isGameOver) {
             gc.setFill(Color.RED);
@@ -201,51 +211,51 @@ public class Game extends Application {
         gc.setFill(Color.BISQUE);
         gc.fillOval(currentBodyPart.x() * edgeSize + 1, currentBodyPart.y() * edgeSize + 1,
                 edgeSize - 2, edgeSize - 2);
-        if(snake.direction == Directions.UP) {
+        if (snake.direction == Directions.UP) {
             gc.setFill(Color.WHITE);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 6,5, 5);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 6, 5, 5);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 - 6,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 6,5, 5);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 6, 5, 5);
             gc.setFill(Color.BLACK);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 + 1,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 5,2, 2);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 5, 2, 2);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 - 5,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 5,2, 2);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 5, 2, 2);
         }
 
-        if(snake.direction == Directions.RIGHT) {
+        if (snake.direction == Directions.RIGHT) {
             gc.setFill(Color.WHITE);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 6,5, 5);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 6, 5, 5);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 1,5, 5);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 1, 5, 5);
             gc.setFill(Color.BLACK);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 + 2,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 5,2, 2);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 5, 2, 2);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 + 2,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 2,2, 2);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 2, 2, 2);
         }
 
-        if(snake.direction == Directions.DOWN) {
+        if (snake.direction == Directions.DOWN) {
             gc.setFill(Color.WHITE);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 2,5, 5);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 2, 5, 5);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 - 6,
                     currentBodyPart.y() * edgeSize + edgeSize / 2 + 2, 5, 5);
             gc.setFill(Color.BLACK);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 + 1,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 4,2, 2);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 4, 2, 2);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 - 5,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 4,2, 2);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 4, 2, 2);
         }
 
-        if(snake.direction == Directions.LEFT) {
+        if (snake.direction == Directions.LEFT) {
             gc.setFill(Color.WHITE);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 - 6,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 6,5, 5);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 - 6, 5, 5);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 - 6,
-                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 1,5, 5);
+                    currentBodyPart.y() * edgeSize + edgeSize / 2 + 1, 5, 5);
             gc.setFill(Color.BLACK);
             gc.fillOval(currentBodyPart.x() * edgeSize + edgeSize / 2 - 5,
                     currentBodyPart.y() * edgeSize + edgeSize / 2 - 5, 2, 2);

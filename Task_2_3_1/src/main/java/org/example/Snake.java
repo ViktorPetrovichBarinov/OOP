@@ -12,6 +12,14 @@ public class Snake {
     ArrayList<Coordinates> snakeCoordinates;
     long speed;
 
+    /**
+     * Some text.
+     *
+     * @param dir - Some text.
+     * @param snakeCoordinates - Some text.
+     * @param speed - Some text.
+     * @param lastTickDirection - Some text.
+     */
     public Snake(Directions dir, ArrayList<Coordinates> snakeCoordinates, int speed, Directions lastTickDirection) {
         this.direction = dir;
         this.snakeCoordinates = snakeCoordinates;
@@ -31,6 +39,9 @@ public class Snake {
         snakeCoordinates.set(0, head);
     }
 
+    /**
+     * Some text.
+     */
     public void shiftBody() {
         for (int i = snakeCoordinates.size() - 1; i >= 1; i--) {
             int x = snakeCoordinates.get(i - 1).x();
@@ -43,6 +54,12 @@ public class Snake {
         return snakeCoordinates.get(snakeCoordinates.size() - 1);
     }
 
+    /**
+     * Some text.
+     *
+     * @param levelWidth - Some text.
+     * @param levelHeight - Some text.
+     */
     public void move(int levelWidth, int levelHeight) {
         this.shiftBody();
         Coordinates head = this.getHead();
@@ -78,6 +95,9 @@ public class Snake {
                     this.setHead(new Coordinates(head.x() - 1, head.y()));
                 }
                 this.lastTickDirection = Directions.LEFT;
+            }
+            default -> {
+
             }
         }
     }
