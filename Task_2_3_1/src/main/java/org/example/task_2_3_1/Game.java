@@ -39,21 +39,24 @@ public class Game extends Application {
     public void start(Stage stage) throws Exception {
         this.root.getChildren().add(this.canvas);
         initialization();
-
-        new AnimationTimer() {
+        Thread animationThread = new Thread(() -> {
             long lastTick = 0;
-            public void handle(long now) {
-                if (lastTick == 0) {
-                    lastTick = now;
-                    tick(gc);
-                    return;
-                }
-                if (now - lastTick > (200 - snake.speed * 3) * 1000000) {
-                    lastTick = now;
-                    tick(gc);
+            lastTick = System.currentTimeMillis();
+            tick(gc);
+            while(true){
+                lastTick = System.currentTimeMillis();
+                tick(gc);
+                try {
+                    Thread.sleep((200 - snake.speed * 3) - (System.currentTimeMillis() - lastTick));
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
             }
-        }.start();
+        });
+
+        animationThread.start();
+
+
 
         Scene mainScene = new Scene(root, canvasWidth, canvasHeight);
 
