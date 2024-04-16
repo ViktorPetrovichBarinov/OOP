@@ -1,4 +1,4 @@
-package org.example.task_2_3_1.enums;
+package org.example.enums;
 
 /**
  * Енам отображающий состояния.

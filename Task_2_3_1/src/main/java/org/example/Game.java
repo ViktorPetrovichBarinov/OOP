@@ -1,8 +1,8 @@
-package org.example.task_2_3_1;
+package org.example;
 
 import java.util.ArrayList;
 import java.util.Random;
-import javafx.animation.AnimationTimer;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -13,8 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.example.task_2_3_1.enums.Directions;
-import org.example.task_2_3_1.enums.FieldState;
+import org.example.enums.FieldState;
+import org.example.enums.Directions;
 
 /**
  * Класс ответственен за запуск всей игры.

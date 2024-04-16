@@ -1,8 +1,8 @@
-package org.example.task_2_3_1;
+package org.example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.example.task_2_3_1.enums.FieldState;
+import org.example.enums.FieldState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
