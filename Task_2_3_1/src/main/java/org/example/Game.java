@@ -2,7 +2,6 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -13,8 +12,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.example.enums.FieldState;
 import org.example.enums.Directions;
+import org.example.enums.FieldState;
+
 
 /**
  * Класс ответственен за запуск всей игры.
@@ -32,6 +32,7 @@ public class Game extends Application {
     private Field field;
 
     private final static int WINNING_SCORE = 30;
+
     private static boolean isGameOver = false;
     private static boolean isGameWin = false;
 
@@ -40,7 +41,7 @@ public class Game extends Application {
         this.root.getChildren().add(this.canvas);
         initialization();
         Thread animationThread = new Thread(() -> {
-            while(true){
+            while(true) {
                 long lastTick = System.currentTimeMillis();
                 tick(gc);
                 try {
@@ -168,7 +169,7 @@ public class Game extends Application {
 
     private void drawField() {
         gc.setFill(Color.LIGHTGREEN);
-        gc.fillRect(0, 0, this.canvasWidth , this.canvasHeight);
+        gc.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
 
         //Рисуем стены.
         Coordinates currentWall;
