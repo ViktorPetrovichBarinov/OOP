@@ -40,11 +40,8 @@ public class Game extends Application {
         this.root.getChildren().add(this.canvas);
         initialization();
         Thread animationThread = new Thread(() -> {
-            long lastTick = 0;
-            lastTick = System.currentTimeMillis();
-            tick(gc);
             while(true){
-                lastTick = System.currentTimeMillis();
+                long lastTick = System.currentTimeMillis();
                 tick(gc);
                 try {
                     Thread.sleep((200 - snake.speed * 3) - (System.currentTimeMillis() - lastTick));

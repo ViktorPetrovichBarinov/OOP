@@ -68,6 +68,9 @@ public class Field {
      * Some text.
      */
     public void generateFood() {
+        if (!isFoodGenerationPossible()) {
+            return;
+        }
         while (true) {
             int x = random.nextInt(width);
             int y = random.nextInt(height);
@@ -77,6 +80,12 @@ public class Field {
                 break;
             }
         }
+    }
+
+    private boolean isFoodGenerationPossible() {
+        return field.stream()
+                .flatMap(ArrayList::stream)
+                .anyMatch(state -> state == FieldState.EMPTY);
     }
 
     /**
