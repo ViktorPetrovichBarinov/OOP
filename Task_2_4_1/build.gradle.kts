@@ -13,6 +13,9 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+
+    implementation(group = "org.codehaus.groovy", name = "groovy-all", version = "3.0.9")
+    implementation(group = "org.eclipse.jgit", name = "org.eclipse.jgit", version = "5.11.0.202103091610-r")
 }
 
 tasks.test {
