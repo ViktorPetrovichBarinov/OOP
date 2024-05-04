@@ -1,7 +1,7 @@
 package scripts
 
 import groovy.transform.Field
-import org.example.Student
+
 //Рустам, пиши сам.
 @Field
 students = [

@@ -34,7 +34,7 @@ public class ConfigReader {
 
     public static void main(String[] args) {
         ConfigReader configReader = new ConfigReader();
-        configReader.readConfig("src/main/resources/config.groovy");
+        configReader.readConfig("src/main/resources/students.groovy");
 
         // Получим информацию о студенте "student1"
         Map<String, String> student1Info = configReader.getStudentInfo("student1");

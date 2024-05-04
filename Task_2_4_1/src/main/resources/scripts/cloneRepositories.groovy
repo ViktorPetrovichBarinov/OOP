@@ -3,21 +3,26 @@ package scripts
 import groovy.transform.Field
 
 def config = new GroovyClassLoader().parseClass(
-        new File(this.class.getResource("/scripts/config.groovy").getFile())
+        new File(this.class.getResource("/scripts/students.groovy").getFile())
 ).newInstance()
 
 def cloneRepos(LinkedHashMap students) {
-    println 'user list:' + students.keySet()
+    println "user list:" + students.keySet()
 
     for (id in students.keySet()) {
-        print id
         pathToCloning = "repositories/${id}"
-        println (" " + pathToCloning)
 
         student = students.get(id)
-        println(student.repository)
+        repository = student.repository
+        username = student.username
+        println("Program are cloning repository ${repository} " +
+                "to the \"${pathToCloning}\" directory " +
+                "of ${username}" +
+                "(\"${id}\" - student id).")
 
-        def clonning = ('git clone ' + student.repository + ' ' + pathToCloning).execute()
+        gitCommand = "git clone ${student.repository} ${pathToCloning}"
+        //print(gitCommand)
+        def cloning = gitCommand.execute()
         def help = new StringBuffer()
         clonning.consumeProcessErrorStream(help)
         println help.toString()
