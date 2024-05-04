@@ -1,10 +1,8 @@
 package scripts
 
-import groovy.transform.Field
-
-def config = new GroovyClassLoader().parseClass(
-        new File(this.class.getResource("/scripts/students.groovy").getFile())
-).newInstance()
+def engine = new GroovyScriptEngine("scripts/")
+def scriptClass = engine.loadScriptByName("students.groovy")
+def studentsConfig = scriptClass.getDeclaredConstructor().newInstance()
 
 def cloneRepos(LinkedHashMap students) {
     println "Student's ids list:" + students.keySet()
@@ -12,15 +10,15 @@ def cloneRepos(LinkedHashMap students) {
     for (id in students.keySet()) {
         pathToCloning = "repositories/${id}"
 
-        student = students.get(id)
-        repository = student.repository
-        username = student.username
+        def student = students.get(id)
+        def repository = student.repository
+        def username = student.username
         println("Program are trying to clone repository ${repository} " +
                 "to the \"${pathToCloning}\" directory " +
                 "of ${username}" +
                 "(\"${id}\" - student id).")
 
-        gitCommand = "git clone ${student.repository} ${pathToCloning}"
+        def gitCommand = "git clone ${student.repository} ${pathToCloning}"
         println("Git command: ${gitCommand}")
         def cloning = gitCommand.execute()
         def exitCode = cloning.waitFor()
@@ -53,4 +51,4 @@ def cloneRepos(LinkedHashMap students) {
     }
 
 }
-cloneRepos(config.students)
+cloneRepos(studentsConfig.students)
