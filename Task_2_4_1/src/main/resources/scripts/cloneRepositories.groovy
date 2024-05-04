@@ -20,6 +20,7 @@ def cloneRepos(LinkedHashMap students) {
 
         def gitCommand = "git clone ${student.repository} ${pathToCloning}"
         println("Git command: ${gitCommand}")
+
         def cloning = gitCommand.execute()
         def exitCode = cloning.waitFor()
         switch (exitCode) {
@@ -51,4 +52,5 @@ def cloneRepos(LinkedHashMap students) {
     }
 
 }
+
 cloneRepos(studentsConfig.students)
