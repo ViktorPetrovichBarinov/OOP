@@ -12,6 +12,10 @@ students = [
         "student2": [
                 username: "Rustam Khamidullin",
                 repository: "https://github.com/Rustam-Khamidullin/OOP"
+        ],
+        "error 123": [
+                username: "ppp",
+                repository: "ERROR"
         ]
 ]
 
