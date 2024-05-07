@@ -39,6 +39,7 @@ public class Main {
                 case "clone":
                     try {
                         File directory = new File(".");
+                        System.out.println("BASE DIRECTORY:" + directory);
                         File[] files = directory.listFiles();
                         if (files != null) {
                             for (File file : files) {
