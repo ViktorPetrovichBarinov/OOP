@@ -14,7 +14,7 @@ def evaluate(Set students, String lab) {
     println "-------------------"
     println lab + ':'
 
-    def results = new HashMap()
+    def results = new LinkedHashMap()
     for (student in students) {
         def connector = GradleConnector.newConnector()
 
@@ -86,7 +86,7 @@ def shell = new GroovyShell()
 def script = shell.parse(new File("cloneRepositories.groovy"))
 script.run()
 
-def labResults = new HashMap();
+def labResults = new LinkedHashMap();
 for (lab in taskConfig.tasks) {
     def labResult = evaluate(studentsConfig.students.keySet(), lab);
     labResults[lab] = labResult
