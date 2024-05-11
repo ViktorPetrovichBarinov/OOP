@@ -10,22 +10,42 @@ def results = script.run()
 
 def htmlTemplate = new File(this.class.getResource("/html/template.html").getFile())
 def htmlBody = Jsoup.parse(htmlTemplate).toString()
-
+htmlBody += "\n\n"
 
 
 def margin = 0
 
 for (def lab in results.keySet()) {
-    htmlBody += "<h1>\n${lab}</h1>\n"
-    htmlBody += "<div id=\"content\">"
-
+    htmlBody += "<table>\n"
+    htmlBody += "    <caption>${lab}</caption>"
+    htmlBody += """
+    <tr>
+        <th>Студент</th>
+        <th>Сборка</th>
+        <th>Документация</th>
+        <th>Style</th>
+        <th>баллы</th>
+    </tr>\n"""
     for (student in results[lab].keySet()) {
-        htmlBody += "<div id=\"content\">\n" + "h1" + student + ""
+        def build = results[lab][student]["build"]
+        def javadoc = results[lab][student]["javadoc"]
+        def test = results[lab][student]["test"]
+        def result;
+        if (build == '-' || javadoc == '-' || test == '-') {
+            result = "0"
+        } else {
+            result = "1"
+        }
+        htmlBody += """
+    <tr>
+        <td>${student}</td>
+        <td>${build}</td>
+        <td>${javadoc}</td>
+        <td>${test}</td>
+        <td>${result}</td>
+    </tr>\n"""
     }
-
-
-
-    htmlBody += "</div>\n"
+    htmlBody += "</table>\n"
 }
 
 htmlBody += "</body>\n</html>"
