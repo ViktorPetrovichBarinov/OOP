@@ -1,6 +1,6 @@
 package scripts
 
-def engine = new GroovyScriptEngine("scripts/")
+def engine = new GroovyScriptEngine("src/main/resources/scripts")
 def scriptClass = engine.loadScriptByName("students.groovy")
 def studentsConfig = scriptClass.getDeclaredConstructor().newInstance()
 

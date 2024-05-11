@@ -4,7 +4,7 @@ import org.gradle.tooling.GradleConnector
 import org.jsoup.Jsoup
 
 //Получаем конфиги для студентов и для тасок
-def engine = new GroovyScriptEngine("scripts/")
+def engine = new GroovyScriptEngine("src/main/resources/scripts")
 def scriptClass = engine.loadScriptByName("tasks.groovy")
 def taskConfig = scriptClass.getDeclaredConstructor().newInstance()
 scriptClass = engine.loadScriptByName("students.groovy")
@@ -18,7 +18,7 @@ def evaluate(Set students, String lab) {
     for (student in students) {
         def connector = GradleConnector.newConnector()
 
-        studentPath = new File("./repositories/" + student);
+        studentPath = new File("repositories/" + student);
         //println(studentPath)
 
         println "----------"
@@ -83,7 +83,7 @@ def evaluate(Set students, String lab) {
 
 //Клонируем репы
 def shell = new GroovyShell()
-def script = shell.parse(new File("cloneRepositories.groovy"))
+def script = shell.parse(new File("src/main/resources/scripts/cloneRepositories.groovy"))
 script.run()
 
 def labResults = new LinkedHashMap();

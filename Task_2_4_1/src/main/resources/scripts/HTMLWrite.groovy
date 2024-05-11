@@ -1,11 +1,11 @@
 package scripts
 
 import org.apache.commons.io.FileUtils
-import org.apache.ivy.util.FileUtil
+
 import org.jsoup.Jsoup
 
 def shell = new GroovyShell()
-def script = shell.parse(new File("buildChecker.groovy"))
+def script = shell.parse(new File("src/main/resources/scripts/buildChecker.groovy"))
 def results = script.run()
 
 def htmlTemplate = new File(this.class.getResource("/html/template.html").getFile())
@@ -20,11 +20,11 @@ for (def lab in results.keySet()) {
     htmlBody += "    <caption>${lab}</caption>"
     htmlBody += """
     <tr>
-        <th>Студент</th>
-        <th>Сборка</th>
-        <th>Документация</th>
+        <th>Student</th>
+        <th>Build</th>
+        <th>Documentation</th>
         <th>Style</th>
-        <th>баллы</th>
+        <th>Points</th>
     </tr>\n"""
     for (student in results[lab].keySet()) {
         def build = results[lab][student]["build"]
@@ -54,5 +54,5 @@ def resultFile = new File("./result.html")
 FileUtils.writeStringToFile(resultFile, htmlBody)
 
 
-
-println(htmlBody)
+println "result.html was successfully generated"
+//println(htmlBody)
