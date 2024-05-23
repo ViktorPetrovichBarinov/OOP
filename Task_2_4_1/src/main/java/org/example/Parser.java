@@ -6,7 +6,7 @@ import groovy.util.GroovyScriptEngine;
 import java.util.Scanner;
 
 /**
- * Класс ответственнен за обрабоботку команд пользователя.
+
  */
 public class Parser {
     public static void start() {
