@@ -2,19 +2,22 @@ package org.example;
 
 import groovy.lang.Binding;
 import groovy.util.GroovyScriptEngine;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ParserTest {
+/**
+ * Тесты для скриптов.
+ */
+public class ScriptsTest {
+
     /**
      * Метод для удалени папки с репозиториями.
      */

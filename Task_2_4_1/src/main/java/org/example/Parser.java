@@ -2,13 +2,15 @@ package org.example;
 
 import groovy.lang.Binding;
 import groovy.util.GroovyScriptEngine;
-
 import java.util.Scanner;
 
 /**
-
+ * Класс ответственен за парсинг аргументов и вызов соответствующих скриптов.
  */
 public class Parser {
+    /**
+     * Запускает парс.
+     */
     public static void start() {
         String commands = """
                     \"exit\" - stop working
