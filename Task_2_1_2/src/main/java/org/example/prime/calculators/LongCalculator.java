@@ -1,5 +1,8 @@
-package org.example.primeCalculators;
+package org.example.prime.calculators;
 
+/**
+ * Реализация вычисления простых чисел за линейное время.
+ */
 public class LongCalculator implements PrimeArrayCalculator {
     @Override
     public boolean calculate(int number) throws NonNaturalNumberException {

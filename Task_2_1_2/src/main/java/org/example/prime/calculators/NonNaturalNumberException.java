@@ -1,4 +1,4 @@
-package org.example.primeCalculators;
+package org.example.prime.calculators;
 
 public class NonNaturalNumberException extends Exception{
     NonNaturalNumberException(){

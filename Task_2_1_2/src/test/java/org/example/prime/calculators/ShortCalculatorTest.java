@@ -1,4 +1,4 @@
-package org.example.primeCalculators;
+package org.example.prime.calculators;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LongCalculatorTest {
-    PrimeArrayCalculator calculator = new LongCalculator();
+public class ShortCalculatorTest {
+    PrimeArrayCalculator calculator = new ShortCalculator();
 
     @ParameterizedTest
     @MethodSource("nonNaturalData")
@@ -22,8 +22,8 @@ public class LongCalculatorTest {
     static Stream<Arguments> nonNaturalData() {
         Random random = new Random();
         return IntStream.generate(() -> Integer.MIN_VALUE + random.nextInt(Integer.MAX_VALUE))
-                        .limit(10000)
-                        .mapToObj(Arguments::arguments);
+                .limit(10000)
+                .mapToObj(Arguments::arguments);
     }
 
     @ParameterizedTest
@@ -74,5 +74,4 @@ public class LongCalculatorTest {
                 Arguments.arguments(37)
         );
     }
-
 }

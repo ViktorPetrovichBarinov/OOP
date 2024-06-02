@@ -1,4 +1,4 @@
-package org.example.primeCalculators;
+package org.example.prime.calculators;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

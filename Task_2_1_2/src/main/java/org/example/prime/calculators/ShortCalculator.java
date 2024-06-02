@@ -1,5 +1,8 @@
-package org.example.primeCalculators;
+package org.example.prime.calculators;
 
+/**
+ * Реализация вычисления простых чисел до корня.
+ */
 public class ShortCalculator implements PrimeArrayCalculator {
     @Override
     public boolean calculate(int number) throws NonNaturalNumberException {
