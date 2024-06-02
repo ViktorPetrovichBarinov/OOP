@@ -92,7 +92,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </nav>
 </header>
 <main role="main">
-<div class="contentContainer"><a href="#I:C">C</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:C">
+<div class="contentContainer"><a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a><a id="I:C">
 <!--   -->
 </a>
 <h2 class="title">C</h2>
@@ -102,6 +102,51 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="org/example/prime/calculators/PrimeArrayCalculator.html#calculate(int)">calculate(int)</a></span> - Method in interface org.example.prime.calculators.<a href="org/example/prime/calculators/PrimeArrayCalculator.html" title="interface in org.example.prime.calculators">PrimeArrayCalculator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/example/prime/calculators/ShortCalculator.html#calculate(int)">calculate(int)</a></span> - Method in class org.example.prime.calculators.<a href="org/example/prime/calculators/ShortCalculator.html" title="class in org.example.prime.calculators">ShortCalculator</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/queue/CustomBlockingQueue.html" title="interface in org.example.queue"><span class="typeNameLink">CustomBlockingQueue</span></a>&lt;<a href="org/example/queue/CustomBlockingQueue.html" title="type parameter in CustomBlockingQueue">T</a>&gt; - Interface in <a href="org/example/queue/package-summary.html">org.example.queue</a></dt>
+<dd>
+<div class="block">Интерфейс ответственнен за кастомные реализации BlockingQueue.</div>
+</dd>
+</dl>
+<a id="I:D">
+<!--   -->
+</a>
+<h2 class="title">D</h2>
+<dl>
+<dt><span class="memberNameLink"><a href="org/example/queue/CustomBlockingQueue.html#dequeue()">dequeue()</a></span> - Method in interface org.example.queue.<a href="org/example/queue/CustomBlockingQueue.html" title="interface in org.example.queue">CustomBlockingQueue</a></dt>
+<dd>
+<div class="block">Достать элемент из очереди.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/example/queue/MyBlockingQueue.html#dequeue()">dequeue()</a></span> - Method in class org.example.queue.<a href="org/example/queue/MyBlockingQueue.html" title="class in org.example.queue">MyBlockingQueue</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<a id="I:E">
+<!--   -->
+</a>
+<h2 class="title">E</h2>
+<dl>
+<dt><span class="memberNameLink"><a href="org/example/queue/CustomBlockingQueue.html#enqueue(T)">enqueue(T)</a></span> - Method in interface org.example.queue.<a href="org/example/queue/CustomBlockingQueue.html" title="interface in org.example.queue">CustomBlockingQueue</a></dt>
+<dd>
+<div class="block">Положить элемент в очередь.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/example/queue/MyBlockingQueue.html#enqueue(T)">enqueue(T)</a></span> - Method in class org.example.queue.<a href="org/example/queue/MyBlockingQueue.html" title="class in org.example.queue">MyBlockingQueue</a></dt>
+<dd>
+<div class="block">Кладёт элемент в конец очереди, если места закончились, то падает в ожидание,
+ если очередь пустая, то пробуждает потоки, которые хотят достать что-либо.</div>
+</dd>
+</dl>
+<a id="I:G">
+<!--   -->
+</a>
+<h2 class="title">G</h2>
+<dl>
+<dt><span class="memberNameLink"><a href="org/example/queue/CustomBlockingQueue.html#getMaxCapacity()">getMaxCapacity()</a></span> - Method in interface org.example.queue.<a href="org/example/queue/CustomBlockingQueue.html" title="interface in org.example.queue">CustomBlockingQueue</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/example/queue/MyBlockingQueue.html#getMaxCapacity()">getMaxCapacity()</a></span> - Method in class org.example.queue.<a href="org/example/queue/MyBlockingQueue.html" title="class in org.example.queue">MyBlockingQueue</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/example/queue/CustomBlockingQueue.html#getNumberOfElements()">getNumberOfElements()</a></span> - Method in interface org.example.queue.<a href="org/example/queue/CustomBlockingQueue.html" title="interface in org.example.queue">CustomBlockingQueue</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/example/queue/MyBlockingQueue.html#getNumberOfElements()">getNumberOfElements()</a></span> - Method in class org.example.queue.<a href="org/example/queue/MyBlockingQueue.html" title="class in org.example.queue">MyBlockingQueue</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a id="I:L">
@@ -129,6 +174,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="org/example/Main.html#%3Cinit%3E()">Main()</a></span> - Constructor for class org.example.<a href="org/example/Main.html" title="class in org.example">Main</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/example/queue/MyBlockingQueue.html" title="class in org.example.queue"><span class="typeNameLink">MyBlockingQueue</span></a>&lt;<a href="org/example/queue/MyBlockingQueue.html" title="type parameter in MyBlockingQueue">T</a>&gt; - Class in <a href="org/example/queue/package-summary.html">org.example.queue</a></dt>
+<dd>
+<div class="block">Моя реализация кастомной очереди.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/example/queue/MyBlockingQueue.html#%3Cinit%3E(int)">MyBlockingQueue(int)</a></span> - Constructor for class org.example.queue.<a href="org/example/queue/MyBlockingQueue.html" title="class in org.example.queue">MyBlockingQueue</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <a id="I:N">
 <!--   -->
@@ -150,6 +201,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><a href="org/example/package-summary.html">org.example</a> - package org.example</dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/example/prime/calculators/package-summary.html">org.example.prime.calculators</a> - package org.example.prime.calculators</dt>
+<dd>&nbsp;</dd>
+<dt><a href="org/example/queue/package-summary.html">org.example.queue</a> - package org.example.queue</dt>
 <dd>&nbsp;</dd>
 </dl>
 <a id="I:P">
@@ -174,7 +227,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="org/example/prime/calculators/ShortCalculator.html#%3Cinit%3E()">ShortCalculator()</a></span> - Constructor for class org.example.prime.calculators.<a href="org/example/prime/calculators/ShortCalculator.html" title="class in org.example.prime.calculators">ShortCalculator</a></dt>
 <dd>&nbsp;</dd>
 </dl>
-<a href="#I:C">C</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
+<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a>&nbsp;<a href="allpackages-index.html">All&nbsp;Packages</a></div>
 </main>
 <footer role="contentinfo">
 <nav role="navigation">
