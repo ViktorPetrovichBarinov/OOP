@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.example.PrimeCalculators","l":"LongCalculator"},{"p":"org.example","l":"Main"},{"p":"org.example.PrimeCalculators","l":"NonNaturalNumberException"},{"p":"org.example.PrimeCalculators","l":"PrimeArrayCalculator"},{"p":"org.example.PrimeCalculators","l":"ShortCalculator"}]
