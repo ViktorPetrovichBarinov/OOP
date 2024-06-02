@@ -1,6 +1,4 @@
-package org.example.PrimeCalculators;
-
-import java.util.ArrayList;
+package org.example.primeCalculators;
 
 public class PerformanceTest {
     public static void main(String[] args) throws NonNaturalNumberException {

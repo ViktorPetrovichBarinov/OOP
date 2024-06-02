@@ -1,4 +1,4 @@
-package org.example.PrimeCalculators;
+package org.example.primeCalculators;
 
 public class ShortCalculator implements PrimeArrayCalculator {
     @Override
