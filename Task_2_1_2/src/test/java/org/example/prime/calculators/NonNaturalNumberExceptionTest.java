@@ -1,10 +1,13 @@
 package org.example.prime.calculators;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * Класс для тестирования корректности работы класса.
+ */
 public class NonNaturalNumberExceptionTest {
 
     @Test
