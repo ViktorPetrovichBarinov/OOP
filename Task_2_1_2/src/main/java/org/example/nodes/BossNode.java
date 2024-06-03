@@ -1,4 +1,4 @@
-package org.example;
+package org.example.nodes;
 
 import org.example.queue.CustomBlockingQueue;
 import org.example.queue.MyBlockingQueue;

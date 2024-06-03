@@ -1,4 +1,4 @@
-package org.example;
+package org.example.nodes;
 
 import org.example.prime.calculators.LongCalculator;
 import org.example.prime.calculators.PrimeArrayCalculator;
