@@ -12,7 +12,8 @@ public class BossNode{
     private final static int SERVER_PORT = 10010;
     private final CustomBlockingQueue<Integer> queue;
     private Boolean result = true;
-    private static final int TIMEOUT = 10000;
+    private static final int TIMEOUT = 5000;
+
     public BossNode(int[] request) {
         queue = new MyBlockingQueue<>(request.length);
         for (int i = 0; i < request.length; i++) {
@@ -34,9 +35,9 @@ public class BossNode{
         ArrayList<RequestSender> senders = new ArrayList<>();
 
         try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT)) {
-            serverSocket.setSoTimeout(TIMEOUT);
             System.out.println("Server is listening on port " + SERVER_PORT);
             System.out.println("Server timeout: " + TIMEOUT);
+            serverSocket.setSoTimeout(TIMEOUT);
 
             while(true) {
                 synchronized (queue) {
@@ -44,8 +45,15 @@ public class BossNode{
                         break;
                     }
                 }
-                Socket socket = serverSocket.accept();
-                System.out.println("New connection from ");
+                Socket socket;
+                try {
+                    socket = serverSocket.accept();
+                } catch(IOException e) {
+                    continue;
+                }
+
+
+                System.out.println("New connection");
                 RequestSender requestSender = new RequestSender(socket, queue);
                 requestSender.start();
                 senders.add(requestSender);

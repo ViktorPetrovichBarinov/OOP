@@ -39,10 +39,12 @@ public class ComputingNode extends Thread{
 
                     String hostname = "localhost";
 
-                    try (Socket socket = new Socket(hostname, distribPort)) {
+                    try (Socket socket = new Socket(hostname, distribPort);
+                         DataInputStream input = new DataInputStream(socket.getInputStream());
+                         DataOutputStream output = new DataOutputStream(socket.getOutputStream())) {
+
                         System.out.println("Connected to the server");
-                        DataInputStream input = new DataInputStream(socket.getInputStream());
-                        DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+
                         while (true) {
                             int number;
 

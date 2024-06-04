@@ -32,7 +32,18 @@ public class RequestSender extends Thread{
 
                 System.out.println("Send: " + number);
                 output.writeInt(number);
-                boolean currentRes = input.readBoolean();
+                boolean currentRes;
+
+                try {
+                    currentRes = input.readBoolean();
+                } catch (IOException e) {
+                    System.out.println("Extra turn off");
+                    synchronized (queue) {
+                        queue.enqueue(number);
+                    }
+                    break;
+                }
+
                 System.out.println("Get: " + currentRes);
                 if (!currentRes) {
                     res = false;
